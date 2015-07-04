@@ -95,5 +95,23 @@ namespace ZAProxy {
                 return ResourceManager.GetString("CallViewUnknownResult", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Result from the server was empty..
+        /// </summary>
+        internal static string ResultFromServerWasEmpty {
+            get {
+                return ResourceManager.GetString("ResultFromServerWasEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SetProxy received an unknown result..
+        /// </summary>
+        internal static string SetProxyUnknownResult {
+            get {
+                return ResourceManager.GetString("SetProxyUnknownResult", resourceCulture);
+            }
+        }
     }
 }

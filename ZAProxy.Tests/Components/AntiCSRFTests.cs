@@ -1,27 +1,26 @@
-﻿using Moq;
+﻿using System;
+using System.Collections.Generic;
+using FluentAssertions;
+using Moq;
 using Newtonsoft.Json.Linq;
 using Ploeh.AutoFixture.Xunit2;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 using ZAProxy.Components;
 using ZAProxy.Infrastructure;
-using FluentAssertions;
 
 namespace ZAProxy.Tests.Components
 {
     public class AntiCSRFTests
     {
-        [Theory, AutoMoqData]
+        #region Views
+
+        [Theory, AutoTestData]
         public void GetOptionTokenNames(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]AntiCSRF sut,
             IEnumerable<string> tokenNames)
         {
-            // ASSIGN
+            // ARRANGE
             var json = new JObject(
                 new JProperty("TokensNames", tokenNames.ToJsonStringList()));
             httpClientMock.SetupApiCall(sut, CallType.View, "optionTokensNames")
@@ -36,13 +35,17 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        #endregion
+
+        #region Actions
+
+        [Theory, AutoTestData]
         public void AddOptionTokenName(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]AntiCSRF sut,
             string tokenName)
         {
-            // ASSIGN
+            // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "addOptionToken",
                 new Dictionary<string, object>
                 {
@@ -58,13 +61,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void RemoveOptionTokenName(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]AntiCSRF sut,
             string tokenName)
         {
-            // ASSIGN
+            // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "removeOptionToken",
                 new Dictionary<string, object>
                 {
@@ -79,5 +82,34 @@ namespace ZAProxy.Tests.Components
             // ASSERT
             httpClientMock.Verify();
         }
+
+        #endregion
+
+        #region Others
+
+        [Theory, AutoTestData]
+        public void GenerateForm(
+            [Frozen]Mock<IHttpClient> httpClientMock,
+            [Greedy]AntiCSRF sut,
+            int messageId,
+            string form)
+        {
+            // ARRANGE
+            httpClientMock.SetupApiCall(sut, CallType.Other, "genForm",
+                new Dictionary<string, object>
+                {
+                    { "hrefId", messageId }
+                }, DataType.Other)
+                .Returns(form);
+
+            // ACT
+            var result = sut.GenerateForm(messageId);
+
+            // ASSERT
+            result.Should().Be(form);
+            httpClientMock.Verify();
+        }
+
+        #endregion
     }
 }

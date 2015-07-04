@@ -1,15 +1,12 @@
-﻿using Moq;
+﻿using System;
+using System.Collections.Generic;
+using FluentAssertions;
+using Moq;
 using Newtonsoft.Json.Linq;
 using Ploeh.AutoFixture.Xunit2;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 using ZAProxy.Components;
 using ZAProxy.Infrastructure;
-using FluentAssertions;
 using ZAProxy.Schema;
 
 namespace ZAProxy.Tests.Components
@@ -18,14 +15,14 @@ namespace ZAProxy.Tests.Components
     {
         #region Views
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void GetAlertIds(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             int scanId,
             IEnumerable<int> alertsIds)
         {
-            // ASSIGN
+            // ARRANGE
             var json = new JObject(
                 new JProperty("alertsIds", new JArray(alertsIds)));
             httpClientMock.SetupApiCall(sut, CallType.View, "alertsIds",
@@ -44,13 +41,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void GetAttackModeQueue(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             int attackModeQueue)
         {
-            // ASSIGN
+            // ARRANGE
             var json = new JObject(
                 new JProperty("attackModeQueue", $"{attackModeQueue}"));
             httpClientMock.SetupApiCall(sut, CallType.View, "attackModeQueue")
@@ -65,12 +62,12 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void GetAttackModeQueue_MinusValue_ReturnsNull(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut)
         {
-            // ASSIGN
+            // ARRANGE
             var json = new JObject(
                 new JProperty("attackModeQueue", "-1"));
             httpClientMock.SetupApiCall(sut, CallType.View, "attackModeQueue")
@@ -85,13 +82,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void GetExcludedFromScan(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             IEnumerable<string> excludedFromScan)
         {
-            // ASSIGN
+            // ARRANGE
             var json = new JObject(
                 new JProperty("excludedFromScan", new JArray(excludedFromScan)));
             httpClientMock.SetupApiCall(sut, CallType.View, "excludedFromScan")
@@ -106,14 +103,14 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void GetMessagesIds(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             int scanId,
             IEnumerable<int> messagesIds)
         {
-            // ASSIGN
+            // ARRANGE
             var json = new JObject(
                 new JProperty("messagesIds", new JArray(messagesIds)));
             httpClientMock.SetupApiCall(sut, CallType.View, "messagesIds",
@@ -132,13 +129,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void GetOptionAllowAttackOnStart(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             bool allowAttacksOnStart)
         {
-            // ASSIGN
+            // ARRANGE
             var json = new JObject(
                 new JProperty("AllowAttackOnStart", $"{allowAttacksOnStart}"));
             httpClientMock.SetupApiCall(sut, CallType.View, "optionAllowAttackOnStart")
@@ -153,13 +150,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void GetOptionAttackPolicy(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             string attackPolicy)
         {
-            // ASSIGN
+            // ARRANGE
             var json = new JObject(
                 new JProperty("AttackPolicy", $"{attackPolicy}"));
             httpClientMock.SetupApiCall(sut, CallType.View, "optionAttackPolicy")
@@ -174,13 +171,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void GetOptionDefaultPolicy(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             string defaultPolicy)
         {
-            // ASSIGN
+            // ARRANGE
             var json = new JObject(
                 new JProperty("DefaultPolicy", $"{defaultPolicy}"));
             httpClientMock.SetupApiCall(sut, CallType.View, "optionDefaultPolicy")
@@ -195,13 +192,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void GetOptionDelayInMilliseconds(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             int delayInMilliseconds)
         {
-            // ASSIGN
+            // ARRANGE
             var json = new JObject(
                 new JProperty("DelayInMs", $"{delayInMilliseconds}"));
             httpClientMock.SetupApiCall(sut, CallType.View, "optionDelayInMs")
@@ -209,20 +206,20 @@ namespace ZAProxy.Tests.Components
                 .Verifiable();
 
             // ACT
-            var result = sut.GetOptionDelayInMilliseconds();
+            var result = sut.GetOptionDelayInMs();
 
             // ASSERT
             result.Should().Be(delayInMilliseconds);
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void GetOptionExcludedParamList(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             IEnumerable<string> excludedParamList)
         {
-            // ASSIGN
+            // ARRANGE
             var json = new JObject(
                 new JProperty("ExcludedParamList", excludedParamList.ToJsonStringList()));
             httpClientMock.SetupApiCall(sut, CallType.View, "optionExcludedParamList")
@@ -230,20 +227,22 @@ namespace ZAProxy.Tests.Components
                 .Verifiable();
 
             // ACT
+#pragma warning disable 0618 // Turn deprication warning off for test.
             var result = sut.GetOptionExcludedParamList();
+#pragma warning restore 0618 // Restore deprication warning.
 
             // ASSERT
             result.Should().BeEquivalentTo(excludedParamList);
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void GetOptionHandleAntiCSRFTokens(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             bool handleAntiCSRFTokens)
         {
-            // ASSIGN
+            // ARRANGE
             var json = new JObject(
                 new JProperty("HandleAntiCSRFTokens", $"{handleAntiCSRFTokens}"));
             httpClientMock.SetupApiCall(sut, CallType.View, "optionHandleAntiCSRFTokens")
@@ -258,13 +257,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void GetOptionHostPerScan(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             int hostPerScan)
         {
-            // ASSIGN
+            // ARRANGE
             var json = new JObject(
                 new JProperty("HostsPerScan", $"{hostPerScan}"));
             httpClientMock.SetupApiCall(sut, CallType.View, "optionHostPerScan")
@@ -279,13 +278,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void GetOptionMaxResultsToList(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             int maxResultsToList)
         {
-            // ASSIGN
+            // ARRANGE
             var json = new JObject(
                 new JProperty("MaxResultsToList", $"{maxResultsToList}"));
             httpClientMock.SetupApiCall(sut, CallType.View, "optionMaxResultsToList")
@@ -300,13 +299,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void GetOptionMaxScansInUI(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             int maxScansInUI)
         {
-            // ASSIGN
+            // ARRANGE
             var json = new JObject(
                 new JProperty("MaxScansInUI", $"{maxScansInUI}"));
             httpClientMock.SetupApiCall(sut, CallType.View, "optionMaxScansInUI")
@@ -321,13 +320,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void GetOptionPromptInAttackMode(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             bool promptInAttackMode)
         {
-            // ASSIGN
+            // ARRANGE
             var json = new JObject(
                 new JProperty("PromptInAttackMode", $"{promptInAttackMode}"));
             httpClientMock.SetupApiCall(sut, CallType.View, "optionPromptInAttackMode")
@@ -342,13 +341,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void GetOptionPromptToClearFinishedScans(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             bool promptToClearFinishScans)
         {
-            // ASSIGN
+            // ARRANGE
             var json = new JObject(
                 new JProperty("PromptToClearFinishedScans", $"{promptToClearFinishScans}"));
             httpClientMock.SetupApiCall(sut, CallType.View, "optionPromptToClearFinishedScans")
@@ -363,13 +362,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void GetOptionRescanInAttackMode(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             bool rescanInAttackMode)
         {
-            // ASSIGN
+            // ARRANGE
             var json = new JObject(
                 new JProperty("RescanInAttackMode", $"{rescanInAttackMode}"));
             httpClientMock.SetupApiCall(sut, CallType.View, "optionRescanInAttackMode")
@@ -384,13 +383,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void GetOptionShowAdvancedDialog(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             bool showAdvancedDialog)
         {
-            // ASSIGN
+            // ARRANGE
             var json = new JObject(
                 new JProperty("ShowAdvancedDialog", $"{showAdvancedDialog}"));
             httpClientMock.SetupApiCall(sut, CallType.View, "optionShowAdvancedDialog")
@@ -405,13 +404,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void GetOptionTargetParamsEnabledRPC(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
-            int targetParamsEnabledRPC)
+            TargetEnabledRPC targetParamsEnabledRPC)
         {
-            // ASSIGN
+            // ARRANGE
             var json = new JObject(
                 new JProperty("TargetParamsEnabledRPC", $"{targetParamsEnabledRPC}"));
             httpClientMock.SetupApiCall(sut, CallType.View, "optionTargetParamsEnabledRPC")
@@ -426,13 +425,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void GetOptionTargetParamsInjectable(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
-            int targetParamsInjectable)
+            TargetInjectable targetParamsInjectable)
         {
-            // ASSIGN
+            // ARRANGE
             var json = new JObject(
                 new JProperty("TargetParamsInjectable", $"{targetParamsInjectable}"));
             httpClientMock.SetupApiCall(sut, CallType.View, "optionTargetParamsInjectable")
@@ -447,13 +446,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void GetOptionThreadPerHost(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             int threadPerHost)
         {
-            // ASSIGN
+            // ARRANGE
             var json = new JObject(
                 new JProperty("ThreadPerHost", $"{threadPerHost}"));
             httpClientMock.SetupApiCall(sut, CallType.View, "optionThreadPerHost")
@@ -468,7 +467,7 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void GetPolicies(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
@@ -476,7 +475,7 @@ namespace ZAProxy.Tests.Components
             int policyId,
             IEnumerable<Policy> policies)
         {
-            // ASSIGN
+            // ARRANGE
             var json = new JObject(
                 new JProperty("policies", JArray.FromObject(policies)));
             httpClientMock.SetupApiCall(sut, CallType.View, "policies",
@@ -496,13 +495,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void GetScanPolicyNames(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             IEnumerable<string> scanPolicyNames)
         {
-            // ASSIGN
+            // ARRANGE
             var json = new JObject(
                 new JProperty("scanPolicyNames", scanPolicyNames.ToJsonStringList()));
             httpClientMock.SetupApiCall(sut, CallType.View, "scanPolicyNames")
@@ -517,14 +516,14 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void GetScanProgress(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             int scanId,
             ScanProgress scanProgress)
         {
-            // ASSIGN
+            // ARRANGE
             var json = new JObject(
                 new JProperty("scanProgress", JToken.FromObject(scanProgress)));
             httpClientMock.SetupApiCall(sut, CallType.View, "scanProgress",
@@ -543,7 +542,7 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void GetScanners(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
@@ -551,7 +550,7 @@ namespace ZAProxy.Tests.Components
             int policyId,
             IEnumerable<Scanner> scanners)
         {
-            // ASSIGN
+            // ARRANGE
             var json = new JObject(
                 new JProperty("scanners", JArray.FromObject(scanners)));
             httpClientMock.SetupApiCall(sut, CallType.View, "scanners",
@@ -571,13 +570,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void GetScans(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             IEnumerable<Scan> scans)
         {
-            // ASSIGN
+            // ARRANGE
             var json = new JObject(
                 new JProperty("scans", JArray.FromObject(scans)));
             httpClientMock.SetupApiCall(sut, CallType.View, "scans")
@@ -592,21 +591,26 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void GetStatus(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
+            int scanId,
             int status)
         {
-            // ASSIGN
+            // ARRANGE
             var json = new JObject(
                 new JProperty("status", status));
-            httpClientMock.SetupApiCall(sut, CallType.View, "status")
+            httpClientMock.SetupApiCall(sut, CallType.View, "status",
+                new Dictionary<string, object>
+                {
+                    { "scanId", scanId }
+                })
                 .Returns(json.ToString())
                 .Verifiable();
 
             // ACT
-            var result = sut.GetStatus();
+            var result = sut.GetStatus(scanId);
 
             // ASSERT
             result.ShouldBeEquivalentTo(status);
@@ -617,13 +621,13 @@ namespace ZAProxy.Tests.Components
 
         #region Actions
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void AddScanPolicy(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             string scanPolicyName)
         {
-            // ASSIGN
+            // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "addScanPolicy",
                 new Dictionary<string, object>
                 {
@@ -639,12 +643,12 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void ClearExcludedFromScan(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut)
         {
-            // ASSIGN
+            // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "clearExcludedFromScan")
                 .ReturnsOkResult()
                 .Verifiable();
@@ -656,13 +660,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void DisableAllScanners(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             string scanPolicyName)
         {
-            // ASSIGN
+            // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "disableAllScanners",
                 new Dictionary<string, object>
                 {
@@ -678,13 +682,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void DisableScanners(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             IEnumerable<int> scannerIds)
         {
-            // ASSIGN
+            // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "disableScanners",
                 new Dictionary<string, object>
                 {
@@ -700,13 +704,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void EnableAllScanners(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             string scanPolicyName)
         {
-            // ASSIGN
+            // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "enableAllScanners",
                 new Dictionary<string, object>
                 {
@@ -722,13 +726,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void EnableScanners(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             IEnumerable<int> scannerIds)
         {
-            // ASSIGN
+            // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "enableScanners",
                 new Dictionary<string, object>
                 {
@@ -744,13 +748,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void ExcludeFromScan(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             string regexPattern)
         {
-            // ASSIGN
+            // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "excludeFromScan",
                 new Dictionary<string, object>
                 {
@@ -766,13 +770,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void Pause(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             int scanId)
         {
-            // ASSIGN
+            // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "pause",
                 new Dictionary<string, object>
                 {
@@ -788,12 +792,12 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void PauseAllScans(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut)
         {
-            // ASSIGN
+            // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "pauseAllScans")
                 .ReturnsOkResult()
                 .Verifiable();
@@ -805,12 +809,12 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void RemoveAllScans(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut)
         {
-            // ASSIGN
+            // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "removeAllScans")
                 .ReturnsOkResult()
                 .Verifiable();
@@ -822,13 +826,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void RemoveScan(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             int scanId)
         {
-            // ASSIGN
+            // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "removeScan",
                 new Dictionary<string, object>
                 {
@@ -844,13 +848,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void RemoveScanPolicy(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             string scanPolicyName)
         {
-            // ASSIGN
+            // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "removeScanPolicy",
                 new Dictionary<string, object>
                 {
@@ -866,13 +870,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void Resume(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             int scanId)
         {
-            // ASSIGN
+            // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "resume",
                 new Dictionary<string, object>
                 {
@@ -888,12 +892,12 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void ResumeAllScans(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut)
         {
-            // ASSIGN
+            // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "resumeAllScans")
                 .ReturnsOkResult()
                 .Verifiable();
@@ -905,7 +909,7 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void Scan(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
@@ -917,7 +921,7 @@ namespace ZAProxy.Tests.Components
             string postData,
             int scanId)
         {
-            // ASSIGN
+            // ARRANGE
             var json = new JObject(
                 new JProperty("scan", scanId));
             httpClientMock.SetupApiCall(sut, CallType.Action, "scan",
@@ -941,13 +945,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void SetEnabledPolicies(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             IEnumerable<int> policyIds)
         {
-            // ASSIGN
+            // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setEnabledPolicies",
                 new Dictionary<string, object>
                 {
@@ -963,13 +967,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void SetOptionAllowAttackOnStart(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             bool value)
         {
-            // ASSIGN
+            // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setOptionAllowAttackOnStart",
                 new Dictionary<string, object>
                 {
@@ -985,13 +989,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void SetOptionAttackPolicy(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             string value)
         {
-            // ASSIGN
+            // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setOptionAttackPolicy",
                 new Dictionary<string, object>
                 {
@@ -1007,13 +1011,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void SetOptionDefaultPolicy(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             string value)
         {
-            // ASSIGN
+            // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setOptionDefaultPolicy",
                 new Dictionary<string, object>
                 {
@@ -1029,13 +1033,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void SetOptionDelayInMs(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             int value)
         {
-            // ASSIGN
+            // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setOptionDelayInMs",
                 new Dictionary<string, object>
                 {
@@ -1051,13 +1055,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void SetOptionHandleAntiCSRFTokens(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             bool value)
         {
-            // ASSIGN
+            // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setOptionHandleAntiCSRFTokens",
                 new Dictionary<string, object>
                 {
@@ -1073,13 +1077,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void SetOptionHostPerScan(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             int value)
         {
-            // ASSIGN
+            // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setOptionHostPerScan",
                 new Dictionary<string, object>
                 {
@@ -1095,13 +1099,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void SetOptionMaxResultsToList(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             int value)
         {
-            // ASSIGN
+            // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setOptionMaxResultsToList",
                 new Dictionary<string, object>
                 {
@@ -1117,13 +1121,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void SetOptionMaxScansInUI(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             int value)
         {
-            // ASSIGN
+            // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setOptionMaxScansInUI",
                 new Dictionary<string, object>
                 {
@@ -1139,13 +1143,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void SetOptionPromptInAttackMode(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             bool value)
         {
-            // ASSIGN
+            // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setOptionPromptInAttackMode",
                 new Dictionary<string, object>
                 {
@@ -1161,13 +1165,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void SetOptionPromptToClearFinishedScans(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             bool value)
         {
-            // ASSIGN
+            // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setOptionPromptToClearFinishedScans",
                 new Dictionary<string, object>
                 {
@@ -1183,13 +1187,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void SetOptionRescanInAttackMode(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             bool value)
         {
-            // ASSIGN
+            // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setOptionRescanInAttackMode",
                 new Dictionary<string, object>
                 {
@@ -1205,13 +1209,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void SetOptionShowAdvancedDialog(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             bool value)
         {
-            // ASSIGN
+            // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setOptionShowAdvancedDialog",
                 new Dictionary<string, object>
                 {
@@ -1227,13 +1231,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void SetOptionTargetParamsEnabledRPC(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
-            int value)
+            TargetEnabledRPC value)
         {
-            // ASSIGN
+            // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setOptionTargetParamsEnabledRPC",
                 new Dictionary<string, object>
                 {
@@ -1249,13 +1253,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void SetOptionTargetParamsInjectable(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
-            int value)
+            TargetInjectable value)
         {
-            // ASSIGN
+            // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setOptionTargetParamsInjectable",
                 new Dictionary<string, object>
                 {
@@ -1271,13 +1275,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void SetOptionThreadPerHost(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             int value)
         {
-            // ASSIGN
+            // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setOptionThreadPerHost",
                 new Dictionary<string, object>
                 {
@@ -1293,7 +1297,7 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void SetPolicyAlertThreshold(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
@@ -1301,7 +1305,7 @@ namespace ZAProxy.Tests.Components
             AlertThreshold alertThreshold,
             string scanPolicyName)
         {
-            // ASSIGN
+            // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setPolicyAlertThreshold",
                 new Dictionary<string, object>
                 {
@@ -1319,7 +1323,7 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void SetPolicyAttackStrength(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
@@ -1327,7 +1331,7 @@ namespace ZAProxy.Tests.Components
             AttackStrength attackStrength,
             string scanPolicyName)
         {
-            // ASSIGN
+            // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setPolicyAttackStrength",
                 new Dictionary<string, object>
                 {
@@ -1345,7 +1349,7 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void SetScannerAlertThreshold(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
@@ -1353,7 +1357,7 @@ namespace ZAProxy.Tests.Components
             AlertThreshold alertThreshold,
             string scanPolicyName)
         {
-            // ASSIGN
+            // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setScannerAlertThreshold",
                 new Dictionary<string, object>
                 {
@@ -1371,7 +1375,7 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void SetScannerAttackStrength(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
@@ -1379,7 +1383,7 @@ namespace ZAProxy.Tests.Components
             AttackStrength attackStrength,
             string scanPolicyName)
         {
-            // ASSIGN
+            // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setScannerAttackStrength",
                 new Dictionary<string, object>
                 {
@@ -1397,13 +1401,13 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void Stop(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut,
             int scanId)
         {
-            // ASSIGN
+            // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "stop",
                 new Dictionary<string, object>
                 {
@@ -1419,12 +1423,12 @@ namespace ZAProxy.Tests.Components
             httpClientMock.Verify();
         }
 
-        [Theory, AutoMoqData]
+        [Theory, AutoTestData]
         public void StopAllScans(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]ActiveScanner sut)
         {
-            // ASSIGN
+            // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "stopAllScans")
                 .ReturnsOkResult()
                 .Verifiable();

@@ -129,4 +129,10 @@
   <data name="CallViewUnknownResult" xml:space="preserve">
     <value>CallView received an unkown result.</value>
   </data>
+  <data name="ResultFromServerWasEmpty" xml:space="preserve">
+    <value>Result from the server was empty.</value>
+  </data>
+  <data name="SetProxyUnknownResult" xml:space="preserve">
+    <value>SetProxy received an unknown result.</value>
+  </data>
 </root>
