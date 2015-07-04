@@ -1,7 +1,7 @@
 ﻿using HttpArchive;
 using Ploeh.AutoFixture;
 
-namespace ZAProxy.Tests.FixtureSpecimenBuilders
+namespace ZAProxy.Tests.TestUtils.FixtureSpecimenBuilders
 {
     public class HarCustomization : ICustomization
     {

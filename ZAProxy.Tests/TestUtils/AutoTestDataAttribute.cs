@@ -1,9 +1,9 @@
 ﻿using Ploeh.AutoFixture;
 using Ploeh.AutoFixture.AutoMoq;
 using Ploeh.AutoFixture.Xunit2;
-using ZAProxy.Tests.FixtureSpecimenBuilders;
+using ZAProxy.Tests.TestUtils.FixtureSpecimenBuilders;
 
-namespace ZAProxy.Tests
+namespace ZAProxy.Tests.TestUtils
 {
     public class AutoTestDataAttribute : AutoDataAttribute
     {

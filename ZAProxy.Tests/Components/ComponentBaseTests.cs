@@ -7,6 +7,7 @@ using Ploeh.AutoFixture.Xunit2;
 using Xunit;
 using ZAProxy.Components;
 using ZAProxy.Infrastructure;
+using ZAProxy.Tests.TestUtils;
 
 namespace ZAProxy.Tests.Components
 {

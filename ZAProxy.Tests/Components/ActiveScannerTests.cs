@@ -8,9 +8,11 @@ using Xunit;
 using ZAProxy.Components;
 using ZAProxy.Infrastructure;
 using ZAProxy.Schema;
+using ZAProxy.Tests.TestUtils;
 
 namespace ZAProxy.Tests.Components
 {
+    [Trait("Component", "ActiveScanner")]
     public class ActiveScannerTests
     {
         #region Views
