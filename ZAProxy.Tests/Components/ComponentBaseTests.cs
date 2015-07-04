@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using FluentAssertions;
 using Moq;
 using Newtonsoft.Json.Linq;
@@ -28,11 +29,49 @@ namespace ZAProxy.Tests.Components
             {
                 CallAction(method);
             }
+
+            public string TestOther(string method)
+            {
+                return CallOther(method);
+            }
+
+            public byte[] TestOtherData(string method)
+            {
+                return CallOtherData(method);
+            }
+
+            public IEnumerable<string> TestParseJsonListString(string input)
+            {
+                return ParseJsonListString(input);
+            }
         }
 
         #endregion
 
         #region View
+
+        [Theory, AutoTestData]
+        public void CallView(
+            [Frozen]Mock<IHttpClient> httpClientMock,
+            ComponentBaseStub sut,
+            string method,
+            string propertyName,
+            string expected)
+        {
+            // ARRANGE
+            var json = new JObject(
+                new JProperty(propertyName, expected));
+            httpClientMock.SetupApiCall(sut, CallType.View, method)
+                .Returns(json.ToString())
+                .Verifiable();
+
+            // ACT
+            var result = sut.TestView<string>(method, propertyName);
+
+            // ASSERT
+            result.Should().Be(expected);
+            httpClientMock.Verify();
+        }
 
         [Theory, AutoTestData]
         public void CallView_NoResult(
@@ -77,6 +116,24 @@ namespace ZAProxy.Tests.Components
         #endregion
 
         #region Action
+
+        [Theory, AutoTestData]
+        public void CallAction(
+            [Frozen]Mock<IHttpClient> httpClientMock,
+            ComponentBaseStub sut,
+            string method)
+        {
+            // ARRANGE
+            httpClientMock.SetupApiCall(sut, CallType.Action, method)
+                .ReturnsOkResult()
+                .Verifiable();
+
+            // ACT
+            sut.TestAction(method);
+
+            // ASSERT
+            httpClientMock.Verify();
+        }
 
         [Theory, AutoTestData]
         public void CallAction_WithApiKey(
@@ -182,6 +239,141 @@ namespace ZAProxy.Tests.Components
             // ASSERT
             act.ShouldThrow<ZapException>().WithMessage(Resources.CallActionUnknownResult);
             httpClientMock.Verify();
+        }
+
+        #endregion
+
+        #region Other
+
+        [Theory, AutoTestData]
+        public void CallOther(
+            [Frozen]Mock<IHttpClient> httpClientMock,
+            ComponentBaseStub sut,
+            string method,
+            string expected)
+        {
+            // ARRANGE
+            httpClientMock.SetupApiCall(sut, CallType.Other, method, null, DataType.Other)
+                .Returns(expected)
+                .Verifiable();
+
+            // ACT
+            var result = sut.TestOther(method);
+
+            // ASSERT
+            result.Should().Be(expected);
+            httpClientMock.Verify();
+        }
+
+        [Theory, AutoTestData]
+        public void CallOther_WithApiKey(
+            [Frozen]Mock<IHttpClient> httpClientMock,
+            [Frozen]Mock<IZapProcess> zapProcessMock,
+            ComponentBaseStub sut,
+            string method,
+            string apiKey,
+            string expected)
+        {
+            // ARRANGE
+            httpClientMock.SetupApiCall(sut, CallType.Other, method, null, DataType.Other, apiKey)
+                .Returns(expected)
+                .Verifiable();
+            zapProcessMock.SetupGet(m => m.ApiKey)
+                .Returns(apiKey)
+                .Verifiable();
+
+            // ACT
+            var result = sut.TestOther(method);
+
+            // ASSERT
+            result.Should().Be(expected);
+            httpClientMock.Verify();
+            zapProcessMock.Verify();
+        }
+
+        [Theory, AutoTestData]
+        public void CallOther_NoResult(
+            [Frozen]Mock<IHttpClient> httpClientMock,
+            ComponentBaseStub sut,
+            string method,
+            string expected)
+        {
+            // ARRANGE
+            httpClientMock.SetupApiCall(sut, CallType.Other, method, null, DataType.Other)
+                .ReturnsNull()
+                .Verifiable();
+
+            // ACT
+            Action act = () => sut.TestOther(method);
+
+            // ASSERT
+            act.ShouldThrow<ZapException>().WithMessage(Resources.ResultFromServerWasEmpty);
+            httpClientMock.Verify();
+        }
+
+        [Theory, AutoTestData]
+        public void CallOtherData(
+            [Frozen]Mock<IHttpClient> httpClientMock,
+            ComponentBaseStub sut,
+            string method,
+            byte[] expected)
+        {
+            // ARRANGE
+            httpClientMock.SetupOtherDataApiCall(sut, method)
+                .Returns(expected)
+                .Verifiable();
+
+            // ACT
+            var result = sut.TestOtherData(method);
+
+            // ASSERT
+            result.Should().Equal(expected);
+            httpClientMock.Verify();
+        }
+
+        [Theory, AutoTestData]
+        public void CallOtherData_NoResult(
+            [Frozen]Mock<IHttpClient> httpClientMock,
+            ComponentBaseStub sut,
+            string method)
+        {
+            // ARRANGE
+            httpClientMock.SetupOtherDataApiCall(sut, method)
+                .Returns(new byte[0])
+                .Verifiable();
+
+            // ACT
+            Action act = () => sut.TestOtherData(method);
+
+            // ASSERT
+            act.ShouldThrow<ZapException>().WithMessage(Resources.ResultFromServerWasEmpty);
+            httpClientMock.Verify();
+        }
+
+        [Theory, AutoTestData]
+        public void CallOtherData_WithApiKey(
+            [Frozen]Mock<IHttpClient> httpClientMock,
+            [Frozen]Mock<IZapProcess> zapProcessMock,
+            ComponentBaseStub sut,
+            string method,
+            string apiKey,
+            byte[] expected)
+        {
+            // ARRANGE
+            httpClientMock.SetupOtherDataApiCall(sut, method, null, apiKey)
+                .Returns(expected)
+                .Verifiable();
+            zapProcessMock.SetupGet(m => m.ApiKey)
+                .Returns(apiKey)
+                .Verifiable();
+
+            // ACT
+            var result = sut.TestOtherData(method);
+
+            // ASSERT
+            result.Should().Equal(expected);
+            httpClientMock.Verify();
+            zapProcessMock.Verify();
         }
 
         #endregion

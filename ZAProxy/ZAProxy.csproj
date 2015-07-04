@@ -100,7 +100,7 @@
     <Compile Include="ZapApi.cs" />
     <Compile Include="ZapException.cs" />
     <Compile Include="Components\ActiveScanner.cs" />
-    <Compile Include="Components\AntiCSRF.cs" />
+    <Compile Include="Components\AntiCsrf.cs" />
     <Compile Include="Components\ComponentBase.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="DataType.cs" />

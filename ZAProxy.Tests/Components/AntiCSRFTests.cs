@@ -10,14 +10,14 @@ using ZAProxy.Infrastructure;
 
 namespace ZAProxy.Tests.Components
 {
-    public class AntiCSRFTests
+    public class AntiCsrfTests
     {
         #region Views
 
         [Theory, AutoTestData]
         public void GetOptionTokenNames(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]AntiCSRF sut,
+            [Greedy]AntiCsrf sut,
             IEnumerable<string> tokenNames)
         {
             // ARRANGE
@@ -42,7 +42,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void AddOptionTokenName(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]AntiCSRF sut,
+            [Greedy]AntiCsrf sut,
             string tokenName)
         {
             // ARRANGE
@@ -64,7 +64,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void RemoveOptionTokenName(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]AntiCSRF sut,
+            [Greedy]AntiCsrf sut,
             string tokenName)
         {
             // ARRANGE
@@ -90,7 +90,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GenerateForm(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]AntiCSRF sut,
+            [Greedy]AntiCsrf sut,
             int messageId,
             string form)
         {

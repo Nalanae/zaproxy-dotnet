@@ -6,22 +6,22 @@ namespace ZAProxy.Components
     /// <summary>
     /// Component for testing protection against Cross Site Request Forgery.
     /// </summary>
-    public class AntiCSRF : ComponentBase
+    public class AntiCsrf : ComponentBase
     {
         /// <summary>
-        /// Initiates a new instance of the <see cref="AntiCSRF"/> class.
+        /// Initiates a new instance of the <see cref="AntiCsrf"/> class.
         /// </summary>
         /// <param name="zapProcess">The ZAP process to connect to.</param>
-        public AntiCSRF(IZapProcess zapProcess)
+        public AntiCsrf(IZapProcess zapProcess)
             : this(null, zapProcess)
         { }
 
         /// <summary>
-        /// Initiates a new instance of the <see cref="AntiCSRF"/> class with a specific HTTP client implementation.
+        /// Initiates a new instance of the <see cref="AntiCsrf"/> class with a specific HTTP client implementation.
         /// </summary>
         /// <param name="httpClient">The HTTP client implementation.</param>
         /// <param name="zapProcess">The ZAP process to connect to.</param>
-        public AntiCSRF(IHttpClient httpClient, IZapProcess zapProcess)
+        public AntiCsrf(IHttpClient httpClient, IZapProcess zapProcess)
             : base(httpClient, zapProcess, "ascan")
         { }
 

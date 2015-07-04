@@ -97,6 +97,15 @@ namespace ZAProxy {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Requested component type is not registered..
+        /// </summary>
+        internal static string ComponentNotRegistered {
+            get {
+                return ResourceManager.GetString("ComponentNotRegistered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Result from the server was empty..
         /// </summary>
         internal static string ResultFromServerWasEmpty {

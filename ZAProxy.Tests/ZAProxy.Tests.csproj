@@ -95,7 +95,7 @@
     <Compile Include="Components\ActiveScannerTests.cs" />
     <Compile Include="Components\ComponentBaseTests.cs" />
     <Compile Include="Components\CoreTests.cs" />
-    <Compile Include="Components\AntiCSRFTests.cs" />
+    <Compile Include="Components\AntiCsrfTests.cs" />
     <Compile Include="Extensions\HarExtensions.cs" />
     <Compile Include="Extensions\SystemExtensions.cs" />
     <Compile Include="FixtureCustomizations\HarCustomization.cs" />

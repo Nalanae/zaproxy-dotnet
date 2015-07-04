@@ -43,7 +43,6 @@ namespace ZAProxy.Components
         /// <returns>Deserialized API result.</returns>
         protected T CallView<T>(string method, string takeValueFromProperty = null, IDictionary<string, object> parameters = null)
         {
-            parameters = parameters ?? new Dictionary<string, object>();
             var result = CallJsonApi(CallType.View, method, parameters);
             if (takeValueFromProperty != null)
                 result = result[takeValueFromProperty];
@@ -81,9 +80,6 @@ namespace ZAProxy.Components
         /// <returns>Deserialized API result.</returns>
         protected T CallAction<T>(string method, string takeValueFromProperty = null, IDictionary<string, object> parameters = null)
         {
-            parameters = parameters ?? new Dictionary<string, object>();
-            if (!string.IsNullOrEmpty(_zapProcess.ApiKey))
-                parameters.Add("apikey", _zapProcess.ApiKey);
             var result = CallJsonApi(CallType.Action, method, parameters);
             if (takeValueFromProperty != null)
                 result = result[takeValueFromProperty];
@@ -111,10 +107,14 @@ namespace ZAProxy.Components
         /// <returns>The result of the API call as binary data.</returns>
         protected byte[] CallOtherData(string method, IDictionary<string, object> parameters = null)
         {
+            parameters = AddApiKey(parameters);
+
             var url = ZapApi.BuildRequestUrl(DataType.Other, ComponentName, CallType.Other, method, parameters);
             var result = _httpClient.DownloadData(url);
+
             if (!result.Any())
                 throw new ZapException(Resources.ResultFromServerWasEmpty);
+
             return result;
         }
 
@@ -138,22 +138,35 @@ namespace ZAProxy.Components
             }
         }
 
+        private IDictionary<string, object> AddApiKey(IDictionary<string, object> parameters)
+        {
+            parameters = parameters ?? new Dictionary<string, object>();
+            if (!string.IsNullOrEmpty(_zapProcess.ApiKey))
+                parameters.Add("apikey", _zapProcess.ApiKey);
+            return parameters;
+        }
+
         private JToken CallJsonApi(CallType callType, string method, IDictionary<string, object> parameters)
         {
             var result = CallApi(DataType.Json, callType, method, parameters);
             var json = JToken.Parse(result);
+
             if (json["code"] != null && json["message"] != null)
                 throw new ZapException(Resources.CallApiFailedResult,
                     json["code"].ToString(), json["message"].ToString());
+
             return json;
         }
 
         private string CallApi(DataType dataType, CallType callType, string method, IDictionary<string, object> parameters)
         {
+            parameters = AddApiKey(parameters);
             var url = ZapApi.BuildRequestUrl(dataType, ComponentName, callType, method, parameters);
             var result = _httpClient.DownloadString(url);
+
             if (string.IsNullOrEmpty(result))
                 throw new ZapException(Resources.ResultFromServerWasEmpty);
+
             return result;
         }
     }

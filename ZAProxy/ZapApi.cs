@@ -22,14 +22,62 @@ namespace ZAProxy
         public const string MinimumZapDailyVersion = "D-2015-05-10";
 
         private IZapProcess _zapProcess;
+        private IDictionary<Type, ComponentBase> _registeredComponents;
 
         /// <summary>
-        /// Initiates a new instance of the <see cref="ZapApi"/> class.
+        /// Initiates a new instance of the <see cref="ZapApi"/> class and registers the default components.
         /// </summary>
         /// <param name="zapProcess">The ZAP process to connect to.</param>
         public ZapApi(IZapProcess zapProcess)
         {
             _zapProcess = zapProcess;
+            _registeredComponents = new Dictionary<Type, ComponentBase>();
+
+            RegisterComponent(new ActiveScanner(zapProcess));
+            RegisterComponent(new AntiCsrf(zapProcess));
+            RegisterComponent(new Core(zapProcess));
+        }
+
+        /// <summary>
+        /// Gets the active scanner component.
+        /// </summary>
+        public ActiveScanner ActiveScanner { get { return GetComponent<ActiveScanner>(); } }
+
+        /// <summary>
+        /// Gets the anti CSRF component.
+        /// </summary>
+        public AntiCsrf AntiCsrf { get { return GetComponent<AntiCsrf>(); } }
+
+        /// <summary>
+        /// Gets the core component.
+        /// </summary>
+        public Core Core { get { return GetComponent<Core>(); } }
+
+        /// <summary>
+        /// Gets a specified type of component from the registered components.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public T GetComponent<T>() where T : ComponentBase
+        {
+            if (!_registeredComponents.Keys.Contains(typeof(T)))
+                throw new ZapException(Resources.ComponentNotRegistered);
+            return (T)_registeredComponents[typeof(T)];
+        }
+
+        /// <summary>
+        /// Registers a component or replaces the previous instance.
+        /// </summary>
+        /// <typeparam name="T">The type of component.</typeparam>
+        /// <param name="component">The component.</param>
+        /// <returns>This object to be able to chain register calls.</returns>
+        public ZapApi RegisterComponent<T>(T component) where T : ComponentBase
+        {
+            if (_registeredComponents.Keys.Contains(typeof(T)))
+                _registeredComponents[typeof(T)] = component;
+            else
+                _registeredComponents.Add(typeof(T), component);
+            return this;
         }
 
         /// <summary>
