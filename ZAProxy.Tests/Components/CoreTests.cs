@@ -41,7 +41,7 @@ namespace ZAProxy.Tests.Components
             var json = new JObject(
                 new JProperty("alert", JObject.FromObject(alert)));
             httpClientMock.SetupApiCall(sut, CallType.View, "alert",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     { "id", id }
                 })
@@ -69,7 +69,7 @@ namespace ZAProxy.Tests.Components
             var json = new JObject(
                 new JProperty("alerts", JArray.FromObject(alerts)));
             httpClientMock.SetupApiCall(sut, CallType.View, "alerts",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     { "baseurl", baseUrl },
                     { "start", start },
@@ -160,7 +160,7 @@ namespace ZAProxy.Tests.Components
             var json = new JObject(
                 new JProperty("message", JObject.FromObject(message)));
             httpClientMock.SetupApiCall(sut, CallType.View, "message",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     { "id", id }
                 })
@@ -188,7 +188,7 @@ namespace ZAProxy.Tests.Components
             var json = new JObject(
                 new JProperty("messages", JArray.FromObject(messages)));
             httpClientMock.SetupApiCall(sut, CallType.View, "messages",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     { "baseurl", baseUrl },
                     { "start", start },
@@ -216,7 +216,7 @@ namespace ZAProxy.Tests.Components
             var json = new JObject(
                 new JProperty("numberOfAlerts", numberOfAlerts));
             httpClientMock.SetupApiCall(sut, CallType.View, "numberOfAlerts",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     { "baseurl", baseUrl }
                 })
@@ -242,7 +242,7 @@ namespace ZAProxy.Tests.Components
             var json = new JObject(
                 new JProperty("numberOfMessages", numberOfMessages));
             httpClientMock.SetupApiCall(sut, CallType.View, "numberOfMessages",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     { "baseurl", baseUrl }
                 })
@@ -683,7 +683,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "excludeFromProxy",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"regex", regex }
                 })
@@ -722,7 +722,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "loadSession",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"name", path }
                 })
@@ -745,7 +745,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "newSession",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     { "name", path },
                     { "overwrite", overwrite }
@@ -769,7 +769,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "saveSession",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     { "name", path },
                     { "overwrite", overwrite }
@@ -796,7 +796,7 @@ namespace ZAProxy.Tests.Components
             var json = new JObject(
                 new JProperty("sendRequest", JArray.FromObject(messages)));
             httpClientMock.SetupApiCall(sut, CallType.Action, "sendRequest",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     { "request", httpRequest },
                     { "followRedirects", followRedirects }
@@ -820,7 +820,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setHomeDirectory",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"dir", value }
                 })
@@ -842,7 +842,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setOptionHttpStateEnabled",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"Boolean", value }
                 })
@@ -864,7 +864,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setOptionProxyChainName",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"String", value }
                 })
@@ -886,7 +886,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setOptionProxyChainPassword",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"String", value }
                 })
@@ -908,7 +908,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setOptionProxyChainPort",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"Integer", value }
                 })
@@ -930,7 +930,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setOptionProxyChainPrompt",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"Boolean", value }
                 })
@@ -952,7 +952,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setOptionProxyChainRealm",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"String", value }
                 })
@@ -974,7 +974,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setOptionProxyChainSkipName",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"String", value }
                 })
@@ -998,7 +998,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setOptionProxyChainUserName",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"String", value }
                 })
@@ -1020,7 +1020,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setOptionSingleCookieRequestHeader",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"Boolean", value }
                 })
@@ -1042,7 +1042,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setOptionTimeoutInSecs",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"Integer", value }
                 })
@@ -1064,7 +1064,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setOptionUseProxyChain",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"Boolean", value }
                 })
@@ -1086,7 +1086,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setOptionUseProxyChainAuth",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"Boolean", value }
                 })
@@ -1166,7 +1166,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Other, "messageHar",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"id", id }
                 }, DataType.Other)
@@ -1192,7 +1192,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Other, "messagesHar",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     { "baseurl", baseUrl },
                     { "start", start },
@@ -1258,7 +1258,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Other, "sendHarRequest",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     { "request", Har.Serialize(request) },
                     { "followRedirects", followRedirects }
@@ -1288,7 +1288,7 @@ namespace ZAProxy.Tests.Components
                     new JProperty("host", host),
                     new JProperty("port", port))));
             httpClientMock.SetupApiCall(sut, CallType.Other, "setproxy",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     { "proxy", proxy }
                 }, DataType.Other)
@@ -1316,7 +1316,7 @@ namespace ZAProxy.Tests.Components
                     new JProperty("host", host),
                     new JProperty("port", port))));
             httpClientMock.SetupApiCall(sut, CallType.Other, "setproxy",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     { "proxy", proxy }
                 }, DataType.Other)

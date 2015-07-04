@@ -15,7 +15,7 @@ namespace Moq
             dataType = dataType ?? DataType.Json;
             if (apiKey != null)
             {
-                parameters = parameters ?? new Dictionary<string, object>();
+                parameters = parameters ?? new Parameters();
                 parameters.Add("apikey", apiKey);
             }
             var url = ZapApi.BuildRequestUrl(dataType.Value, component.ComponentName, callType, method, parameters);
@@ -26,7 +26,7 @@ namespace Moq
         {
             if (apiKey != null)
             {
-                parameters = parameters ?? new Dictionary<string, object>();
+                parameters = parameters ?? new Parameters();
                 parameters.Add("apikey", apiKey);
             }
             var url = ZapApi.BuildRequestUrl(DataType.Other, component.ComponentName, CallType.Other, method, parameters);

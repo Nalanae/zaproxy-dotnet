@@ -46,7 +46,7 @@ namespace ZAProxy.Components
         /// <param name="name">The token name to add.</param>
         public void AddOptionTokenName(string name)
         {
-            CallAction("addOptionToken", new Dictionary<string, object>
+            CallAction("addOptionToken", new Parameters
             {
                 { "String", name }
             });
@@ -58,7 +58,7 @@ namespace ZAProxy.Components
         /// <param name="name">The token name to remove.</param>
         public void RemoveOptionTokenName(string name)
         {
-            CallAction("removeOptionToken", new Dictionary<string, object>
+            CallAction("removeOptionToken", new Parameters
             {
                 { "String", name }
             });
@@ -78,7 +78,7 @@ namespace ZAProxy.Components
         /// <returns>HTML to render a form for the specified POST message.</returns>
         public string GenerateForm(int messageId)
         {
-            return CallOther("genForm", new Dictionary<string, object>
+            return CallOther("genForm", new Parameters
             {
                 { "hrefId", messageId }
             });

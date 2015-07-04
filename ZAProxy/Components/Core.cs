@@ -39,7 +39,7 @@ namespace ZAProxy.Components
         /// <returns>The alert.</returns>
         public Alert GetAlert(int id)
         {
-            return CallView<Alert>("alert", "alert", new Dictionary<string, object>
+            return CallView<Alert>("alert", "alert", new Parameters
             {
                 { "id", id }
             });
@@ -54,7 +54,7 @@ namespace ZAProxy.Components
         /// <returns>All the alerts.</returns>
         public IEnumerable<Alert> GetAlerts(string baseUrl = null, int? start = null, int? count = null)
         {
-            return CallView<IEnumerable<Alert>>("alerts", "alerts", new Dictionary<string, object>
+            return CallView<IEnumerable<Alert>>("alerts", "alerts", new Parameters
             {
                 { "baseurl", baseUrl },
                 { "start", start },
@@ -96,7 +96,7 @@ namespace ZAProxy.Components
         /// <returns>The message.</returns>
         public Message GetMessage(int id)
         {
-            return CallView<Message>("message", "message", new Dictionary<string, object>
+            return CallView<Message>("message", "message", new Parameters
             {
                 { "id", id }
             });
@@ -111,7 +111,7 @@ namespace ZAProxy.Components
         /// <returns>All the messages.</returns>
         public IEnumerable<Message> GetMessages(string baseUrl = null, int? start = null, int? count = null)
         {
-            return CallView<IEnumerable<Message>>("messages", "messages", new Dictionary<string, object>
+            return CallView<IEnumerable<Message>>("messages", "messages", new Parameters
             {
                 { "baseurl", baseUrl },
                 { "start", start },
@@ -126,7 +126,7 @@ namespace ZAProxy.Components
         /// <returns>Total number of alerts.</returns>
         public int GetNumberOfAlerts(string baseUrl = null)
         {
-            return CallView<int>("numberOfAlerts", "numberOfAlerts", new Dictionary<string, object>
+            return CallView<int>("numberOfAlerts", "numberOfAlerts", new Parameters
             {
                 { "baseurl", baseUrl }
             });
@@ -139,7 +139,7 @@ namespace ZAProxy.Components
         /// <returns>Total number of messages.</returns>
         public int GetNumberOfMessages(string baseUrl = null)
         {
-            return CallView<int>("numberOfMessages", "numberOfMessages", new Dictionary<string, object>
+            return CallView<int>("numberOfMessages", "numberOfMessages", new Parameters
             {
                 { "baseurl", baseUrl }
             });
@@ -340,7 +340,7 @@ namespace ZAProxy.Components
         /// <param name="regex">The regex pattern to exclude from the proxy.</param>
         public void ExcludeFromProxy(string regex)
         {
-            CallAction("excludeFromProxy", new Dictionary<string, object>
+            CallAction("excludeFromProxy", new Parameters
             {
                 { "regex", regex }
             });
@@ -360,7 +360,7 @@ namespace ZAProxy.Components
         /// <param name="path">The path to the session file. Must be absolute.</param>
         public void LoadSession(string path)
         {
-            CallAction("loadSession", new Dictionary<string, object>
+            CallAction("loadSession", new Parameters
             {
                 { "name", path }
             });
@@ -373,7 +373,7 @@ namespace ZAProxy.Components
         /// <param name="overwrite">Optional choice to overwrite an existing file. Default is true.</param>
         public void NewSession(string path = null, bool overwrite = true)
         {
-            CallAction("newSession", new Dictionary<string, object>
+            CallAction("newSession", new Parameters
             {
                 { "name", path },
                 { "overwrite", overwrite }
@@ -387,7 +387,7 @@ namespace ZAProxy.Components
         /// <param name="overwrite">Optional choice to overwrite an existing file. Default is true.</param>
         public void SaveSession(string path, bool overwrite = true)
         {
-            CallAction("saveSession", new Dictionary<string, object>
+            CallAction("saveSession", new Parameters
             {
                 { "name", path },
                 { "overwrite", overwrite }
@@ -402,7 +402,7 @@ namespace ZAProxy.Components
         /// <returns>Obtained result messages.</returns>
         public IEnumerable<Message> SendRequest(string httpRequest, bool followRedirects = false)
         {
-            return CallAction<IEnumerable<Message>>("sendRequest", "sendRequest", new Dictionary<string, object>
+            return CallAction<IEnumerable<Message>>("sendRequest", "sendRequest", new Parameters
             {
                 { "request", httpRequest },
                 { "followRedirects", followRedirects }
@@ -415,7 +415,7 @@ namespace ZAProxy.Components
         /// <param name="value">The home directory of ZAP.</param>
         public void SetHomeDirectory(string value)
         {
-            CallAction("setHomeDirectory", new Dictionary<string, object>
+            CallAction("setHomeDirectory", new Parameters
             {
                 { "dir", value }
             });
@@ -427,7 +427,7 @@ namespace ZAProxy.Components
         /// <param name="value">True if HTTP state should be enabled.</param>
         public void SetOptionHttpStateEnabled(bool value)
         {
-            CallAction("setOptionHttpStateEnabled", new Dictionary<string, object>
+            CallAction("setOptionHttpStateEnabled", new Parameters
             {
                 { "Boolean", value }
             });
@@ -439,7 +439,7 @@ namespace ZAProxy.Components
         /// <param name="value">Hostname of the proxy ZAP should connect to.</param>
         public void SetOptionProxyChainName(string value)
         {
-            CallAction("setOptionProxyChainName", new Dictionary<string, object>
+            CallAction("setOptionProxyChainName", new Parameters
             {
                 { "String", value }
             });
@@ -451,7 +451,7 @@ namespace ZAProxy.Components
         /// <param name="value">Password of the proxy ZAP should connect to.</param>
         public void SetOptionProxyChainPassword(string value)
         {
-            CallAction("setOptionProxyChainPassword", new Dictionary<string, object>
+            CallAction("setOptionProxyChainPassword", new Parameters
             {
                 { "String", value }
             });
@@ -463,7 +463,7 @@ namespace ZAProxy.Components
         /// <param name="value">Port of the proxy ZAP should connect to.</param>
         public void SetOptionProxyChainPort(int value)
         {
-            CallAction("setOptionProxyChainPort", new Dictionary<string, object>
+            CallAction("setOptionProxyChainPort", new Parameters
             {
                 { "Integer", value }
             });
@@ -475,7 +475,7 @@ namespace ZAProxy.Components
         /// <param name="value">True if ZAP should prompt the user for proxy settings on start-up.</param>
         public void SetOptionProxyChainPrompt(bool value)
         {
-            CallAction("setOptionProxyChainPrompt", new Dictionary<string, object>
+            CallAction("setOptionProxyChainPrompt", new Parameters
             {
                 { "Boolean", value }
             });
@@ -487,7 +487,7 @@ namespace ZAProxy.Components
         /// <param name="value">User's realm of the proxy ZAP should connect to.</param>
         public void SetOptionProxyChainRealm(string value)
         {
-            CallAction("setOptionProxyChainRealm", new Dictionary<string, object>
+            CallAction("setOptionProxyChainRealm", new Parameters
             {
                 { "String", value }
             });
@@ -503,7 +503,7 @@ namespace ZAProxy.Components
         [Obsolete("Replaced by " + nameof(ExcludeFromProxy) + " and " + nameof(ExcludeFromProxy) + ".")]
         public void SetOptionProxyChainSkipName(string value)
         {
-            CallAction("setOptionProxyChainSkipName", new Dictionary<string, object>
+            CallAction("setOptionProxyChainSkipName", new Parameters
             {
                 { "String", value }
             });
@@ -515,7 +515,7 @@ namespace ZAProxy.Components
         /// <param name="value">User name of the proxy ZAP should connect to.</param>
         public void SetOptionProxyChainUserName(string value)
         {
-            CallAction("setOptionProxyChainUserName", new Dictionary<string, object>
+            CallAction("setOptionProxyChainUserName", new Parameters
             {
                 { "String", value }
             });
@@ -527,7 +527,7 @@ namespace ZAProxy.Components
         /// <param name="value">True if only a single "Cookie" header should be used.</param>
         public void SetOptionSingleCookieRequestHeader(bool value)
         {
-            CallAction("setOptionSingleCookieRequestHeader", new Dictionary<string, object>
+            CallAction("setOptionSingleCookieRequestHeader", new Parameters
             {
                 { "Boolean", value }
             });
@@ -539,7 +539,7 @@ namespace ZAProxy.Components
         /// <param name="value">Timeout after which ZAP should drop an HTTP request.</param>
         public void SetOptionTimeoutInSecs(int value)
         {
-            CallAction("setOptionTimeoutInSecs", new Dictionary<string, object>
+            CallAction("setOptionTimeoutInSecs", new Parameters
             {
                 { "Integer", value }
             });
@@ -551,7 +551,7 @@ namespace ZAProxy.Components
         /// <param name="value">True if ZAP should connect to another proxy.</param>
         public void SetOptionUseProxyChain(bool value)
         {
-            CallAction("setOptionUseProxyChain", new Dictionary<string, object>
+            CallAction("setOptionUseProxyChain", new Parameters
             {
                 { "Boolean", value }
             });
@@ -563,7 +563,7 @@ namespace ZAProxy.Components
         /// <param name="value">True if ZAP should use authentication for it's proxy chain.</param>
         public void SetOptionUseProxyChainAuth(bool value)
         {
-            CallAction("setOptionUseProxyChainAuth", new Dictionary<string, object>
+            CallAction("setOptionUseProxyChainAuth", new Parameters
             {
                 { "Boolean", value }
             });
@@ -605,7 +605,7 @@ namespace ZAProxy.Components
         /// <returns>Message in <see cref="Har"/> format.</returns>
         public Har GetMessageHar(int id)
         {
-            var result = CallOther("messageHar", new Dictionary<string, object>
+            var result = CallOther("messageHar", new Parameters
             {
                 { "id", id }
             });
@@ -621,7 +621,7 @@ namespace ZAProxy.Components
         /// <returns>All the nessages in <see cref="Har"/> format.</returns>
         public Har GetMessagesHar(string baseUrl = null, int? start = null, int? count = null)
         {
-            var result = CallOther("messagesHar", new Dictionary<string, object>
+            var result = CallOther("messagesHar", new Parameters
             {
                 { "baseurl", baseUrl },
                 { "start", start },
@@ -657,7 +657,7 @@ namespace ZAProxy.Components
         /// <returns>Obtained result messages in <see cref="Har"/> format.</returns>
         public Har SendHarRequest(Har har, bool? followRedirects = false)
         {
-            var result = CallOther("sendHarRequest", new Dictionary<string, object>
+            var result = CallOther("sendHarRequest", new Parameters
             {
                 { "request", Har.Serialize(har) },
                 { "followRedirects", followRedirects }
@@ -678,7 +678,7 @@ namespace ZAProxy.Components
                     new JProperty("host", host),
                     new JProperty("port", port))));
 
-            var result = CallOther("setproxy", new Dictionary<string, object>
+            var result = CallOther("setproxy", new Parameters
             {
                 { "proxy", proxyJson }
             });

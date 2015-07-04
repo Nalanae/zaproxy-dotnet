@@ -140,7 +140,7 @@ namespace ZAProxy.Components
 
         private IDictionary<string, object> AddApiKey(IDictionary<string, object> parameters)
         {
-            parameters = parameters ?? new Dictionary<string, object>();
+            parameters = parameters ?? new Parameters();
             if (!string.IsNullOrEmpty(_zapProcess.ApiKey))
                 parameters.Add("apikey", _zapProcess.ApiKey);
             return parameters;

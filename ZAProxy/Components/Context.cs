@@ -34,7 +34,7 @@ namespace ZAProxy.Components
         /// <returns>The context.</returns>
         public Schema.Context GetContext(string name)
         {
-            return CallView<Schema.Context>("context", null, new Dictionary<string, object>
+            return CallView<Schema.Context>("context", null, new Parameters
             {
                 { "contextName", name }
             });
@@ -55,7 +55,7 @@ namespace ZAProxy.Components
         /// <returns>The regex patterns that are excluded from the context.</returns>
         public IEnumerable<string> GetExcludedRegexes(string name)
         {
-            return ParseJsonListString(CallView<string>("excludeRegexs", "excludeRegexs", new Dictionary<string, object>
+            return ParseJsonListString(CallView<string>("excludeRegexs", "excludeRegexs", new Parameters
             {
                 { "contextName", name }
             }));
@@ -67,7 +67,7 @@ namespace ZAProxy.Components
         /// <returns>The regex patterns that are included in the context.</returns>
         public IEnumerable<string> GetIncludedRegexes(string name)
         {
-            return ParseJsonListString(CallView<string>("includeRegexs", "includeRegexs", new Dictionary<string, object>
+            return ParseJsonListString(CallView<string>("includeRegexs", "includeRegexs", new Parameters
             {
                 { "contextName", name }
             }));
@@ -84,7 +84,7 @@ namespace ZAProxy.Components
         /// <param name="regex">The regex pattern.</param>
         public void ExcludeFromContext(string name, string regex)
         {
-            CallAction("excludeFromContext", new Dictionary<string, object>
+            CallAction("excludeFromContext", new Parameters
             {
                 { "contextName", name },
                 { "regex", regex }
@@ -98,7 +98,7 @@ namespace ZAProxy.Components
         /// <param name="filePath">The path where the file is saved.</param>
         public void ExportContext(string name, string filePath)
         {
-            CallAction("exportContext", new Dictionary<string, object>
+            CallAction("exportContext", new Parameters
             {
                 { "contextName", name },
                 { "contextFile", filePath }
@@ -111,7 +111,7 @@ namespace ZAProxy.Components
         /// <param name="filePath">The path of the file that contains the context.</param>
         public void ImportContext(string filePath)
         {
-            CallAction("importContext", new Dictionary<string, object>
+            CallAction("importContext", new Parameters
             {
                 { "contextFile", filePath }
             });
@@ -124,7 +124,7 @@ namespace ZAProxy.Components
         /// <param name="regex">The regex pattern.</param>
         public void IncludeInContext(string name, string regex)
         {
-            CallAction("includeInContext", new Dictionary<string, object>
+            CallAction("includeInContext", new Parameters
             {
                 { "contextName", name },
                 { "regex", regex }
@@ -138,7 +138,7 @@ namespace ZAProxy.Components
         /// <returns>The ID of the newly created context.</returns>
         public int NewContext(string name)
         {
-            return CallAction<int>("newContext", "contextId", new Dictionary<string, object>
+            return CallAction<int>("newContext", "contextId", new Parameters
             {
                 { "contextName", name }
             });
@@ -151,7 +151,7 @@ namespace ZAProxy.Components
         /// <param name="inScope">True if the context should be in scope.</param>
         public void SetContextInScope(string name, bool inScope)
         {
-            CallAction("setContextInScope", new Dictionary<string, object>
+            CallAction("setContextInScope", new Parameters
             {
                 { "contextName", name },
                 { "booleanInScope", inScope }

@@ -59,7 +59,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "addOptionToken",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     { "String", tokenName }
                 })
@@ -81,7 +81,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "removeOptionToken",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     { "String", tokenName }
                 })
@@ -108,7 +108,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Other, "genForm",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     { "hrefId", messageId }
                 }, DataType.Other)

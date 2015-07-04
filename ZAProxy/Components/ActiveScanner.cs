@@ -36,7 +36,7 @@ namespace ZAProxy.Components
         /// <returns>All IDs of alerts from the scan.</returns>
         public IEnumerable<int> GetAlertIds(int scanId)
         {
-            return CallView<IEnumerable<int>>("alertsIds", "alertsIds", new Dictionary<string, object>
+            return CallView<IEnumerable<int>>("alertsIds", "alertsIds", new Parameters
             {
                 { "scanId", scanId }
             });
@@ -68,7 +68,7 @@ namespace ZAProxy.Components
         /// <returns>All IDs of messages from the scan.</returns>
         public IEnumerable<int> GetMessagesIds(int scanId)
         {
-            return CallView<IEnumerable<int>>("messagesIds", "messagesIds", new Dictionary<string, object>
+            return CallView<IEnumerable<int>>("messagesIds", "messagesIds", new Parameters
             {
                 { "scanId", scanId }
             });
@@ -230,7 +230,7 @@ namespace ZAProxy.Components
         /// <returns>The policies.</returns>
         public IEnumerable<Policy> GetPolicies(string scanPolicyName = null, int? policyId = null)
         {
-            return CallView<IEnumerable<Policy>>("policies", "policies", new Dictionary<string, object>
+            return CallView<IEnumerable<Policy>>("policies", "policies", new Parameters
             {
                 { "scanPolicyName", scanPolicyName },
                 { "policyId", policyId }
@@ -253,7 +253,7 @@ namespace ZAProxy.Components
         /// <returns>Progress of the specified scan.</returns>
         public ScanProgress GetScanProgress(int scanId)
         {
-            return CallView<ScanProgress>("scanProgress", "scanProgress", new Dictionary<string, object>
+            return CallView<ScanProgress>("scanProgress", "scanProgress", new Parameters
             {
                 { "scanId", scanId }
             });
@@ -267,7 +267,7 @@ namespace ZAProxy.Components
         /// <returns>The scanners.</returns>
         public IEnumerable<Scanner> GetScanners(string scanPolicyName = null, int? policyId = null)
         {
-            return CallView<IEnumerable<Scanner>>("scanners", "scanners", new Dictionary<string, object>
+            return CallView<IEnumerable<Scanner>>("scanners", "scanners", new Parameters
             {
                 { "scanPolicyName", scanPolicyName },
                 { "policyId", policyId }
@@ -290,7 +290,7 @@ namespace ZAProxy.Components
         /// <returns>Completed percentage of a scan.</returns>
         public int GetStatus(int? scanId = null)
         {
-            return CallView<int>("status", "status", new Dictionary<string, object>
+            return CallView<int>("status", "status", new Parameters
             {
                 { "scanId", scanId }
             });
@@ -306,7 +306,7 @@ namespace ZAProxy.Components
         /// <param name="scanPolicyName">The name of the new policy.</param>
         public void AddScanPolicy(string scanPolicyName)
         {
-            CallAction("addScanPolicy", new Dictionary<string, object>
+            CallAction("addScanPolicy", new Parameters
             {
                 { "scanPolicyName", scanPolicyName }
             });
@@ -326,7 +326,7 @@ namespace ZAProxy.Components
         /// <param name="scanPolicyName">Optional scan policy name.</param>
         public void DisableAllScanners(string scanPolicyName = null)
         {
-            CallAction("disableAllScanners", new Dictionary<string, object>
+            CallAction("disableAllScanners", new Parameters
             {
                 { "scanPolicyName", scanPolicyName }
             });
@@ -338,7 +338,7 @@ namespace ZAProxy.Components
         /// <param name="scannerIds">The IDs of the scanners to disable.</param>
         public void DisableScanners(IEnumerable<int> scannerIds)
         {
-            CallAction("disableScanners", new Dictionary<string, object>
+            CallAction("disableScanners", new Parameters
             {
                 { "ids", scannerIds.ToString(",") }
             });
@@ -350,7 +350,7 @@ namespace ZAProxy.Components
         /// <param name="scanPolicyName">Optional scan policy name.</param>
         public void EnableAllScanners(string scanPolicyName = null)
         {
-            CallAction("enableAllScanners", new Dictionary<string, object>
+            CallAction("enableAllScanners", new Parameters
             {
                 { "scanPolicyName", scanPolicyName }
             });
@@ -362,7 +362,7 @@ namespace ZAProxy.Components
         /// <param name="scannerIds">The IDs of the scanners to enable.</param>
         public void EnableScanners(IEnumerable<int> scannerIds)
         {
-            CallAction("enableScanners", new Dictionary<string, object>
+            CallAction("enableScanners", new Parameters
             {
                 { "ids", scannerIds.ToString(",") }
             });
@@ -374,7 +374,7 @@ namespace ZAProxy.Components
         /// <param name="regexPattern">The regex pattern to add to the exclusion list.</param>
         public void ExcludeFromScan(string regexPattern)
         {
-            CallAction("excludeFromScan", new Dictionary<string, object>
+            CallAction("excludeFromScan", new Parameters
             {
                 { "regex", regexPattern }
             });
@@ -386,7 +386,7 @@ namespace ZAProxy.Components
         /// <param name="scanId">The ID of the scan to pause.</param>
         public void Pause(int scanId)
         {
-            CallAction("pause", new Dictionary<string, object>
+            CallAction("pause", new Parameters
             {
                 { "scanId", scanId }
             });
@@ -414,7 +414,7 @@ namespace ZAProxy.Components
         /// <param name="scanId">The ID of the scan to remove.</param>
         public void RemoveScan(int scanId)
         {
-            CallAction("removeScan", new Dictionary<string, object>
+            CallAction("removeScan", new Parameters
             {
                 { "scanId", scanId }
             });
@@ -426,7 +426,7 @@ namespace ZAProxy.Components
         /// <param name="scanPolicyName">The name of the scan policy to remove.</param>
         public void RemoveScanPolicy(string scanPolicyName)
         {
-            CallAction("removeScanPolicy", new Dictionary<string, object>
+            CallAction("removeScanPolicy", new Parameters
             {
                 { "scanPolicyName", scanPolicyName }
             });
@@ -438,7 +438,7 @@ namespace ZAProxy.Components
         /// <param name="scanId">The ID of the scan to resume.</param>
         public void Resume(int scanId)
         {
-            CallAction("resume", new Dictionary<string, object>
+            CallAction("resume", new Parameters
             {
                 { "scanId", scanId }
             });
@@ -464,7 +464,7 @@ namespace ZAProxy.Components
         /// <returns>The ID of the newly created scan.</returns>
         public int Scan(string url, bool recurse = true, bool inScopeOnly = false, string scanPolicyName = null, string method = null, string postData = null)
         {
-            return CallAction<int>("scan", "scan", new Dictionary<string, object>
+            return CallAction<int>("scan", "scan", new Parameters
             {
                 { "url", url },
                 { "recurse", recurse },
@@ -481,7 +481,7 @@ namespace ZAProxy.Components
         /// <param name="policyIds">The IDs of the policies to enable.</param>
         public void SetEnabledPolicies(IEnumerable<int> policyIds)
         {
-            CallAction("setEnabledPolicies", new Dictionary<string, object>
+            CallAction("setEnabledPolicies", new Parameters
             {
                 { "ids", policyIds.ToString(",") }
             });
@@ -493,7 +493,7 @@ namespace ZAProxy.Components
         /// <param name="value">True if the scanner goes into attack mode on start.</param>
         public void SetOptionAllowAttackOnStart(bool value)
         {
-            CallAction("setOptionAllowAttackOnStart", new Dictionary<string, object>
+            CallAction("setOptionAllowAttackOnStart", new Parameters
             {
                 { "Boolean", value }
             });
@@ -505,7 +505,7 @@ namespace ZAProxy.Components
         /// <param name="value">The scan policy name.</param>
         public void SetOptionAttackPolicy(string value)
         {
-            CallAction("setOptionAttackPolicy", new Dictionary<string, object>
+            CallAction("setOptionAttackPolicy", new Parameters
             {
                 { "String", value }
             });
@@ -517,7 +517,7 @@ namespace ZAProxy.Components
         /// <param name="value">The default scan policy name.</param>
         public void SetOptionDefaultPolicy(string value)
         {
-            CallAction("setOptionDefaultPolicy", new Dictionary<string, object>
+            CallAction("setOptionDefaultPolicy", new Parameters
             {
                 { "String", value }
             });
@@ -529,7 +529,7 @@ namespace ZAProxy.Components
         /// <param name="value">The amount of milliseconds between each request.</param>
         public void SetOptionDelayInMs(int value)
         {
-            CallAction("setOptionDelayInMs", new Dictionary<string, object>
+            CallAction("setOptionDelayInMs", new Parameters
             {
                 { "Integer", value }
             });
@@ -541,7 +541,7 @@ namespace ZAProxy.Components
         /// <param name="value">True if the scanner will remember CSRF tokens and send corrrect ones on requests.</param>
         public void SetOptionHandleAntiCSRFTokens(bool value)
         {
-            CallAction("setOptionHandleAntiCSRFTokens", new Dictionary<string, object>
+            CallAction("setOptionHandleAntiCSRFTokens", new Parameters
             {
                 { "Boolean", value }
             });
@@ -553,7 +553,7 @@ namespace ZAProxy.Components
         /// <param name="value">Number of hosts scanned concurrently.</param>
         public void SetOptionHostPerScan(int value)
         {
-            CallAction("setOptionHostPerScan", new Dictionary<string, object>
+            CallAction("setOptionHostPerScan", new Parameters
             {
                 { "Integer", value }
             });
@@ -565,7 +565,7 @@ namespace ZAProxy.Components
         /// <param name="value">Maximum amount of results returned from a scan.</param>
         public void SetOptionMaxResultsToList(int value)
         {
-            CallAction("setOptionMaxResultsToList", new Dictionary<string, object>
+            CallAction("setOptionMaxResultsToList", new Parameters
             {
                 { "Integer", value }
             });
@@ -577,7 +577,7 @@ namespace ZAProxy.Components
         /// <param name="value">Maximum amount of scans shown in the UI.</param>
         public void SetOptionMaxScansInUI(int value)
         {
-            CallAction("setOptionMaxScansInUI", new Dictionary<string, object>
+            CallAction("setOptionMaxScansInUI", new Parameters
             {
                 { "Integer", value }
             });
@@ -589,7 +589,7 @@ namespace ZAProxy.Components
         /// <param name="value">True if ZAP should prompt user to rescan on scope change and in attack mode.</param>
         public void SetOptionPromptInAttackMode(bool value)
         {
-            CallAction("setOptionPromptInAttackMode", new Dictionary<string, object>
+            CallAction("setOptionPromptInAttackMode", new Parameters
             {
                 { "Boolean", value }
             });
@@ -601,7 +601,7 @@ namespace ZAProxy.Components
         /// <param name="value">True if ZAP should prompt the user when all finished scans are cleared.</param>
         public void SetOptionPromptToClearFinishedScans(bool value)
         {
-            CallAction("setOptionPromptToClearFinishedScans", new Dictionary<string, object>
+            CallAction("setOptionPromptToClearFinishedScans", new Parameters
             {
                 { "Boolean", value }
             });
@@ -613,7 +613,7 @@ namespace ZAProxy.Components
         /// <param name="value">True if ZAP should rescan on scope change and in attack mode.</param>
         public void SetOptionRescanInAttackMode(bool value)
         {
-            CallAction("setOptionRescanInAttackMode", new Dictionary<string, object>
+            CallAction("setOptionRescanInAttackMode", new Parameters
             {
                 { "Boolean", value }
             });
@@ -625,7 +625,7 @@ namespace ZAProxy.Components
         /// <param name="value">True if ZAP should show advanced options on new active scan start.</param>
         public void SetOptionShowAdvancedDialog(bool value)
         {
-            CallAction("setOptionShowAdvancedDialog", new Dictionary<string, object>
+            CallAction("setOptionShowAdvancedDialog", new Parameters
             {
                 { "Boolean", value }
             });
@@ -637,7 +637,7 @@ namespace ZAProxy.Components
         /// <param name="value">Parameter content-types the scanner will attack.</param>
         public void SetOptionTargetParamsEnabledRPC(TargetEnabledRPC value)
         {
-            CallAction("setOptionTargetParamsEnabledRPC", new Dictionary<string, object>
+            CallAction("setOptionTargetParamsEnabledRPC", new Parameters
             {
                 { "Integer", value }
             });
@@ -649,7 +649,7 @@ namespace ZAProxy.Components
         /// <param name="value">Parameter-types the scanner will attack.</param>
         public void SetOptionTargetParamsInjectable(TargetInjectable value)
         {
-            CallAction("setOptionTargetParamsInjectable", new Dictionary<string, object>
+            CallAction("setOptionTargetParamsInjectable", new Parameters
             {
                 { "Integer", value }
             });
@@ -661,7 +661,7 @@ namespace ZAProxy.Components
         /// <param name="value">Number of threads used per host.</param>
         public void SetOptionThreadPerHost(int value)
         {
-            CallAction("setOptionThreadPerHost", new Dictionary<string, object>
+            CallAction("setOptionThreadPerHost", new Parameters
             {
                 { "Integer", value }
             });
@@ -675,7 +675,7 @@ namespace ZAProxy.Components
         /// <param name="scanPolicyName">Optional scan policy name.</param>
         public void SetPolicyAlertThreshold(int policyId, AlertThreshold alertThreshold, string scanPolicyName = null)
         {
-            CallAction("setPolicyAlertThreshold", new Dictionary<string, object>
+            CallAction("setPolicyAlertThreshold", new Parameters
             {
                 { "id", policyId },
                 { "alertThreshold", alertThreshold },
@@ -691,7 +691,7 @@ namespace ZAProxy.Components
         /// <param name="scanPolicyName">Optional scan policy name</param>
         public void SetPolicyAttackStrength(int policyId, AttackStrength attackStrength, string scanPolicyName = null)
         {
-            CallAction("setPolicyAttackStrength", new Dictionary<string, object>
+            CallAction("setPolicyAttackStrength", new Parameters
             {
                 { "id", policyId },
                 { "attackStrength", attackStrength },
@@ -707,7 +707,7 @@ namespace ZAProxy.Components
         /// <param name="scanPolicyName">Optional scan policy name.</param>
         public void SetScannerAlertThreshold(int scannerId, AlertThreshold alertThreshold, string scanPolicyName = null)
         {
-            CallAction("setScannerAlertThreshold", new Dictionary<string, object>
+            CallAction("setScannerAlertThreshold", new Parameters
             {
                 { "id", scannerId },
                 { "alertThreshold", alertThreshold },
@@ -723,7 +723,7 @@ namespace ZAProxy.Components
         /// <param name="scanPolicyName">Optional scan policy name</param>
         public void SetScannerAttackStrength(int scannerId, AttackStrength attackStrength, string scanPolicyName = null)
         {
-            CallAction("setScannerAttackStrength", new Dictionary<string, object>
+            CallAction("setScannerAttackStrength", new Parameters
             {
                 { "id", scannerId },
                 { "attackStrength", attackStrength },
@@ -737,7 +737,7 @@ namespace ZAProxy.Components
         /// <param name="scanId">The ID of the scan.</param>
         public void Stop(int scanId)
         {
-            CallAction("stop", new Dictionary<string, object>
+            CallAction("stop", new Parameters
             {
                 { "scanId", scanId }
             });

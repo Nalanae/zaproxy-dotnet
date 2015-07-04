@@ -38,7 +38,7 @@ namespace ZAProxy.Tests.Components
             var json = new JObject(
                 new JProperty("alertsIds", new JArray(alertsIds)));
             httpClientMock.SetupApiCall(sut, CallType.View, "alertsIds",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     { "scanId", scanId }
                 })
@@ -126,7 +126,7 @@ namespace ZAProxy.Tests.Components
             var json = new JObject(
                 new JProperty("messagesIds", new JArray(messagesIds)));
             httpClientMock.SetupApiCall(sut, CallType.View, "messagesIds",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     { "scanId", scanId }
                 })
@@ -491,7 +491,7 @@ namespace ZAProxy.Tests.Components
             var json = new JObject(
                 new JProperty("policies", JArray.FromObject(policies)));
             httpClientMock.SetupApiCall(sut, CallType.View, "policies",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     { "scanPolicyName", scanPolicyName },
                     { "policyId", policyId }
@@ -539,7 +539,7 @@ namespace ZAProxy.Tests.Components
             var json = new JObject(
                 new JProperty("scanProgress", JToken.FromObject(scanProgress)));
             httpClientMock.SetupApiCall(sut, CallType.View, "scanProgress",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     { "scanId", scanId }
                 })
@@ -566,7 +566,7 @@ namespace ZAProxy.Tests.Components
             var json = new JObject(
                 new JProperty("scanners", JArray.FromObject(scanners)));
             httpClientMock.SetupApiCall(sut, CallType.View, "scanners",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     { "scanPolicyName", scanPolicyName },
                     { "policyId", policyId }
@@ -614,7 +614,7 @@ namespace ZAProxy.Tests.Components
             var json = new JObject(
                 new JProperty("status", status));
             httpClientMock.SetupApiCall(sut, CallType.View, "status",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     { "scanId", scanId }
                 })
@@ -641,7 +641,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "addScanPolicy",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"scanPolicyName", scanPolicyName }
                 })
@@ -680,7 +680,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "disableAllScanners",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"scanPolicyName", scanPolicyName }
                 })
@@ -702,7 +702,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "disableScanners",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"ids", scannerIds.ToString(",") }
                 })
@@ -724,7 +724,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "enableAllScanners",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"scanPolicyName", scanPolicyName }
                 })
@@ -746,7 +746,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "enableScanners",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"ids", scannerIds.ToString(",") }
                 })
@@ -768,7 +768,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "excludeFromScan",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"regex", regexPattern }
                 })
@@ -790,7 +790,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "pause",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"scanId", scanId }
                 })
@@ -846,7 +846,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "removeScan",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"scanId", scanId }
                 })
@@ -868,7 +868,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "removeScanPolicy",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"scanPolicyName", scanPolicyName }
                 })
@@ -890,7 +890,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "resume",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"scanId", scanId }
                 })
@@ -937,7 +937,7 @@ namespace ZAProxy.Tests.Components
             var json = new JObject(
                 new JProperty("scan", scanId));
             httpClientMock.SetupApiCall(sut, CallType.Action, "scan",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     { "url", url },
                     { "recurse", recurse },
@@ -965,7 +965,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setEnabledPolicies",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"ids", policyIds.ToString(",") }
                 })
@@ -987,7 +987,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setOptionAllowAttackOnStart",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"Boolean", value }
                 })
@@ -1009,7 +1009,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setOptionAttackPolicy",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"String", value }
                 })
@@ -1031,7 +1031,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setOptionDefaultPolicy",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"String", value }
                 })
@@ -1053,7 +1053,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setOptionDelayInMs",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"Integer", value }
                 })
@@ -1075,7 +1075,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setOptionHandleAntiCSRFTokens",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"Boolean", value }
                 })
@@ -1097,7 +1097,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setOptionHostPerScan",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"Integer", value }
                 })
@@ -1119,7 +1119,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setOptionMaxResultsToList",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"Integer", value }
                 })
@@ -1141,7 +1141,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setOptionMaxScansInUI",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"Integer", value }
                 })
@@ -1163,7 +1163,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setOptionPromptInAttackMode",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"Boolean", value }
                 })
@@ -1185,7 +1185,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setOptionPromptToClearFinishedScans",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"Boolean", value }
                 })
@@ -1207,7 +1207,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setOptionRescanInAttackMode",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"Boolean", value }
                 })
@@ -1229,7 +1229,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setOptionShowAdvancedDialog",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"Boolean", value }
                 })
@@ -1251,7 +1251,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setOptionTargetParamsEnabledRPC",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"Integer", value }
                 })
@@ -1273,7 +1273,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setOptionTargetParamsInjectable",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"Integer", value }
                 })
@@ -1295,7 +1295,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setOptionThreadPerHost",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"Integer", value }
                 })
@@ -1319,7 +1319,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setPolicyAlertThreshold",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     { "id", policyId },
                     { "alertThreshold", alertThreshold },
@@ -1345,7 +1345,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setPolicyAttackStrength",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     { "id", policyId },
                     { "attackStrength", attackStrength },
@@ -1371,7 +1371,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setScannerAlertThreshold",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     { "id", scannerId },
                     { "alertThreshold", alertThreshold },
@@ -1397,7 +1397,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setScannerAttackStrength",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     { "id", policyId },
                     { "attackStrength", attackStrength },
@@ -1421,7 +1421,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "stop",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     {"scanId", scanId }
                 })

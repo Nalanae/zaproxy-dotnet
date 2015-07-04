@@ -36,7 +36,7 @@ namespace ZAProxy.Tests.Components
             // ARRANGE
             var json = JObject.FromObject(context);
             httpClientMock.SetupApiCall(sut, CallType.View, "context",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     { "contextName", name }
                 })
@@ -84,7 +84,7 @@ namespace ZAProxy.Tests.Components
             var json = new JObject(
                 new JProperty("excludeRegexs", excludedRegexes.ToJsonStringList()));
             httpClientMock.SetupApiCall(sut, CallType.View, "excludeRegexs",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     { "contextName", name }
                 })
@@ -110,7 +110,7 @@ namespace ZAProxy.Tests.Components
             var json = new JObject(
                 new JProperty("includeRegexs", includedRegexes.ToJsonStringList()));
             httpClientMock.SetupApiCall(sut, CallType.View, "includeRegexs",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     { "contextName", name }
                 })
@@ -138,7 +138,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "excludeFromContext",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     { "contextName", name },
                     { "regex", regex }
@@ -162,7 +162,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "exportContext",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     { "contextName", name },
                     { "contextFile", filePath }
@@ -185,7 +185,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "importContext",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     { "contextFile", filePath }
                 })
@@ -208,7 +208,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "includeInContext",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     { "contextName", name },
                     { "regex", regex }
@@ -234,7 +234,7 @@ namespace ZAProxy.Tests.Components
             var json = new JObject(
                 new JProperty("contextId", contextId));
             httpClientMock.SetupApiCall(sut, CallType.Action, "newContext",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     { "contextName", name }
                 })
@@ -258,7 +258,7 @@ namespace ZAProxy.Tests.Components
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "setContextInScope",
-                new Dictionary<string, object>
+                new Parameters
                 {
                     { "contextName", name },
                     { "booleanInScope", inScope }
