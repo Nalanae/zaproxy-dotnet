@@ -22,7 +22,7 @@ namespace ZAProxy.Components
         /// <param name="httpClient">The HTTP client implementation.</param>
         /// <param name="zapProcess">The ZAP process to connect to.</param>
         public AntiCsrf(IHttpClient httpClient, IZapProcess zapProcess)
-            : base(httpClient, zapProcess, "ascan")
+            : base(httpClient, zapProcess, "acsrf")
         { }
 
         #region Views

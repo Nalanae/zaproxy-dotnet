@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-
-namespace System
+﻿namespace System.Collections.Generic
 {
-    public static class SystemExtensions
+    public static class SystemCollectionsGenericExtensions
     {
         public static string ToJsonStringList(this IEnumerable<string> values)
         {

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using FluentAssertions;
 using Moq;
 using Newtonsoft.Json.Linq;
@@ -15,6 +14,17 @@ namespace ZAProxy.Tests.Components
     [Trait("Component", "ActiveScanner")]
     public class ActiveScannerTests
     {
+        [Theory, AutoTestData]
+        public void ComponentName(
+            [Greedy]ActiveScanner sut)
+        {
+            // ACT
+            var result = sut.ComponentName;
+
+            // ASSERT
+            result.Should().Be("ascan");
+        }
+
         #region Views
 
         [Theory, AutoTestData]
@@ -234,7 +244,7 @@ namespace ZAProxy.Tests.Components
 #pragma warning restore 0618 // Restore deprication warning.
 
             // ASSERT
-            result.Should().BeEquivalentTo(excludedParamList);
+            result.ShouldBeEquivalentTo(excludedParamList);
             httpClientMock.Verify();
         }
 
@@ -514,7 +524,7 @@ namespace ZAProxy.Tests.Components
             var result = sut.GetScanPolicyNames();
 
             // ASSERT
-            result.Should().BeEquivalentTo(scanPolicyNames);
+            result.ShouldBeEquivalentTo(scanPolicyNames);
             httpClientMock.Verify();
         }
 

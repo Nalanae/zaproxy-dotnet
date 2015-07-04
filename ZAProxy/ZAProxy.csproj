@@ -90,11 +90,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CallType.cs" />
+    <Compile Include="Components\Context.cs" />
     <Compile Include="Components\Core.cs" />
     <Compile Include="Schema\Alert.cs" />
     <Compile Include="Schema\Confidence.cs" />
     <Compile Include="Schema\Message.cs" />
     <Compile Include="Schema\Risk.cs" />
+    <Compile Include="Schema\Context.cs" />
     <Compile Include="Schema\TargetEnabledRPC.cs" />
     <Compile Include="Schema\TargetInjectable.cs" />
     <Compile Include="ZapApi.cs" />

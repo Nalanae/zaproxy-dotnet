@@ -91,13 +91,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\ContextTests.cs" />
     <Compile Include="TestUtils\AutoTestDataAttribute.cs" />
     <Compile Include="Components\ActiveScannerTests.cs" />
     <Compile Include="Components\ComponentBaseTests.cs" />
     <Compile Include="Components\CoreTests.cs" />
     <Compile Include="Components\AntiCsrfTests.cs" />
     <Compile Include="TestUtils\Extensions\HarExtensions.cs" />
-    <Compile Include="TestUtils\Extensions\SystemExtensions.cs" />
+    <Compile Include="TestUtils\Extensions\SystemCollectionsGenericExtensions.cs" />
     <Compile Include="TestUtils\FixtureCustomizations\HarCustomization.cs" />
     <Compile Include="Integration\ZapDaemonCollection.cs" />
     <Compile Include="Integration\ZapDaemonFixture.cs" />

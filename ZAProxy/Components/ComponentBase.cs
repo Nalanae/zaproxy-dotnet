@@ -129,7 +129,7 @@ namespace ZAProxy.Components
             {
                 var contents = input.Substring(1, input.Length - 2);
                 return contents
-                    .Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries)
+                    .Split(new[] { ", " }, StringSplitOptions.RemoveEmptyEntries)
                     .Select(s => s.Trim());
             }
             else

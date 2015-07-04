@@ -17,6 +17,17 @@ namespace ZAProxy.Tests.Components
     [Trait("Component", "Core")]
     public class CoreTests
     {
+        [Theory, AutoTestData]
+        public void ComponentName(
+            [Greedy]Core sut)
+        {
+            // ACT
+            var result = sut.ComponentName;
+
+            // ASSERT
+            result.Should().Be("core");
+        }
+
         #region Views
 
         [Theory, AutoTestData]

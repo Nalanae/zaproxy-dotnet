@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using FluentAssertions;
 using Moq;
 using Newtonsoft.Json.Linq;
@@ -14,6 +13,17 @@ namespace ZAProxy.Tests.Components
     [Trait("Component", "AntiCsrf")]
     public class AntiCsrfTests
     {
+        [Theory, AutoTestData]
+        public void ComponentName(
+            [Greedy]AntiCsrf sut)
+        {
+            // ACT
+            var result = sut.ComponentName;
+
+            // ASSERT
+            result.Should().Be("acsrf");
+        }
+
         #region Views
 
         [Theory, AutoTestData]
@@ -33,7 +43,7 @@ namespace ZAProxy.Tests.Components
             var result = sut.GetOptionTokenNames();
 
             // ASSERT
-            result.Should().BeEquivalentTo(tokenNames);
+            result.ShouldBeEquivalentTo(tokenNames);
             httpClientMock.Verify();
         }
 
