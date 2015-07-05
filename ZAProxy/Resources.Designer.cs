@@ -122,5 +122,14 @@ namespace ZAProxy {
                 return ResourceManager.GetString("SetProxyUnknownResult", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Server returned an authentication detection method that this client does not support..
+        /// </summary>
+        internal static string UnsupportedAuthorizationDetectionMethod {
+            get {
+                return ResourceManager.GetString("UnsupportedAuthorizationDetectionMethod", resourceCulture);
+            }
+        }
     }
 }

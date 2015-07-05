@@ -91,14 +91,19 @@
   <ItemGroup>
     <Compile Include="CallType.cs" />
     <Compile Include="Components\Authentication.cs" />
+    <Compile Include="Components\Authorization.cs" />
     <Compile Include="Components\Context.cs" />
     <Compile Include="Components\Core.cs" />
     <Compile Include="Infrastructure\Parameters.cs" />
     <Compile Include="Schema\Alert.cs" />
     <Compile Include="Schema\AuthenticationMethod.cs" />
     <Compile Include="Schema\AuthenticationMethodConfigParameter.cs" />
+    <Compile Include="Schema\BasicAuthorizationDetectionMethod.cs" />
     <Compile Include="Schema\Confidence.cs" />
+    <Compile Include="Schema\Converters\NullableInt32Converter.cs" />
+    <Compile Include="Schema\Converters\LogicalOperatorEnumConverter.cs" />
     <Compile Include="Schema\Converters\ScanStateEnumConverter.cs" />
+    <Compile Include="Schema\LogicalOperator.cs" />
     <Compile Include="Schema\Message.cs" />
     <Compile Include="Schema\Risk.cs" />
     <Compile Include="Schema\Context.cs" />

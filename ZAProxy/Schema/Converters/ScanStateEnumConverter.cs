@@ -1,5 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace ZAProxy.Schema.Converters
 {
@@ -28,18 +29,19 @@ namespace ZAProxy.Schema.Converters
         /// <returns>The obtained <see cref="ScanState"/> value.</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            var enumString = (string)reader.Value;
-            ScanState scanState;
+            var scanStateValue = JToken.Load(reader);
+            var scanStateString = scanStateValue.Value<string>();
 
-            if (!Enum.TryParse(enumString, true, out scanState))
+            ScanState scanState;
+            if (!Enum.TryParse(scanStateString, true, out scanState))
             {
-                switch (enumString.ToUpperInvariant())
+                switch (scanStateString.ToUpperInvariant())
                 {
                     case "NOT_STARTED":
                         scanState = ScanState.NotStarted;
                         break;
                     default:
-                        throw new JsonSerializationException($"Error converting value \"{enumString}\" to type \"{typeof(ScanState).ToString()}\".");
+                        throw new JsonSerializationException($"Error converting value \"{scanStateString}\" to type \"{typeof(ScanState).ToString()}\".");
                 }
             }
 
@@ -54,7 +56,7 @@ namespace ZAProxy.Schema.Converters
         /// <param name="serializer">The serializer used for the conversion.</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            ScanState scanState = (ScanState)value;
+            var scanState = (ScanState)value;
             switch (scanState)
             {
                 case ScanState.NotStarted:

@@ -6,6 +6,7 @@ namespace ZAProxy.Schema
     /// <summary>
     /// Describes the state of a scan.
     /// </summary>
+    [JsonConverter(typeof(Converters.ScanStateEnumConverter))]
     public enum ScanState
     {
         /// <summary>

@@ -138,4 +138,7 @@
   <data name="SetProxyUnknownResult" xml:space="preserve">
     <value>SetProxy received an unknown result.</value>
   </data>
+  <data name="UnsupportedAuthorizationDetectionMethod" xml:space="preserve">
+    <value>Server returned an authentication detection method that this client does not support.</value>
+  </data>
 </root>

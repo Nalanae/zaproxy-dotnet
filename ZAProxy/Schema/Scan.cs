@@ -20,7 +20,6 @@ namespace ZAProxy.Schema
         /// <summary>
         /// Gets or sets the current state.
         /// </summary>
-        [JsonConverter(typeof(Converters.ScanStateEnumConverter))]
         public ScanState State { get; set; }
     }
 }
