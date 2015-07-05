@@ -418,9 +418,9 @@ namespace ZAProxy.Tests.Components
                 .Verifiable();
 
             // ACT
-#pragma warning disable 0618 // Turn deprication warning off for test.
+#pragma warning disable CS0618 // Type or member is obsolete
             var result = sut.GetOptionProxyChainSkipName();
-#pragma warning restore 0618 // Restore deprication warning.
+#pragma warning restore CS0618 // Type or member is obsolete
 
             // ASSERT
             result.Should().Be(proxyChainSkipName);
@@ -982,9 +982,9 @@ namespace ZAProxy.Tests.Components
                 .Verifiable();
 
             // ACT
-#pragma warning disable 0618 // Turn deprication warning off for test.
+#pragma warning disable CS0618 // Type or member is obsolete
             sut.SetOptionProxyChainSkipName(value);
-#pragma warning restore 0618 // Restore deprication warning.
+#pragma warning restore CS0618 // Type or member is obsolete
 
             // ASSERT
             httpClientMock.Verify();

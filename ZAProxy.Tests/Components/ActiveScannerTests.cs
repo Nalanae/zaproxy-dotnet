@@ -239,9 +239,9 @@ namespace ZAProxy.Tests.Components
                 .Verifiable();
 
             // ACT
-#pragma warning disable 0618 // Turn deprication warning off for test.
+#pragma warning disable CS0618 // Type or member is obsolete
             var result = sut.GetOptionExcludedParamList();
-#pragma warning restore 0618 // Restore deprication warning.
+#pragma warning restore CS0618 // Type or member is obsolete
 
             // ASSERT
             result.ShouldBeEquivalentTo(excludedParamList);

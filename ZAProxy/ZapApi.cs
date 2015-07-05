@@ -39,6 +39,7 @@ namespace ZAProxy
             RegisterComponent(new AutoUpdate(zapProcess));
             RegisterComponent(new Core(zapProcess));
             RegisterComponent(new ForcedUser(zapProcess));
+            RegisterComponent(new GlobalExcludeUrl(zapProcess));
             RegisterComponent(new Users(zapProcess));
         }
 
@@ -76,6 +77,11 @@ namespace ZAProxy
         /// Gets the forced user component.
         /// </summary>
         public ForcedUser ForcedUser { get { return GetComponent<ForcedUser>(); } }
+
+        /// <summary>
+        /// Gets the global exclude url component.
+        /// </summary>
+        public GlobalExcludeUrl GlobalExcludeUrl { get { return GetComponent<GlobalExcludeUrl>(); } }
 
         /// <summary>
         /// Gets the users component.
