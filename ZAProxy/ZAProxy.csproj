@@ -97,9 +97,13 @@
     <Compile Include="Components\Core.cs" />
     <Compile Include="Components\ForcedUser.cs" />
     <Compile Include="Components\GlobalExcludeUrl.cs" />
+    <Compile Include="Components\Params.cs" />
     <Compile Include="Components\Users.cs" />
     <Compile Include="Infrastructure\Parameters.cs" />
     <Compile Include="Schema\Alert.cs" />
+    <Compile Include="Schema\HttpParameter.cs" />
+    <Compile Include="Schema\HttpParameterFlag.cs" />
+    <Compile Include="Schema\HttpParameterType.cs" />
     <Compile Include="Schema\User.cs" />
     <Compile Include="Schema\AuthenticationCredentials.cs" />
     <Compile Include="Schema\AuthenticationCredentialsParameterConstants.cs" />

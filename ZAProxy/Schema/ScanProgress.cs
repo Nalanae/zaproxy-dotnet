@@ -77,6 +77,9 @@ namespace ZAProxy.Schema
 
         internal class Converter : JsonConverter
         {
+            private const string HostProcessPropertyName = "HostProcess";
+            private const string PluginPropertyName = "Plugin";
+
             public override bool CanConvert(Type objectType)
             {
                 return objectType == typeof(ScanProgress);
@@ -94,15 +97,15 @@ namespace ZAProxy.Schema
                         Host = hostProcessesArray[i].Value<string>()
                     };
 
-                    var pluginsArray = hostProcessesArray[i + 1].Value<JArray>("HostProcess");
-                    foreach (var pluginValues in pluginsArray.Select(obj => obj.Value<JArray>("Plugin")))
+                    var pluginsArray = hostProcessesArray[i + 1].Value<JArray>(HostProcessPropertyName);
+                    foreach (var pluginValues in pluginsArray.Select(obj => obj.Value<JArray>(PluginPropertyName)))
                     {
                         hostProcess.Plugins.Add(new ScanProgress.HostProcess.Plugin
                         {
-                            Name = pluginValues[0].Value<string>(),
-                            Id = pluginValues[1].Value<int>(),
-                            Status = pluginValues[2].Value<string>(),
-                            TimeInMs = pluginValues[3].Value<int>()
+                            Name = pluginValues.Value<string>(0),
+                            Id = pluginValues.Value<int>(1),
+                            Status = pluginValues.Value<string>(2),
+                            TimeInMs = pluginValues.Value<int>(3)
                         });
                     }
 
@@ -123,12 +126,12 @@ namespace ZAProxy.Schema
 
                     hostProcessesArray.Add(hostProcess.Host);
                     hostProcessesArray.Add(new JObject(
-                        new JProperty("HostProcess", pluginsArray)));
+                        new JProperty(HostProcessPropertyName, pluginsArray)));
 
                     foreach (var plugin in hostProcess.Plugins)
                     {
                         pluginsArray.Add(new JObject(
-                            new JProperty("Plugin", new JArray(
+                            new JProperty(PluginPropertyName, new JArray(
                                 plugin.Name,
                                 plugin.Id,
                                 plugin.Status,
