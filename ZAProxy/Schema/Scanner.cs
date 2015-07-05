@@ -55,6 +55,6 @@ namespace ZAProxy.Schema
         /// <summary>
         /// Gets a list of scanner IDs on which this scanner is dependent.
         /// </summary>
-        public IEnumerable<int> Dependencies { get; set; }
+        public IList<int> Dependencies { get; set; }
     }
 }

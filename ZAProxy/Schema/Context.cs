@@ -14,17 +14,17 @@ namespace ZAProxy.Schema
         public int AuthenticationDetectionMethodId { get; set; }
         
         /// <summary>
-        /// Gets or sets the regex pattern in the response to verify the user is logged out.
+        /// Gets or sets the regex pattern to verify in the response if the user is logged out.
         /// </summary>
         public string LoggedOutPattern { get; set; }
 
         /// <summary>
         /// Gets or sets the regex patterns of urls that are excluded from the context.
         /// </summary>
-        public IEnumerable<string> ExcludeRegexes { get; set; }
+        public IList<string> ExcludeRegexes { get; set; }
 
         /// <summary>
-        /// Gets or sets the regex pattern in the response to verify the user is logged in.
+        /// Gets or sets the regex pattern to verify in the response if the user is logged in.
         /// </summary>
         public string LoggedInPattern { get; set; }
 
@@ -41,7 +41,7 @@ namespace ZAProxy.Schema
         /// <summary>
         /// Gets or sets the regex patterns of urls that are included in the context.
         /// </summary>
-        public IEnumerable<string> IncludeRegexes { get; set; }
+        public IList<string> IncludeRegexes { get; set; }
         
         /// <summary>
         /// Gets or sets the ID.

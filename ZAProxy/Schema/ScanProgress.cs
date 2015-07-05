@@ -9,19 +9,35 @@ namespace ZAProxy.Schema
     /// <summary>
     /// Describes the progress of a scan.
     /// </summary>
-    [JsonConverter(typeof(Converters.ScanProgressConverter))]
+    [JsonConverter(typeof(Converter))]
     public class ScanProgress
     {
         /// <summary>
+        /// Initiates a new instance of the <see cref="ScanProgress"/> class.
+        /// </summary>
+        public ScanProgress()
+        {
+            HostProcesses = new List<HostProcess>();
+        }
+
+        /// <summary>
         /// Gets or sets set of processes (per host) that are performing a scan.
         /// </summary>
-        public IEnumerable<HostProcess> HostProcesses { get; set; }
+        public IList<HostProcess> HostProcesses { get; set; }
 
         /// <summary>
         /// Describes the scan process for a specific host.
         /// </summary>
         public class HostProcess
         {
+            /// <summary>
+            /// Initiates a new instance of the <see cref="HostProcess"/> class.
+            /// </summary>
+            public HostProcess()
+            {
+                Plugins = new List<Plugin>();
+            }
+
             /// <summary>
             /// Gets or sets the host.
             /// </summary>
@@ -30,7 +46,7 @@ namespace ZAProxy.Schema
             /// <summary>
             /// Gets or sets set of plugins used in the scan.
             /// </summary>
-            public IEnumerable<Plugin> Plugins { get; set; }
+            public IList<Plugin> Plugins { get; set; }
 
             /// <summary>
             /// Describes a plugin used in a scan.
@@ -58,11 +74,8 @@ namespace ZAProxy.Schema
                 public int TimeInMs { get; set; }
             }
         }
-    }
 
-    namespace Converters
-    {
-        internal class ScanProgressConverter : JsonConverter
+        internal class Converter : JsonConverter
         {
             public override bool CanConvert(Type objectType)
             {
@@ -72,24 +85,19 @@ namespace ZAProxy.Schema
             public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
             {
                 var scanProgress = new ScanProgress();
-                var scanProgressHostProcesses = new List<ScanProgress.HostProcess>();
-
-                scanProgress.HostProcesses = scanProgressHostProcesses;
 
                 var hostProcessesArray = JArray.Load(reader);
                 for (int i = 0; i < hostProcessesArray.Count; i = i + 2)
                 {
-                    var hostProcess = new ScanProgress.HostProcess();
-                    var hostProcessPlugins = new List<ScanProgress.HostProcess.Plugin>();
-                    scanProgressHostProcesses.Add(hostProcess);
-
-                    hostProcess.Host = hostProcessesArray[i].Value<string>();
-                    hostProcess.Plugins = hostProcessPlugins;
+                    var hostProcess = new ScanProgress.HostProcess
+                    {
+                        Host = hostProcessesArray[i].Value<string>()
+                    };
 
                     var pluginsArray = hostProcessesArray[i + 1].Value<JArray>("HostProcess");
                     foreach (var pluginValues in pluginsArray.Select(obj => obj.Value<JArray>("Plugin")))
                     {
-                        hostProcessPlugins.Add(new ScanProgress.HostProcess.Plugin
+                        hostProcess.Plugins.Add(new ScanProgress.HostProcess.Plugin
                         {
                             Name = pluginValues[0].Value<string>(),
                             Id = pluginValues[1].Value<int>(),
@@ -97,6 +105,8 @@ namespace ZAProxy.Schema
                             TimeInMs = pluginValues[3].Value<int>()
                         });
                     }
+
+                    scanProgress.HostProcesses.Add(hostProcess);
                 }
 
                 return scanProgress;
