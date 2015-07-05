@@ -95,6 +95,7 @@
     <Compile Include="Components\AutoUpdate.cs" />
     <Compile Include="Components\Context.cs" />
     <Compile Include="Components\Core.cs" />
+    <Compile Include="Components\ForcedUser.cs" />
     <Compile Include="Components\Users.cs" />
     <Compile Include="Infrastructure\Parameters.cs" />
     <Compile Include="Schema\Alert.cs" />

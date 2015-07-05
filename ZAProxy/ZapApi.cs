@@ -34,7 +34,12 @@ namespace ZAProxy
 
             RegisterComponent(new ActiveScanner(zapProcess));
             RegisterComponent(new AntiCsrf(zapProcess));
+            RegisterComponent(new Authentication(zapProcess));
+            RegisterComponent(new Authorization(zapProcess));
+            RegisterComponent(new AutoUpdate(zapProcess));
             RegisterComponent(new Core(zapProcess));
+            RegisterComponent(new ForcedUser(zapProcess));
+            RegisterComponent(new Users(zapProcess));
         }
 
         /// <summary>
@@ -48,9 +53,34 @@ namespace ZAProxy
         public AntiCsrf AntiCsrf { get { return GetComponent<AntiCsrf>(); } }
 
         /// <summary>
+        /// Gets the authentication component.
+        /// </summary>
+        public Authentication Authentication { get { return GetComponent<Authentication>(); } }
+
+        /// <summary>
+        /// Gets the authorization component.
+        /// </summary>
+        public Authorization Authorization { get { return GetComponent<Authorization>(); } }
+
+        /// <summary>
+        /// Gets the auto update component.
+        /// </summary>
+        public AutoUpdate AutoUpdate { get { return GetComponent<AutoUpdate>(); } }
+
+        /// <summary>
         /// Gets the core component.
         /// </summary>
         public Core Core { get { return GetComponent<Core>(); } }
+
+        /// <summary>
+        /// Gets the forced user component.
+        /// </summary>
+        public ForcedUser ForcedUser { get { return GetComponent<ForcedUser>(); } }
+
+        /// <summary>
+        /// Gets the users component.
+        /// </summary>
+        public Users Users { get { return GetComponent<Users>(); } }
 
         /// <summary>
         /// Gets a specified type of component from the registered components.
@@ -113,38 +143,5 @@ namespace ZAProxy
             else
                 return new Version(version) >= new Version(MinimumZapVersion);
         }
-
-        //public class Utils
-        //{
-        //    private static Process _process;
-
-        //    public static void StartZap(string zapPath, int port = 8080)
-        //    {
-        //        try
-        //        {
-        //            if (File.GetAttributes(zapPath).HasFlag(FileAttributes.Directory))
-        //                zapPath = Path.Combine(zapPath, "zap.bat");
-        //        }
-        //        catch
-        //        {
-        //            throw new ZapException($"ZAP not found at \"{zapPath}\"");
-        //        }
-
-        //        _process = new Process
-        //        {
-        //            StartInfo = new ProcessStartInfo(zapPath, "-host 127.0.0.1 -port " + port)
-        //            {
-        //                //RedirectStandardError = true,
-        //                //RedirectStandardOutput = true,
-        //                //UseShellExecute = false,
-        //                //CreateNoWindow = true
-        //            }
-        //        };
-
-        //        _process.Start();
-        //    }
-
-
-        //}
     }
 }

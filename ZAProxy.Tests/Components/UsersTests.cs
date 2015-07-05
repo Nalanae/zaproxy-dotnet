@@ -161,7 +161,7 @@ namespace ZAProxy.Tests.Components
             var result = sut.CreateUser(contextId, name);
 
             // ASSERT
-            result.ShouldBeEquivalentTo(userId);
+            result.Should().Be(userId);
             httpClientMock.Verify();
         }
 
