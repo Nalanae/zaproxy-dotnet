@@ -93,6 +93,7 @@
   <ItemGroup>
     <Compile Include="Components\AuthenticationTests.cs" />
     <Compile Include="Components\AuthorizationTests.cs" />
+    <Compile Include="Components\AutoUpdateTests.cs" />
     <Compile Include="Components\ContextTests.cs" />
     <Compile Include="TestUtils\AutoTestDataAttribute.cs" />
     <Compile Include="Components\ActiveScannerTests.cs" />

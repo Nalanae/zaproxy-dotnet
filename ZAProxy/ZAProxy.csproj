@@ -92,6 +92,7 @@
     <Compile Include="CallType.cs" />
     <Compile Include="Components\Authentication.cs" />
     <Compile Include="Components\Authorization.cs" />
+    <Compile Include="Components\AutoUpdate.cs" />
     <Compile Include="Components\Context.cs" />
     <Compile Include="Components\Core.cs" />
     <Compile Include="Infrastructure\Parameters.cs" />
