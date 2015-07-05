@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Security.AntiXss;
 using ZAProxy.Components;
 
 namespace ZAProxy
@@ -61,7 +60,7 @@ namespace ZAProxy
         public T GetComponent<T>() where T : ComponentBase
         {
             if (!_registeredComponents.Keys.Contains(typeof(T)))
-                throw new ZapException(Resources.ComponentNotRegistered);
+                throw new ZapException(Resources.UnregisteredComponentRequested);
             return (T)_registeredComponents[typeof(T)];
         }
 
@@ -94,9 +93,7 @@ namespace ZAProxy
             var urlPath = $"http://zap/{dataType.ToString().ToLower()}/{component}/{callType.ToString().ToLower()}/{method}/";
             if (parameters != null && parameters.Any())
             {
-                var encodedParameterParts = parameters.Select(
-                    p => AntiXssEncoder.UrlEncode(p.Key) + "=" + AntiXssEncoder.UrlEncode((p.Value ?? "").ToString()));
-                var queryString = string.Join("&", encodedParameterParts);
+                var queryString = parameters.ToQueryString();
                 urlPath = $"{urlPath}?{queryString}";
             }
             return urlPath;

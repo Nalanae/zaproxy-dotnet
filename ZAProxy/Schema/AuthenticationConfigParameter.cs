@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ZAProxy.Schema
+﻿namespace ZAProxy.Schema
 {
     /// <summary>
-    /// Describes a configuration parameter of an authentication method.
+    /// Describes a configuration parameter used in authentication.
     /// </summary>
-    public class AuthenticationMethodConfigParameter
+    public class AuthenticationConfigParameter
     {
         /// <summary>
         /// Gets or sets the name.

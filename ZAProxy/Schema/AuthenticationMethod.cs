@@ -9,14 +9,17 @@ namespace ZAProxy.Schema
     /// <summary>
     /// Describes an authentication method used by a context.
     /// </summary>
+    [JsonConverter(typeof(Converter))]
     public class AuthenticationMethod
     {
+        private IDictionary<string, string> _parameters;
+
         /// <summary>
         /// Initiates a new instance of the <see cref="AuthenticationMethod"/> class.
         /// </summary>
         public AuthenticationMethod()
         {
-            Parameters = new Dictionary<string, string>();
+            _parameters = new Dictionary<string, string>();
         }
 
         /// <summary>
@@ -27,7 +30,11 @@ namespace ZAProxy.Schema
         /// <summary>
         /// Gets or sets the parameters and their values used by the method.
         /// </summary>
-        public IDictionary<string, string> Parameters { get; set; }
+        public virtual IDictionary<string, string> Parameters
+        {
+            get { return _parameters; }
+            set { _parameters = value; }
+        }
 
         internal class Converter : JsonConverter
         {

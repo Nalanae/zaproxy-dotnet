@@ -57,7 +57,7 @@ namespace ZAProxy.Tests.Components
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]Authentication sut,
             string authenticationMethodName,
-            IEnumerable<AuthenticationMethodConfigParameter> authenticationMethodConfigParameters)
+            IEnumerable<AuthenticationConfigParameter> authenticationMethodConfigParameters)
         {
             // ARRANGE
             var json = new JObject(

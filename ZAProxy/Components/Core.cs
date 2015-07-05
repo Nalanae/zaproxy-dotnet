@@ -683,7 +683,7 @@ namespace ZAProxy.Components
                 { "proxy", proxyJson }
             });
             if (result != "OK")
-                throw new ZapException(Resources.SetProxyUnknownResult);
+                throw new ZapException(Resources.UnknownSetProxyResult);
         }
 
         /// <summary>

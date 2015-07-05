@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ZAProxy.Schema
 {
@@ -18,7 +14,7 @@ namespace ZAProxy.Schema
         Multipart = 1,
 
         /// <summary>
-        /// Attack Xml-based content.
+        /// Attack XML-based content.
         /// </summary>
         Xml = 1 << 1,
 

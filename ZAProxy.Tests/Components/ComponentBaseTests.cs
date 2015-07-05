@@ -89,7 +89,7 @@ namespace ZAProxy.Tests.Components
             Action act = () => sut.TestView<object>(method);
 
             // ASSERT
-            act.ShouldThrow<ZapException>().WithMessage(Resources.ResultFromServerWasEmpty);
+            act.ShouldThrow<ZapException>().WithMessage(Resources.EmptyServerResult);
             httpClientMock.Verify();
         }
 
@@ -110,7 +110,7 @@ namespace ZAProxy.Tests.Components
             Action act = () => sut.TestView<object>(method, "Property");
 
             // ASSERT
-            act.ShouldThrow<ZapException>().WithMessage(Resources.CallViewUnknownResult);
+            act.ShouldThrow<ZapException>().WithMessage(Resources.UnknownCallViewResult);
             httpClientMock.Verify();
         }
 
@@ -175,7 +175,7 @@ namespace ZAProxy.Tests.Components
             Action act = () => sut.TestAction(method);
 
             // ASSERT
-            act.ShouldThrow<ZapException>().WithMessage(Resources.ResultFromServerWasEmpty);
+            act.ShouldThrow<ZapException>().WithMessage(Resources.EmptyServerResult);
             httpClientMock.Verify();
         }
 
@@ -196,7 +196,7 @@ namespace ZAProxy.Tests.Components
             Action act = () => sut.TestAction(method);
 
             // ASSERT
-            act.ShouldThrow<ZapException>().WithMessage(Resources.CallActionFailedResult);
+            act.ShouldThrow<ZapException>().WithMessage(Resources.FailedCallActionResult);
             httpClientMock.Verify();
         }
 
@@ -217,7 +217,7 @@ namespace ZAProxy.Tests.Components
             Action act = () => sut.TestAction(method);
 
             // ASSERT
-            act.ShouldThrow<ZapException>().WithMessage(Resources.CallActionUnknownResult);
+            act.ShouldThrow<ZapException>().WithMessage(Resources.UnknownCallActionResult);
             httpClientMock.Verify();
         }
 
@@ -238,7 +238,7 @@ namespace ZAProxy.Tests.Components
             Action act = () => sut.TestAction(method);
 
             // ASSERT
-            act.ShouldThrow<ZapException>().WithMessage(Resources.CallActionUnknownResult);
+            act.ShouldThrow<ZapException>().WithMessage(Resources.UnknownCallActionResult);
             httpClientMock.Verify();
         }
 
@@ -308,7 +308,7 @@ namespace ZAProxy.Tests.Components
             Action act = () => sut.TestOther(method);
 
             // ASSERT
-            act.ShouldThrow<ZapException>().WithMessage(Resources.ResultFromServerWasEmpty);
+            act.ShouldThrow<ZapException>().WithMessage(Resources.EmptyServerResult);
             httpClientMock.Verify();
         }
 
@@ -347,7 +347,7 @@ namespace ZAProxy.Tests.Components
             Action act = () => sut.TestOtherData(method);
 
             // ASSERT
-            act.ShouldThrow<ZapException>().WithMessage(Resources.ResultFromServerWasEmpty);
+            act.ShouldThrow<ZapException>().WithMessage(Resources.EmptyServerResult);
             httpClientMock.Verify();
         }
 

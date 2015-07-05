@@ -61,65 +61,92 @@ namespace ZAProxy {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CallAction received a failed result..
+        ///   Looks up a localized string similar to Result from the server was empty..
         /// </summary>
-        internal static string CallActionFailedResult {
+        internal static string EmptyServerResult {
             get {
-                return ResourceManager.GetString("CallActionFailedResult", resourceCulture);
+                return ResourceManager.GetString("EmptyServerResult", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CallAction received an unknown result..
+        ///   Looks up a localized string similar to CallAction received a failed result..
         /// </summary>
-        internal static string CallActionUnknownResult {
+        internal static string FailedCallActionResult {
             get {
-                return ResourceManager.GetString("CallActionUnknownResult", resourceCulture);
+                return ResourceManager.GetString("FailedCallActionResult", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to CallApi received a failed result..
         /// </summary>
-        internal static string CallApiFailedResult {
+        internal static string FailedCallApiResult {
             get {
-                return ResourceManager.GetString("CallApiFailedResult", resourceCulture);
+                return ResourceManager.GetString("FailedCallApiResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This class does not support the supplied AuthenticationCredential..
+        /// </summary>
+        internal static string InvalidAuthenticationCredentialSupplied {
+            get {
+                return ResourceManager.GetString("InvalidAuthenticationCredentialSupplied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This class does not support the supplied AuthenticationMethod..
+        /// </summary>
+        internal static string InvalidAuthenticationMethodSupplied {
+            get {
+                return ResourceManager.GetString("InvalidAuthenticationMethodSupplied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The supplied string is not a well-formed query string..
+        /// </summary>
+        internal static string InvalidQueryString {
+            get {
+                return ResourceManager.GetString("InvalidQueryString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CallAction received an unknown result..
+        /// </summary>
+        internal static string UnknownCallActionResult {
+            get {
+                return ResourceManager.GetString("UnknownCallActionResult", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to CallView received an unkown result..
         /// </summary>
-        internal static string CallViewUnknownResult {
+        internal static string UnknownCallViewResult {
             get {
-                return ResourceManager.GetString("CallViewUnknownResult", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Requested component type is not registered..
-        /// </summary>
-        internal static string ComponentNotRegistered {
-            get {
-                return ResourceManager.GetString("ComponentNotRegistered", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Result from the server was empty..
-        /// </summary>
-        internal static string ResultFromServerWasEmpty {
-            get {
-                return ResourceManager.GetString("ResultFromServerWasEmpty", resourceCulture);
+                return ResourceManager.GetString("UnknownCallViewResult", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to SetProxy received an unknown result..
         /// </summary>
-        internal static string SetProxyUnknownResult {
+        internal static string UnknownSetProxyResult {
             get {
-                return ResourceManager.GetString("SetProxyUnknownResult", resourceCulture);
+                return ResourceManager.GetString("UnknownSetProxyResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Requested component type is not registered..
+        /// </summary>
+        internal static string UnregisteredComponentRequested {
+            get {
+                return ResourceManager.GetString("UnregisteredComponentRequested", resourceCulture);
             }
         }
         

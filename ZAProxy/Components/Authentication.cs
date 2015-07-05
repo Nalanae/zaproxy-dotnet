@@ -47,9 +47,9 @@ namespace ZAProxy.Components
         /// </summary>
         /// <param name="authenticationMethodName">The name of the authentication mode.</param>
         /// <returns>The configuration parameters of the authentication mode.</returns>
-        public IEnumerable<AuthenticationMethodConfigParameter> GetAuthenticationMethodConfigParameters(string authenticationMethodName)
+        public IEnumerable<AuthenticationConfigParameter> GetAuthenticationMethodConfigParameters(string authenticationMethodName)
         {
-            return CallView<IEnumerable<AuthenticationMethodConfigParameter>>("getAuthenticationMethodConfigParams", "methodConfigParams", new Parameters
+            return CallView<IEnumerable<AuthenticationConfigParameter>>("getAuthenticationMethodConfigParams", "methodConfigParams", new Parameters
             {
                 { "authMethodName", authenticationMethodName }
             });

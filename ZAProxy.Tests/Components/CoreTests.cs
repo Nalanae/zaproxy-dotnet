@@ -1327,7 +1327,7 @@ namespace ZAProxy.Tests.Components
             Action act = () => sut.SetProxy(host, port);
 
             // ASSERT
-            act.ShouldThrow<ZapException>().WithMessage(Resources.SetProxyUnknownResult);
+            act.ShouldThrow<ZapException>().WithMessage(Resources.UnknownSetProxyResult);
             httpClientMock.Verify();
         }
 

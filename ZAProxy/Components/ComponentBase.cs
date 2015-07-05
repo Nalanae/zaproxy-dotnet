@@ -47,7 +47,7 @@ namespace ZAProxy.Components
             if (takeValueFromProperty != null)
                 result = result[takeValueFromProperty];
             if (result == null)
-                throw new ZapException(Resources.CallViewUnknownResult);
+                throw new ZapException(Resources.UnknownCallViewResult);
             return result.ToObject<T>();
         }
 
@@ -64,9 +64,9 @@ namespace ZAProxy.Components
                 case "OK":
                     break;
                 case "FAIL":
-                    throw new ZapException(Resources.CallActionFailedResult);
+                    throw new ZapException(Resources.FailedCallActionResult);
                 default:
-                    throw new ZapException(Resources.CallActionUnknownResult);
+                    throw new ZapException(Resources.UnknownCallActionResult);
             }
         }
 
@@ -84,7 +84,7 @@ namespace ZAProxy.Components
             if (takeValueFromProperty != null)
                 result = result[takeValueFromProperty];
             if (result == null)
-                throw new ZapException(Resources.CallActionUnknownResult);
+                throw new ZapException(Resources.UnknownCallActionResult);
             return result.ToObject<T>();
         }
         
@@ -113,7 +113,7 @@ namespace ZAProxy.Components
             var result = _httpClient.DownloadData(url);
 
             if (!result.Any())
-                throw new ZapException(Resources.ResultFromServerWasEmpty);
+                throw new ZapException(Resources.EmptyServerResult);
 
             return result;
         }
@@ -152,7 +152,7 @@ namespace ZAProxy.Components
             var json = JToken.Parse(result);
 
             if (json["code"] != null && json["message"] != null)
-                throw new ZapException(Resources.CallApiFailedResult,
+                throw new ZapException(Resources.FailedCallApiResult,
                     json["code"].ToString(), json["message"].ToString());
 
             return json;
@@ -165,7 +165,7 @@ namespace ZAProxy.Components
             var result = _httpClient.DownloadString(url);
 
             if (string.IsNullOrEmpty(result))
-                throw new ZapException(Resources.ResultFromServerWasEmpty);
+                throw new ZapException(Resources.EmptyServerResult);
 
             return result;
         }
