@@ -97,6 +97,7 @@
     <Compile Include="Components\ContextTests.cs" />
     <Compile Include="Components\ForcedUserTests.cs" />
     <Compile Include="Components\GlobalExcludeUrlTests.cs" />
+    <Compile Include="Components\HttpSessionsTests.cs" />
     <Compile Include="Components\ParamsTests.cs" />
     <Compile Include="Components\UsersTests.cs" />
     <Compile Include="TestUtils\AutoTestDataAttribute.cs" />

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ZAProxy.Schema
+﻿namespace ZAProxy.Schema
 {
     /// <summary>
     /// Describes the type of an http parameter.

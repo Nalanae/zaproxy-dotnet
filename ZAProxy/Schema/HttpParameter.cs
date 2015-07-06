@@ -17,7 +17,7 @@ namespace ZAProxy.Schema
         /// </summary>
         public HttpParameter()
         {
-            Flags = new List<HttpParameterFlag>();
+            Flags = new List<string>();
             Values = new List<string>();
         }
 
@@ -44,7 +44,7 @@ namespace ZAProxy.Schema
         /// <summary>
         /// Gets or sets the flags.
         /// </summary>
-        public IList<HttpParameterFlag> Flags { get; set; }
+        public IList<string> Flags { get; set; }
 
         /// <summary>
         /// Gets or sets the values the parameter has had.
@@ -87,7 +87,7 @@ namespace ZAProxy.Schema
 
                     var flagsArray = extraObject.Value<JArray>(FlagsPropertyName);
                     if (flagsArray != null)
-                        httpParameter.Flags = flagsArray.ToObject<IList<HttpParameterFlag>>();
+                        httpParameter.Flags = flagsArray.ToObject<IList<string>>();
 
                     var valuesArray = extraObject.Value<JArray>(ValuesPropertyName);
                     if (valuesArray != null)
@@ -111,7 +111,7 @@ namespace ZAProxy.Schema
                 if (httpParameter.Flags.Any())
                     httpParameterObject.Value<JArray>(ParameterPropertyName).Add(
                         new JObject(
-                            new JProperty(FlagsPropertyName, JArray.FromObject(httpParameter.Flags.Select(f => f.ToString())))));
+                            new JProperty(FlagsPropertyName, JArray.FromObject(httpParameter.Flags))));
 
                 if (httpParameter.Values.Any())
                     httpParameterObject.Value<JArray>(ParameterPropertyName).Add(

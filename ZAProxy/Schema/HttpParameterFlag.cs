@@ -1,29 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ZAProxy.Schema
+﻿namespace ZAProxy.Schema
 {
     /// <summary>
-    /// Describes flags that can be assigned to http parameters.
+    /// Contains constants of all well-known flags that can be assigned to http parameters.
     /// </summary>
-    public enum HttpParameterFlag
+    public static class HttpParameterFlag
     {
         /// <summary>
         /// Parameter is part of the anti CSRF protection.
         /// </summary>
-        AntiCsrf,
+        public const string AntiCsrf = "anticsrf";
 
         /// <summary>
         /// Parameter is part of the session state.
         /// </summary>
-        Session,
+        public const string Session = "session";
 
         /// <summary>
         /// Parameter is a structural part of the system.
         /// </summary>
-        Structural
+        public const string Structural = "structural";
     }
 }
