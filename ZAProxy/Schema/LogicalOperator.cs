@@ -6,7 +6,7 @@ namespace ZAProxy.Schema
     /// <summary>
     /// Describes a logical operator in ZAP.
     /// </summary>
-    [JsonConverter(typeof(LogicalOperatorEnumConverter))]
+    [JsonConverter(typeof(CapitalizedEnumConverter))]
     public enum LogicalOperator
     {
         /// <summary>

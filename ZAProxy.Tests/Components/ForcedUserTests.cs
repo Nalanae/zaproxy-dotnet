@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Moq;
 using Newtonsoft.Json.Linq;
 using Ploeh.AutoFixture.Xunit2;
 using Xunit;
-using ZAProxy.Components;
 using ZAProxy.Infrastructure;
 using ZAProxy.Tests.TestUtils;
 
@@ -15,7 +13,7 @@ namespace ZAProxy.Tests.Components
     {
         [Theory, AutoTestData]
         public void ComponentName(
-            [Greedy]ForcedUser sut)
+            [Greedy]ZAProxy.Components.ForcedUser sut)
         {
             // ACT
             var result = sut.ComponentName;
@@ -29,7 +27,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetForcedUser(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ForcedUser sut,
+            [Greedy]ZAProxy.Components.ForcedUser sut,
             int contextId,
             int userId)
         {
@@ -55,7 +53,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void IsForcedUserModeEnabled(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ForcedUser sut,
+            [Greedy]ZAProxy.Components.ForcedUser sut,
             bool enabled)
         {
             // ARRANGE
@@ -80,7 +78,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetForcedUser(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ForcedUser sut,
+            [Greedy]ZAProxy.Components.ForcedUser sut,
             int contextId,
             int userId)
         {
@@ -104,7 +102,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetForcedUserModeEnabled(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ForcedUser sut,
+            [Greedy]ZAProxy.Components.ForcedUser sut,
             bool enabled)
         {
             // ARRANGE

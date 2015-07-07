@@ -1,8 +1,12 @@
-﻿namespace ZAProxy.Schema
+﻿using Newtonsoft.Json;
+using ZAProxy.Schema.Converters;
+
+namespace ZAProxy.Schema
 {
     /// <summary>
     /// Describes the threshold of shown alerts in ZAP.
     /// </summary>
+    [JsonConverter(typeof(CapitalizedEnumConverter))]
     public enum AlertThreshold
     {
         /// <summary>

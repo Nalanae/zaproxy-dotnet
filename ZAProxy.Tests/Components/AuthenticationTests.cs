@@ -4,7 +4,6 @@ using Moq;
 using Newtonsoft.Json.Linq;
 using Ploeh.AutoFixture.Xunit2;
 using Xunit;
-using ZAProxy.Components;
 using ZAProxy.Infrastructure;
 using ZAProxy.Schema;
 using ZAProxy.Tests.TestUtils;
@@ -16,7 +15,7 @@ namespace ZAProxy.Tests.Components
     {
         [Theory, AutoTestData]
         public void ComponentName(
-            [Greedy]Authentication sut)
+            [Greedy]ZAProxy.Components.Authentication sut)
         {
             // ACT
             var result = sut.ComponentName;
@@ -30,7 +29,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetAuthenticationMethod(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]Authentication sut,
+            [Greedy]ZAProxy.Components.Authentication sut,
             int contextId,
             AuthenticationMethod authenticationMethod)
         {
@@ -55,7 +54,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetAuthenticationMethodConfigParameters(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]Authentication sut,
+            [Greedy]ZAProxy.Components.Authentication sut,
             string authenticationMethodName,
             IEnumerable<AuthenticationConfigParameter> authenticationMethodConfigParameters)
         {
@@ -81,7 +80,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetLoggedInIndicator(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]Authentication sut,
+            [Greedy]ZAProxy.Components.Authentication sut,
             int contextId,
             string regex)
         {
@@ -107,7 +106,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetLoggedOutIndicator(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]Authentication sut,
+            [Greedy]ZAProxy.Components.Authentication sut,
             int contextId,
             string regex)
         {
@@ -133,7 +132,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetSupportedAuthenticationMethods(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]Authentication sut,
+            [Greedy]ZAProxy.Components.Authentication sut,
             IEnumerable<string> supportedAuthenticationMethods)
         {
             // ARRANGE
@@ -158,7 +157,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetAuthenticationMethod(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]Authentication sut,
+            [Greedy]ZAProxy.Components.Authentication sut,
             int contextId,
             AuthenticationMethod authenticationMethod)
         {
@@ -184,7 +183,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetLoggedInIndicator(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]Authentication sut,
+            [Greedy]ZAProxy.Components.Authentication sut,
             int contextId,
             string indicatorRegex)
         {
@@ -208,7 +207,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetLoggedOutIndicator(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]Authentication sut,
+            [Greedy]ZAProxy.Components.Authentication sut,
             int contextId,
             string indicatorRegex)
         {

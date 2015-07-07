@@ -1,8 +1,12 @@
-﻿namespace ZAProxy.Schema
+﻿using Newtonsoft.Json;
+using ZAProxy.Schema.Converters;
+
+namespace ZAProxy.Schema
 {
     /// <summary>
     /// Describes the type of an http parameter.
     /// </summary>
+    [JsonConverter(typeof(CapitalizedEnumConverter))]
     public enum HttpParameterType
     {
         /// <summary>

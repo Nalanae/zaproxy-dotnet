@@ -4,7 +4,6 @@ using Moq;
 using Newtonsoft.Json.Linq;
 using Ploeh.AutoFixture.Xunit2;
 using Xunit;
-using ZAProxy.Components;
 using ZAProxy.Infrastructure;
 using ZAProxy.Tests.TestUtils;
 
@@ -15,7 +14,7 @@ namespace ZAProxy.Tests.Components
     {
         [Theory, AutoTestData]
         public void ComponentName(
-            [Greedy]AntiCsrf sut)
+            [Greedy]ZAProxy.Components.AntiCsrf sut)
         {
             // ACT
             var result = sut.ComponentName;
@@ -29,7 +28,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetOptionTokenNames(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]AntiCsrf sut,
+            [Greedy]ZAProxy.Components.AntiCsrf sut,
             IEnumerable<string> tokenNames)
         {
             // ARRANGE
@@ -54,7 +53,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void AddOptionTokenName(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]AntiCsrf sut,
+            [Greedy]ZAProxy.Components.AntiCsrf sut,
             string tokenName)
         {
             // ARRANGE
@@ -76,7 +75,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void RemoveOptionTokenName(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]AntiCsrf sut,
+            [Greedy]ZAProxy.Components.AntiCsrf sut,
             string tokenName)
         {
             // ARRANGE
@@ -102,7 +101,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GenerateForm(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]AntiCsrf sut,
+            [Greedy]ZAProxy.Components.AntiCsrf sut,
             int messageId,
             string form)
         {

@@ -3,9 +3,9 @@
 namespace ZAProxy.Schema
 {
     /// <summary>
-    /// Describes a scanner.
+    /// Describes an active scanner.
     /// </summary>
-    public class Scanner
+    public class ActiveScanner
     {
         /// <summary>
         /// Gets or sets whether all required dependencies in ZAP for this scanner are available.

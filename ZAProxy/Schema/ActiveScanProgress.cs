@@ -7,15 +7,15 @@ using System.Linq;
 namespace ZAProxy.Schema
 {
     /// <summary>
-    /// Describes the progress of a scan.
+    /// Describes the progress of an active scan.
     /// </summary>
     [JsonConverter(typeof(Converter))]
-    public class ScanProgress
+    public class ActiveScanProgress
     {
         /// <summary>
-        /// Initiates a new instance of the <see cref="ScanProgress"/> class.
+        /// Initiates a new instance of the <see cref="ActiveScanProgress"/> class.
         /// </summary>
-        public ScanProgress()
+        public ActiveScanProgress()
         {
             HostProcesses = new List<HostProcess>();
         }
@@ -82,17 +82,17 @@ namespace ZAProxy.Schema
 
             public override bool CanConvert(Type objectType)
             {
-                return objectType == typeof(ScanProgress);
+                return objectType == typeof(ActiveScanProgress);
             }
 
             public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
             {
-                var scanProgress = new ScanProgress();
+                var scanProgress = new ActiveScanProgress();
 
                 var hostProcessesArray = JArray.Load(reader);
                 for (int i = 0; i < hostProcessesArray.Count; i = i + 2)
                 {
-                    var hostProcess = new ScanProgress.HostProcess
+                    var hostProcess = new ActiveScanProgress.HostProcess
                     {
                         Host = hostProcessesArray[i].Value<string>()
                     };
@@ -100,7 +100,7 @@ namespace ZAProxy.Schema
                     var pluginsArray = hostProcessesArray[i + 1].Value<JArray>(HostProcessPropertyName);
                     foreach (var pluginValues in pluginsArray.Select(obj => obj.Value<JArray>(PluginPropertyName)))
                     {
-                        hostProcess.Plugins.Add(new ScanProgress.HostProcess.Plugin
+                        hostProcess.Plugins.Add(new ActiveScanProgress.HostProcess.Plugin
                         {
                             Name = pluginValues.Value<string>(0),
                             Id = pluginValues.Value<int>(1),
@@ -117,7 +117,7 @@ namespace ZAProxy.Schema
 
             public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
             {
-                var scanProgress = (ScanProgress)value;
+                var scanProgress = (ActiveScanProgress)value;
                 var hostProcessesArray = new JArray();
 
                 foreach (var hostProcess in scanProgress.HostProcesses)

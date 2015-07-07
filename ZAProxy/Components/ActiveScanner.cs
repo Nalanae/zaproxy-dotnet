@@ -251,23 +251,23 @@ namespace ZAProxy.Components
         /// </summary>
         /// <param name="scanId">The ID of the scan.</param>
         /// <returns>Progress of the specified scan.</returns>
-        public ScanProgress GetScanProgress(int scanId)
+        public ActiveScanProgress GetScanProgress(int scanId)
         {
-            return CallView<ScanProgress>("scanProgress", "scanProgress", new Parameters
+            return CallView<ActiveScanProgress>("scanProgress", "scanProgress", new Parameters
             {
                 { "scanId", scanId }
             });
         }
 
         /// <summary>
-        /// Gets the scanners. Optionally filtered by a scan policy name or an ID.
+        /// Gets all the active scanners registered in ZAP. Optionally filtered by a scan policy name or an ID.
         /// </summary>
         /// <param name="scanPolicyName">Optional scan policy name.</param>
         /// <param name="policyId">Optional policy ID.</param>
         /// <returns>The scanners.</returns>
-        public IEnumerable<Scanner> GetScanners(string scanPolicyName = null, int? policyId = null)
+        public IEnumerable<Schema.ActiveScanner> GetScanners(string scanPolicyName = null, int? policyId = null)
         {
-            return CallView<IEnumerable<Scanner>>("scanners", "scanners", new Parameters
+            return CallView<IEnumerable<Schema.ActiveScanner>>("scanners", "scanners", new Parameters
             {
                 { "scanPolicyName", scanPolicyName },
                 { "policyId", policyId }
@@ -278,9 +278,9 @@ namespace ZAProxy.Components
         /// Gets all the scans.
         /// </summary>
         /// <returns>All the scans.</returns>
-        public IEnumerable<Scan> GetScans()
+        public IEnumerable<ActiveScan> GetScans()
         {
-            return CallView<IEnumerable<Scan>>("scans", "scans");
+            return CallView<IEnumerable<ActiveScan>>("scans", "scans");
         }
 
         /// <summary>

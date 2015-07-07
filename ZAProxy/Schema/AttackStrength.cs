@@ -1,8 +1,12 @@
-﻿namespace ZAProxy.Schema
+﻿using Newtonsoft.Json;
+using ZAProxy.Schema.Converters;
+
+namespace ZAProxy.Schema
 {
     /// <summary>
     /// Describes the strength of attacks that are attempted in a scan.
     /// </summary>
+    [JsonConverter(typeof(CapitalizedEnumConverter))]
     public enum AttackStrength
     {
         /// <summary>

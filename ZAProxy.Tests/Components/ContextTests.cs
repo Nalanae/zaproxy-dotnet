@@ -4,7 +4,6 @@ using Moq;
 using Newtonsoft.Json.Linq;
 using Ploeh.AutoFixture.Xunit2;
 using Xunit;
-using ZAProxy.Components;
 using ZAProxy.Infrastructure;
 using ZAProxy.Tests.TestUtils;
 
@@ -15,7 +14,7 @@ namespace ZAProxy.Tests.Components
     {
         [Theory, AutoTestData]
         public void ComponentName(
-            [Greedy]Context sut)
+            [Greedy]ZAProxy.Components.Context sut)
         {
             // ACT
             var result = sut.ComponentName;
@@ -29,7 +28,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetContext(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]Context sut,
+            [Greedy]ZAProxy.Components.Context sut,
             string name,
             Schema.Context context)
         {
@@ -54,7 +53,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetContextList(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]Context sut,
+            [Greedy]ZAProxy.Components.Context sut,
             string name,
             IEnumerable<string> contextList)
         {
@@ -76,7 +75,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetExcludedRegexes(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]Context sut,
+            [Greedy]ZAProxy.Components.Context sut,
             string name,
             IEnumerable<string> excludedRegexes)
         {
@@ -102,7 +101,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetIncludedRegexes(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]Context sut,
+            [Greedy]ZAProxy.Components.Context sut,
             string name,
             IEnumerable<string> includedRegexes)
         {
@@ -132,7 +131,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void ExcludeFromContext(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]Context sut,
+            [Greedy]ZAProxy.Components.Context sut,
             string name,
             string regex)
         {
@@ -156,7 +155,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void ExportContext(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]Context sut,
+            [Greedy]ZAProxy.Components.Context sut,
             string name,
             string filePath)
         {
@@ -180,7 +179,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void ImportContext(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]Context sut,
+            [Greedy]ZAProxy.Components.Context sut,
             string filePath)
         {
             // ARRANGE
@@ -202,7 +201,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void IncludeInContext(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]Context sut,
+            [Greedy]ZAProxy.Components.Context sut,
             string name,
             string regex)
         {
@@ -226,7 +225,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void NewContext(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]Context sut,
+            [Greedy]ZAProxy.Components.Context sut,
             string name,
             int contextId)
         {
@@ -252,7 +251,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetContextInScope(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]Context sut,
+            [Greedy]ZAProxy.Components.Context sut,
             string name,
             bool inScope)
         {

@@ -1,8 +1,12 @@
-﻿namespace ZAProxy.Schema
+﻿using Newtonsoft.Json;
+using ZAProxy.Schema.Converters;
+
+namespace ZAProxy.Schema
 {
     /// <summary>
     /// Describes the confidence of the correctness of an alert.
     /// </summary>
+    [JsonConverter(typeof(CapitalizedEnumConverter))]
     public enum Confidence
     {
         /// <summary>

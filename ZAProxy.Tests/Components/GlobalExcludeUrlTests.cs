@@ -4,7 +4,6 @@ using Moq;
 using Newtonsoft.Json.Linq;
 using Ploeh.AutoFixture.Xunit2;
 using Xunit;
-using ZAProxy.Components;
 using ZAProxy.Infrastructure;
 using ZAProxy.Tests.TestUtils;
 
@@ -15,7 +14,7 @@ namespace ZAProxy.Tests.Components
     {
         [Theory, AutoTestData]
         public void ComponentName(
-            [Greedy]GlobalExcludeUrl sut)
+            [Greedy]ZAProxy.Components.GlobalExcludeUrl sut)
         {
             // ACT
             var result = sut.ComponentName;
@@ -29,7 +28,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetOptionTokens(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]GlobalExcludeUrl sut,
+            [Greedy]ZAProxy.Components.GlobalExcludeUrl sut,
             IEnumerable<string> tokens)
         {
             // ARRANGE
@@ -52,7 +51,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetOptionTokensNames(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]GlobalExcludeUrl sut,
+            [Greedy]ZAProxy.Components.GlobalExcludeUrl sut,
             IEnumerable<string> tokensNames)
         {
             // ARRANGE
@@ -77,7 +76,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void AddOptionToken(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]GlobalExcludeUrl sut,
+            [Greedy]ZAProxy.Components.GlobalExcludeUrl sut,
             string value)
         {
             // ARRANGE
@@ -99,7 +98,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void RemoveOptionToken(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]GlobalExcludeUrl sut,
+            [Greedy]ZAProxy.Components.GlobalExcludeUrl sut,
             string value)
         {
             // ARRANGE
@@ -125,7 +124,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GenerateForm(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]GlobalExcludeUrl sut,
+            [Greedy]ZAProxy.Components.GlobalExcludeUrl sut,
             int messageId,
             string form)
         {

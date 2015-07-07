@@ -40,6 +40,9 @@ namespace ZAProxy
             RegisterComponent(new Core(zapProcess));
             RegisterComponent(new ForcedUser(zapProcess));
             RegisterComponent(new GlobalExcludeUrl(zapProcess));
+            RegisterComponent(new HttpSessions(zapProcess));
+            RegisterComponent(new Params(zapProcess));
+            RegisterComponent(new PassiveScanner(zapProcess));
             RegisterComponent(new Users(zapProcess));
         }
 
@@ -82,6 +85,21 @@ namespace ZAProxy
         /// Gets the global exclude url component.
         /// </summary>
         public GlobalExcludeUrl GlobalExcludeUrl { get { return GetComponent<GlobalExcludeUrl>(); } }
+
+        /// <summary>
+        /// Gets the http sessions component.
+        /// </summary>
+        public HttpSessions HttpSessions { get { return GetComponent<HttpSessions>(); } }
+
+        /// <summary>
+        /// Gets the params component.
+        /// </summary>
+        public Params Params { get { return GetComponent<Params>(); } }
+
+        /// <summary>
+        /// Gets the passive scanner component.
+        /// </summary>
+        public PassiveScanner PassiveScanner { get { return GetComponent<PassiveScanner>(); } }
 
         /// <summary>
         /// Gets the users component.

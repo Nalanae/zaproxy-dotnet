@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
+using ZAProxy.Schema.Converters;
 
 namespace ZAProxy.Schema
 {
     /// <summary>
     /// Describes the risk of an alert.
     /// </summary>
+    [JsonConverter(typeof(CapitalizedEnumConverter))]
     public enum Risk
     {
         /// <summary>

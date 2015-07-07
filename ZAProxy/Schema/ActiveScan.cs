@@ -3,9 +3,9 @@
 namespace ZAProxy.Schema
 {
     /// <summary>
-    /// Describes a scan.
+    /// Describes an active scan.
     /// </summary>
-    public class Scan
+    public class ActiveScan
     {
         /// <summary>
         /// Gets or sets the progress (in percentage).
@@ -20,6 +20,6 @@ namespace ZAProxy.Schema
         /// <summary>
         /// Gets or sets the current state.
         /// </summary>
-        public ScanState State { get; set; }
+        public ActiveScanState State { get; set; }
     }
 }

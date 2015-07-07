@@ -4,7 +4,6 @@ using Moq;
 using Newtonsoft.Json.Linq;
 using Ploeh.AutoFixture.Xunit2;
 using Xunit;
-using ZAProxy.Components;
 using ZAProxy.Infrastructure;
 using ZAProxy.Schema;
 using ZAProxy.Tests.TestUtils;
@@ -16,7 +15,7 @@ namespace ZAProxy.Tests.Components
     {
         [Theory, AutoTestData]
         public void ComponentName(
-            [Greedy]Params sut)
+            [Greedy]ZAProxy.Components.Params sut)
         {
             // ACT
             var result = sut.ComponentName;
@@ -30,7 +29,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetParameters(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]Params sut,
+            [Greedy]ZAProxy.Components.Params sut,
             string site,
             IEnumerable<HttpParameter> parameters)
         {

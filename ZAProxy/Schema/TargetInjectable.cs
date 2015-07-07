@@ -1,8 +1,11 @@
-﻿namespace ZAProxy.Schema
+﻿using System;
+
+namespace ZAProxy.Schema
 {
     /// <summary>
     /// Describes what parameter-types are attacked.
     /// </summary>
+    [Flags]
     public enum TargetInjectable
     {
         /// <summary>

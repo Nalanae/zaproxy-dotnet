@@ -99,8 +99,10 @@
     <Compile Include="Components\GlobalExcludeUrl.cs" />
     <Compile Include="Components\HttpSessions.cs" />
     <Compile Include="Components\Params.cs" />
+    <Compile Include="Components\PassiveScanner.cs" />
     <Compile Include="Components\Users.cs" />
     <Compile Include="Infrastructure\Parameters.cs" />
+    <Compile Include="Schema\PassiveScanner.cs" />
     <Compile Include="Schema\Alert.cs" />
     <Compile Include="Schema\Cookie.cs" />
     <Compile Include="Schema\HttpParameter.cs" />
@@ -118,8 +120,8 @@
     <Compile Include="Schema\BasicAuthorizationDetectionMethod.cs" />
     <Compile Include="Schema\Confidence.cs" />
     <Compile Include="Schema\Converters\NullableInt32Converter.cs" />
-    <Compile Include="Schema\Converters\LogicalOperatorEnumConverter.cs" />
-    <Compile Include="Schema\Converters\ScanStateEnumConverter.cs" />
+    <Compile Include="Schema\Converters\CapitalizedEnumConverter.cs" />
+    <Compile Include="Schema\Converters\ActiveScanStateEnumConverter.cs" />
     <Compile Include="Schema\GenericAuthenticationCredentials.cs" />
     <Compile Include="Schema\UserNamePasswordAuthenticationCredentials.cs" />
     <Compile Include="Schema\ManualAuthenticationCredentials.cs" />
@@ -152,10 +154,10 @@
     <Compile Include="Schema\AlertThreshold.cs" />
     <Compile Include="Schema\AttackStrength.cs" />
     <Compile Include="Schema\Policy.cs" />
-    <Compile Include="Schema\Scan.cs" />
-    <Compile Include="Schema\Scanner.cs" />
-    <Compile Include="Schema\ScanProgress.cs" />
-    <Compile Include="Schema\ScanState.cs" />
+    <Compile Include="Schema\ActiveScan.cs" />
+    <Compile Include="Schema\ActiveScanner.cs" />
+    <Compile Include="Schema\ActiveScanProgress.cs" />
+    <Compile Include="Schema\ActiveScanState.cs" />
     <Compile Include="IZapProcess.cs" />
     <Compile Include="ZapServerProcess.cs" />
     <Compile Include="ZapUtils.cs" />
