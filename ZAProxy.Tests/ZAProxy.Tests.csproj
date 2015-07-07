@@ -109,8 +109,6 @@
     <Compile Include="TestUtils\Extensions\HarExtensions.cs" />
     <Compile Include="TestUtils\Extensions\SystemCollectionsGenericExtensions.cs" />
     <Compile Include="TestUtils\FixtureCustomizations\HarCustomization.cs" />
-    <Compile Include="Integration\ZapDaemonCollection.cs" />
-    <Compile Include="Integration\ZapDaemonFixture.cs" />
     <Compile Include="TestUtils\Extensions\MoqExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestResources.Designer.cs">
@@ -135,9 +133,7 @@
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Integration\Scanning\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="TestResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
