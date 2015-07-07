@@ -1,5 +1,5 @@
 # zaproxy-dotnet
-.NET implementation of OWASP ZAP's API client.
+.NET client for OWASP ZAP's API.
 
 This is currently in development and still incomplete and unstable. Use with care!
 

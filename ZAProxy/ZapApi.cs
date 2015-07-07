@@ -43,6 +43,7 @@ namespace ZAProxy
             RegisterComponent(new HttpSessions(zapProcess));
             RegisterComponent(new Params(zapProcess));
             RegisterComponent(new PassiveScanner(zapProcess));
+            RegisterComponent(new Reveal(zapProcess));
             RegisterComponent(new Users(zapProcess));
         }
 
@@ -100,6 +101,11 @@ namespace ZAProxy
         /// Gets the passive scanner component.
         /// </summary>
         public PassiveScanner PassiveScanner { get { return GetComponent<PassiveScanner>(); } }
+
+        /// <summary>
+        /// Gets the reveal component.
+        /// </summary>
+        public Reveal Reveal { get { return GetComponent<Reveal>(); } }
 
         /// <summary>
         /// Gets the users component.

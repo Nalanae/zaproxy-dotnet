@@ -100,6 +100,7 @@
     <Compile Include="Components\HttpSessions.cs" />
     <Compile Include="Components\Params.cs" />
     <Compile Include="Components\PassiveScanner.cs" />
+    <Compile Include="Components\Reveal.cs" />
     <Compile Include="Components\Users.cs" />
     <Compile Include="Infrastructure\Parameters.cs" />
     <Compile Include="Schema\PassiveScanner.cs" />
