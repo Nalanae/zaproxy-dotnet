@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using ZAProxy.Infrastructure;
 using ZAProxy.Schema;
 
@@ -11,22 +7,22 @@ namespace ZAProxy.Components
     /// <summary>
     /// Component that manages the users of a context.
     /// </summary>
-    public class Users : ComponentBase
+    public class UsersComponent : ComponentBase
     {
         /// <summary>
-        /// Initiates a new instance of the <see cref="Users"/> class.
+        /// Initiates a new instance of the <see cref="UsersComponent"/> class.
         /// </summary>
         /// <param name="zapProcess">The ZAP process to connect to.</param>
-        public Users(IZapProcess zapProcess)
+        public UsersComponent(IZapProcess zapProcess)
             : this(null, zapProcess)
         { }
 
         /// <summary>
-        /// Initiates a new instance of the <see cref="Users"/> class with a specific HTTP client implementation.
+        /// Initiates a new instance of the <see cref="UsersComponent"/> class with a specific HTTP client implementation.
         /// </summary>
         /// <param name="httpClient">The HTTP client implementation.</param>
         /// <param name="zapProcess">The ZAP process to connect to.</param>
-        public Users(IHttpClient httpClient, IZapProcess zapProcess)
+        public UsersComponent(IHttpClient httpClient, IZapProcess zapProcess)
             : base(httpClient, zapProcess, "users")
         { }
 

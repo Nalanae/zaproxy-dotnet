@@ -90,18 +90,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CallType.cs" />
-    <Compile Include="Components\Authentication.cs" />
-    <Compile Include="Components\Authorization.cs" />
-    <Compile Include="Components\AutoUpdate.cs" />
-    <Compile Include="Components\Context.cs" />
-    <Compile Include="Components\Core.cs" />
-    <Compile Include="Components\ForcedUser.cs" />
-    <Compile Include="Components\GlobalExcludeUrl.cs" />
-    <Compile Include="Components\HttpSessions.cs" />
-    <Compile Include="Components\Params.cs" />
-    <Compile Include="Components\PassiveScanner.cs" />
-    <Compile Include="Components\Reveal.cs" />
-    <Compile Include="Components\Users.cs" />
+    <Compile Include="Components\AuthenticationComponent.cs" />
+    <Compile Include="Components\AuthorizationComponent.cs" />
+    <Compile Include="Components\AutoUpdateComponent.cs" />
+    <Compile Include="Components\ContextComponent.cs" />
+    <Compile Include="Components\CoreComponent.cs" />
+    <Compile Include="Components\ForcedUserComponent.cs" />
+    <Compile Include="Components\GlobalExcludeUrlComponent.cs" />
+    <Compile Include="Components\HttpSessionsComponent.cs" />
+    <Compile Include="Components\ParamsComponent.cs" />
+    <Compile Include="Components\PassiveScannerComponent.cs" />
+    <Compile Include="Components\RevealComponent.cs" />
+    <Compile Include="Components\ScriptComponent.cs" />
+    <Compile Include="Components\UsersComponent.cs" />
     <Compile Include="Infrastructure\Parameters.cs" />
     <Compile Include="Schema\PassiveScanner.cs" />
     <Compile Include="Schema\Alert.cs" />
@@ -110,6 +111,7 @@
     <Compile Include="Schema\HttpParameterFlag.cs" />
     <Compile Include="Schema\HttpParameterType.cs" />
     <Compile Include="Schema\HttpSession.cs" />
+    <Compile Include="Schema\Script.cs" />
     <Compile Include="Schema\User.cs" />
     <Compile Include="Schema\AuthenticationCredentials.cs" />
     <Compile Include="Schema\AuthenticationCredentialsParameterConstants.cs" />
@@ -140,8 +142,8 @@
     <Compile Include="Schema\TargetInjectable.cs" />
     <Compile Include="ZapApi.cs" />
     <Compile Include="ZapException.cs" />
-    <Compile Include="Components\ActiveScanner.cs" />
-    <Compile Include="Components\AntiCsrf.cs" />
+    <Compile Include="Components\ActiveScannerComponent.cs" />
+    <Compile Include="Components\AntiCsrfComponent.cs" />
     <Compile Include="Components\ComponentBase.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="DataType.cs" />

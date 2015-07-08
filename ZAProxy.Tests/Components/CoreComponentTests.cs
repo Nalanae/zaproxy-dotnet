@@ -7,6 +7,7 @@ using Moq;
 using Newtonsoft.Json.Linq;
 using Ploeh.AutoFixture.Xunit2;
 using Xunit;
+using ZAProxy.Components;
 using ZAProxy.Infrastructure;
 using ZAProxy.Schema;
 using ZAProxy.Tests.TestUtils;
@@ -14,11 +15,11 @@ using ZAProxy.Tests.TestUtils;
 namespace ZAProxy.Tests.Components
 {
     [Trait("Component", "Core")]
-    public class CoreTests
+    public class CoreComponentTests
     {
         [Theory, AutoTestData]
         public void ComponentName(
-            [Greedy]ZAProxy.Components.Core sut)
+            [Greedy]CoreComponent sut)
         {
             // ACT
             var result = sut.ComponentName;
@@ -32,7 +33,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetAlert(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             int id,
             Alert alert)
         {
@@ -58,7 +59,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetAlerts(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             string baseUrl,
             int start,
             int count,
@@ -88,7 +89,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetExcludedFromProxy(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             IEnumerable<string> excludedFromProxy)
         {
             // ARRANGE
@@ -109,7 +110,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetHomeDirectory(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             string homeDirectory)
         {
             // ARRANGE
@@ -130,7 +131,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetHosts(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             IEnumerable<string> hosts)
         {
             // ARRANGE
@@ -151,7 +152,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetMessage(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             int id,
             Message message)
         {
@@ -177,7 +178,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetMessages(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             string baseUrl,
             int start,
             int count,
@@ -207,7 +208,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetNumberOfAlerts(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             string baseUrl,
             int numberOfAlerts)
         {
@@ -233,7 +234,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetNumberOfMessages(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             string baseUrl,
             int numberOfMessages)
         {
@@ -259,7 +260,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetOptionHttpState(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             string httpState)
         {
             // ARRANGE
@@ -280,7 +281,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetOptionHttpStateEnabled(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             bool httpStateEnabled)
         {
             // ARRANGE
@@ -301,7 +302,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetOptionProxyChainName(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             string proxyChainName)
         {
             // ARRANGE
@@ -322,7 +323,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetOptionProxyChainPassword(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             string proxyChainPassword)
         {
             // ARRANGE
@@ -343,7 +344,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetOptionProxyChainPort(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             int proxyChainPort)
         {
             // ARRANGE
@@ -364,7 +365,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetOptionProxyChainPrompt(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             bool proxyChainPrompt)
         {
             // ARRANGE
@@ -385,7 +386,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetOptionProxyChainRealm(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             string proxyChainRealm)
         {
             // ARRANGE
@@ -406,7 +407,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetOptionProxyChainSkipName(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             string proxyChainSkipName)
         {
             // ARRANGE
@@ -429,7 +430,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetOptionProxyChainUserName(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             string proxyChainUserName)
         {
             // ARRANGE
@@ -450,7 +451,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetOptionProxyExcludedDomains(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             IEnumerable<string> proxyExcludedDomains)
         {
             // ARRANGE
@@ -471,7 +472,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetOptionProxyExcludedDomainsEnabled(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             IEnumerable<string> proxyExcludedDomainsEnabled)
         {
             // ARRANGE
@@ -492,7 +493,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetOptionSingleCookieRequestHeader(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             bool singleCookieRequestHeader)
         {
             // ARRANGE
@@ -513,7 +514,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetOptionTimeoutInSecs(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             int timeoutInSecs)
         {
             // ARRANGE
@@ -534,7 +535,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetOptionUseProxyChain(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             bool useProxyChain)
         {
             // ARRANGE
@@ -555,7 +556,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetOptionUseProxyChainAuth(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             bool useProxyChainAuth)
         {
             // ARRANGE
@@ -576,7 +577,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetSites(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             IEnumerable<string> sites)
         {
             // ARRANGE
@@ -597,7 +598,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetUrls(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             IEnumerable<string> urls)
         {
             // ARRANGE
@@ -618,7 +619,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetVersion(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             string version)
         {
             // ARRANGE
@@ -643,7 +644,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void ClearExcludedFromProxy(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut)
+            [Greedy]CoreComponent sut)
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "clearExcludedFromProxy")
@@ -660,7 +661,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void DeleteAllAlerts(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut)
+            [Greedy]CoreComponent sut)
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "deleteAllAlerts")
@@ -677,7 +678,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void ExcludeFromProxy(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             string regex)
         {
             // ARRANGE
@@ -699,7 +700,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GenerateRootCA(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut)
+            [Greedy]CoreComponent sut)
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "generateRootCA")
@@ -716,7 +717,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void LoadSession(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             string path)
         {
             // ARRANGE
@@ -738,7 +739,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void NewSession(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             string path,
             bool overwrite)
         {
@@ -762,7 +763,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SaveSession(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             string path,
             bool overwrite)
         {
@@ -786,7 +787,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SendRequest(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             string httpRequest,
             bool followRedirects,
             IEnumerable<Message> messages)
@@ -814,7 +815,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetHomeDirectory(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             string value)
         {
             // ARRANGE
@@ -836,7 +837,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetOptionHttpStateEnabled(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             bool value)
         {
             // ARRANGE
@@ -858,7 +859,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetOptionProxyChainName(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             string value)
         {
             // ARRANGE
@@ -880,7 +881,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetOptionProxyChainPassword(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             string value)
         {
             // ARRANGE
@@ -902,7 +903,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetOptionProxyChainPort(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             int value)
         {
             // ARRANGE
@@ -924,7 +925,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetOptionProxyChainPrompt(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             bool value)
         {
             // ARRANGE
@@ -946,7 +947,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetOptionProxyChainRealm(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             string value)
         {
             // ARRANGE
@@ -968,7 +969,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetOptionProxyChainSkipName(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             string value)
         {
             // ARRANGE
@@ -992,7 +993,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetOptionProxyChainUserName(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             string value)
         {
             // ARRANGE
@@ -1014,7 +1015,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetOptionSingleCookieRequestHeader(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             bool value)
         {
             // ARRANGE
@@ -1036,7 +1037,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetOptionTimeoutInSecs(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             int value)
         {
             // ARRANGE
@@ -1058,7 +1059,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetOptionUseProxyChain(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             bool value)
         {
             // ARRANGE
@@ -1080,7 +1081,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetOptionUseProxyChainAuth(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             bool value)
         {
             // ARRANGE
@@ -1102,7 +1103,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void Shutdown(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut)
+            [Greedy]CoreComponent sut)
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "shutdown")
@@ -1119,7 +1120,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SnapshotSession(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut)
+            [Greedy]CoreComponent sut)
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "snapshotSession")
@@ -1140,7 +1141,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetHtmlReport(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             string htmlReport)
         {
             // ARRANGE
@@ -1159,7 +1160,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetMessageHar(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             int id,
             Har message)
         {
@@ -1183,7 +1184,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetMessagesHar(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             string baseUrl,
             int start,
             int count,
@@ -1211,7 +1212,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetProxyPac(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             string proxyPac)
         {
             // ARRANGE
@@ -1230,7 +1231,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetRootCertificate(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut)
+            [Greedy]CoreComponent sut)
         {
             // ARRANGE
             // AutoFixture isn't reliable with making certificates, so we use a static one.
@@ -1250,7 +1251,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SendHarRequest(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             Har request,
             bool followRedirects,
             Har response)
@@ -1276,7 +1277,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetProxy(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             string host,
             int port)
         {
@@ -1304,7 +1305,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetProxy_UnknownResult(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             string host,
             int port)
         {
@@ -1333,7 +1334,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetXmlReport(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Core sut,
+            [Greedy]CoreComponent sut,
             string xmlReport)
         {
             // ARRANGE

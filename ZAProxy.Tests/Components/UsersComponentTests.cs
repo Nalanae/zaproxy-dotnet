@@ -4,6 +4,7 @@ using Moq;
 using Newtonsoft.Json.Linq;
 using Ploeh.AutoFixture.Xunit2;
 using Xunit;
+using ZAProxy.Components;
 using ZAProxy.Infrastructure;
 using ZAProxy.Schema;
 using ZAProxy.Tests.TestUtils;
@@ -11,11 +12,11 @@ using ZAProxy.Tests.TestUtils;
 namespace ZAProxy.Tests.Components
 {
     [Trait("Component", "Users")]
-    public class UsersTests
+    public class UsersComponentTests
     {
         [Theory, AutoTestData]
         public void ComponentName(
-            [Greedy]ZAProxy.Components.Users sut)
+            [Greedy]UsersComponent sut)
         {
             // ACT
             var result = sut.ComponentName;
@@ -29,7 +30,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetAuthenticationCredentials(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Users sut,
+            [Greedy]UsersComponent sut,
             int contextId,
             int userId,
             AuthenticationCredentials authenticationCredentials)
@@ -56,7 +57,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetAuthenticationCredentialsConfigParameters(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Users sut,
+            [Greedy]UsersComponent sut,
             int contextId,
             IEnumerable<AuthenticationConfigParameter> authenticationConfigParameters)
         {
@@ -82,7 +83,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetUser(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Users sut,
+            [Greedy]UsersComponent sut,
             int contextId,
             int userId,
             User user)
@@ -109,7 +110,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetUsers(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Users sut,
+            [Greedy]UsersComponent sut,
             int contextId,
             IEnumerable<User> users)
         {
@@ -139,7 +140,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void CreateUser(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Users sut,
+            [Greedy]UsersComponent sut,
             int contextId,
             string name,
             int userId)
@@ -167,7 +168,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void RemoveUser(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Users sut,
+            [Greedy]UsersComponent sut,
             int contextId,
             int userId)
         {
@@ -191,7 +192,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetAuthenticationCredentials(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Users sut,
+            [Greedy]UsersComponent sut,
             int contextId,
             int userId,
             AuthenticationCredentials authenticationCredentials)
@@ -218,7 +219,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetUserEnabled(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Users sut,
+            [Greedy]UsersComponent sut,
             int contextId,
             int userId,
             bool enabled)
@@ -244,7 +245,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetUserName(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Users sut,
+            [Greedy]UsersComponent sut,
             int contextId,
             int userId,
             string name)

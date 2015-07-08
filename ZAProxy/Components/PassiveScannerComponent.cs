@@ -7,22 +7,22 @@ namespace ZAProxy.Components
     /// <summary>
     /// Component to manage the passive scanner.
     /// </summary>
-    public class PassiveScanner : ComponentBase
+    public class PassiveScannerComponent : ComponentBase
     {
         /// <summary>
-        /// Initiates a new instance of the <see cref="PassiveScanner"/> class.
+        /// Initiates a new instance of the <see cref="PassiveScannerComponent"/> class.
         /// </summary>
         /// <param name="zapProcess">The ZAP process to connect to.</param>
-        public PassiveScanner(IZapProcess zapProcess)
+        public PassiveScannerComponent(IZapProcess zapProcess)
             : this(null, zapProcess)
         { }
 
         /// <summary>
-        /// Initiates a new instance of the <see cref="PassiveScanner"/> class with a specific HTTP client implementation.
+        /// Initiates a new instance of the <see cref="PassiveScannerComponent"/> class with a specific HTTP client implementation.
         /// </summary>
         /// <param name="httpClient">The HTTP client implementation.</param>
         /// <param name="zapProcess">The ZAP process to connect to.</param>
-        public PassiveScanner(IHttpClient httpClient, IZapProcess zapProcess)
+        public PassiveScannerComponent(IHttpClient httpClient, IZapProcess zapProcess)
             : base(httpClient, zapProcess, "pscan")
         { }
 

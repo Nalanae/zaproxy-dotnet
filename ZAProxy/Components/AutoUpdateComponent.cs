@@ -5,22 +5,22 @@ namespace ZAProxy.Components
     /// <summary>
     /// Component that manages the updating of ZAP and it's components.
     /// </summary>
-    public class AutoUpdate : ComponentBase
+    public class AutoUpdateComponent : ComponentBase
     {
         /// <summary>
-        /// Initiates a new instance of the <see cref="AutoUpdate"/> class.
+        /// Initiates a new instance of the <see cref="AutoUpdateComponent"/> class.
         /// </summary>
         /// <param name="zapProcess">The ZAP process to connect to.</param>
-        public AutoUpdate(IZapProcess zapProcess)
+        public AutoUpdateComponent(IZapProcess zapProcess)
             : this(null, zapProcess)
         { }
 
         /// <summary>
-        /// Initiates a new instance of the <see cref="AutoUpdate"/> class with a specific HTTP client implementation.
+        /// Initiates a new instance of the <see cref="AutoUpdateComponent"/> class with a specific HTTP client implementation.
         /// </summary>
         /// <param name="httpClient">The HTTP client implementation.</param>
         /// <param name="zapProcess">The ZAP process to connect to.</param>
-        public AutoUpdate(IHttpClient httpClient, IZapProcess zapProcess)
+        public AutoUpdateComponent(IHttpClient httpClient, IZapProcess zapProcess)
             : base(httpClient, zapProcess, "autoupdate")
         { }
 

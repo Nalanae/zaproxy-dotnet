@@ -7,22 +7,22 @@ namespace ZAProxy.Components
     /// <summary>
     /// Component to manage the sessions of sites in ZAP.
     /// </summary>
-    public class HttpSessions : ComponentBase
+    public class HttpSessionsComponent : ComponentBase
     {
         /// <summary>
-        /// Initiates a new instance of the <see cref="HttpSessions"/> class.
+        /// Initiates a new instance of the <see cref="HttpSessionsComponent"/> class.
         /// </summary>
         /// <param name="zapProcess">The ZAP process to connect to.</param>
-        public HttpSessions(IZapProcess zapProcess)
+        public HttpSessionsComponent(IZapProcess zapProcess)
             : this(null, zapProcess)
         { }
 
         /// <summary>
-        /// Initiates a new instance of the <see cref="HttpSessions"/> class with a specific HTTP client implementation.
+        /// Initiates a new instance of the <see cref="HttpSessionsComponent"/> class with a specific HTTP client implementation.
         /// </summary>
         /// <param name="httpClient">The HTTP client implementation.</param>
         /// <param name="zapProcess">The ZAP process to connect to.</param>
-        public HttpSessions(IHttpClient httpClient, IZapProcess zapProcess)
+        public HttpSessionsComponent(IHttpClient httpClient, IZapProcess zapProcess)
             : base(httpClient, zapProcess, "httpSessions")
         { }
 

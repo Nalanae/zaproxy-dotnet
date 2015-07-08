@@ -8,22 +8,22 @@ namespace ZAProxy.Components
     /// <summary>
     /// Component for actively scanning (i.e. attack) an applcation.
     /// </summary>
-    public class ActiveScanner : ComponentBase
+    public class ActiveScannerComponent : ComponentBase
     {
         /// <summary>
-        /// Initiates a new instance of the <see cref="ActiveScanner"/> class.
+        /// Initiates a new instance of the <see cref="ActiveScannerComponent"/> class.
         /// </summary>
         /// <param name="zapProcess">The ZAP process to connect to.</param>
-        public ActiveScanner(IZapProcess zapProcess)
+        public ActiveScannerComponent(IZapProcess zapProcess)
             : this(null, zapProcess)
         { }
 
         /// <summary>
-        /// Initiates a new instance of the <see cref="ActiveScanner"/> class with a specific HTTP client implementation.
+        /// Initiates a new instance of the <see cref="ActiveScannerComponent"/> class with a specific HTTP client implementation.
         /// </summary>
         /// <param name="httpClient">The HTTP client implementation.</param>
         /// <param name="zapProcess">The ZAP process to connect to.</param>
-        public ActiveScanner(IHttpClient httpClient, IZapProcess zapProcess)
+        public ActiveScannerComponent(IHttpClient httpClient, IZapProcess zapProcess)
             : base(httpClient, zapProcess, "ascan")
         { }
 

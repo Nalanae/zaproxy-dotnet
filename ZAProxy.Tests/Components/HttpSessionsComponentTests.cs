@@ -4,6 +4,7 @@ using Moq;
 using Newtonsoft.Json.Linq;
 using Ploeh.AutoFixture.Xunit2;
 using Xunit;
+using ZAProxy.Components;
 using ZAProxy.Infrastructure;
 using ZAProxy.Schema;
 using ZAProxy.Tests.TestUtils;
@@ -11,11 +12,11 @@ using ZAProxy.Tests.TestUtils;
 namespace ZAProxy.Tests.Components
 {
     [Trait("Component", "HttpSessions")]
-    public class HttpSessionsTests
+    public class HttpSessionsComponentTests
     {
         [Theory, AutoTestData]
         public void ComponentName(
-            [Greedy]ZAProxy.Components.HttpSessions sut)
+            [Greedy]HttpSessionsComponent sut)
         {
             // ACT
             var result = sut.ComponentName;
@@ -29,7 +30,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetActiveSession(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.HttpSessions sut,
+            [Greedy]HttpSessionsComponent sut,
             string site,
             string activeSession)
         {
@@ -55,7 +56,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetSessionTokens(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.HttpSessions sut,
+            [Greedy]HttpSessionsComponent sut,
             string site,
             IEnumerable<string> sessionTokens)
         {
@@ -81,7 +82,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetSessions(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.HttpSessions sut,
+            [Greedy]HttpSessionsComponent sut,
             string site,
             string name,
             IEnumerable<HttpSession> sessions)
@@ -113,7 +114,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void AddSessionToken(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.HttpSessions sut,
+            [Greedy]HttpSessionsComponent sut,
             string site,
             string name)
         {
@@ -137,7 +138,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void CreateEmptySession(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.HttpSessions sut,
+            [Greedy]HttpSessionsComponent sut,
             string site,
             string name)
         {
@@ -161,7 +162,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void RemoveSession(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.HttpSessions sut,
+            [Greedy]HttpSessionsComponent sut,
             string site,
             string name)
         {
@@ -185,7 +186,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void RemoveSessionToken(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.HttpSessions sut,
+            [Greedy]HttpSessionsComponent sut,
             string site,
             string name)
         {
@@ -209,7 +210,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void RenameSession(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.HttpSessions sut,
+            [Greedy]HttpSessionsComponent sut,
             string site,
             string oldName,
             string newName)
@@ -235,7 +236,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetActiveSession(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.HttpSessions sut,
+            [Greedy]HttpSessionsComponent sut,
             string site,
             string name)
         {
@@ -259,7 +260,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetSessionTokenValue(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.HttpSessions sut,
+            [Greedy]HttpSessionsComponent sut,
             string site,
             string sessionName,
             string sessionTokenName,
@@ -287,7 +288,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void UnsetActiveSession(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.HttpSessions sut,
+            [Greedy]HttpSessionsComponent sut,
             string site)
         {
             // ARRANGE

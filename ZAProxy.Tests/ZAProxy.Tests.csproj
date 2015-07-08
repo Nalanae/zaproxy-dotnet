@@ -91,22 +91,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Components\RevealTests.cs" />
-    <Compile Include="Components\AuthenticationTests.cs" />
-    <Compile Include="Components\AuthorizationTests.cs" />
-    <Compile Include="Components\AutoUpdateTests.cs" />
-    <Compile Include="Components\ContextTests.cs" />
-    <Compile Include="Components\ForcedUserTests.cs" />
-    <Compile Include="Components\GlobalExcludeUrlTests.cs" />
-    <Compile Include="Components\HttpSessionsTests.cs" />
-    <Compile Include="Components\ParamsTests.cs" />
-    <Compile Include="Components\PassiveScannerTests.cs" />
-    <Compile Include="Components\UsersTests.cs" />
+    <Compile Include="Components\RevealComponentTests.cs" />
+    <Compile Include="Components\AuthenticationComponentTests.cs" />
+    <Compile Include="Components\AuthorizationComponentTests.cs" />
+    <Compile Include="Components\AutoUpdateComponentTests.cs" />
+    <Compile Include="Components\ContextComponentTests.cs" />
+    <Compile Include="Components\ForcedUserComponentTests.cs" />
+    <Compile Include="Components\GlobalExcludeUrlComponentTests.cs" />
+    <Compile Include="Components\HttpSessionsComponentTests.cs" />
+    <Compile Include="Components\ParamsComponentTests.cs" />
+    <Compile Include="Components\PassiveScannerComponentTests.cs" />
+    <Compile Include="Components\ScriptComponentTests.cs" />
+    <Compile Include="Components\UsersComponentTests.cs" />
     <Compile Include="TestUtils\AutoTestDataAttribute.cs" />
-    <Compile Include="Components\ActiveScannerTests.cs" />
+    <Compile Include="Components\ActiveScannerComponentTests.cs" />
     <Compile Include="Components\ComponentBaseTests.cs" />
-    <Compile Include="Components\CoreTests.cs" />
-    <Compile Include="Components\AntiCsrfTests.cs" />
+    <Compile Include="Components\CoreComponentTests.cs" />
+    <Compile Include="Components\AntiCsrfComponentTests.cs" />
     <Compile Include="TestUtils\Extensions\HarExtensions.cs" />
     <Compile Include="TestUtils\Extensions\SystemCollectionsGenericExtensions.cs" />
     <Compile Include="TestUtils\FixtureCustomizations\HarCustomization.cs" />

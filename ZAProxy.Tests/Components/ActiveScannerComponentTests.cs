@@ -4,6 +4,7 @@ using Moq;
 using Newtonsoft.Json.Linq;
 using Ploeh.AutoFixture.Xunit2;
 using Xunit;
+using ZAProxy.Components;
 using ZAProxy.Infrastructure;
 using ZAProxy.Schema;
 using ZAProxy.Tests.TestUtils;
@@ -11,11 +12,11 @@ using ZAProxy.Tests.TestUtils;
 namespace ZAProxy.Tests.Components
 {
     [Trait("Component", "ActiveScanner")]
-    public class ActiveScannerTests
+    public class ActiveScannerComponentTests
     {
         [Theory, AutoTestData]
         public void ComponentName(
-            [Greedy]ZAProxy.Components.ActiveScanner sut)
+            [Greedy]ActiveScannerComponent sut)
         {
             // ACT
             var result = sut.ComponentName;
@@ -29,7 +30,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetAlertIds(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             int scanId,
             IEnumerable<int> alertsIds)
         {
@@ -55,7 +56,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetAttackModeQueue(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             int attackModeQueue)
         {
             // ARRANGE
@@ -76,7 +77,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetAttackModeQueue_MinusValue_ReturnsNull(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut)
+            [Greedy]ActiveScannerComponent sut)
         {
             // ARRANGE
             var json = new JObject(
@@ -96,7 +97,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetExcludedFromScan(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             IEnumerable<string> excludedFromScan)
         {
             // ARRANGE
@@ -117,7 +118,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetMessagesIds(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             int scanId,
             IEnumerable<int> messagesIds)
         {
@@ -143,7 +144,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetOptionAllowAttackOnStart(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             bool allowAttacksOnStart)
         {
             // ARRANGE
@@ -164,7 +165,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetOptionAttackPolicy(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             string attackPolicy)
         {
             // ARRANGE
@@ -185,7 +186,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetOptionDefaultPolicy(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             string defaultPolicy)
         {
             // ARRANGE
@@ -206,7 +207,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetOptionDelayInMilliseconds(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             int delayInMilliseconds)
         {
             // ARRANGE
@@ -227,7 +228,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetOptionExcludedParamList(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             IEnumerable<string> excludedParamList)
         {
             // ARRANGE
@@ -250,7 +251,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetOptionHandleAntiCSRFTokens(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             bool handleAntiCSRFTokens)
         {
             // ARRANGE
@@ -271,7 +272,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetOptionHostPerScan(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             int hostPerScan)
         {
             // ARRANGE
@@ -292,7 +293,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetOptionMaxResultsToList(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             int maxResultsToList)
         {
             // ARRANGE
@@ -313,7 +314,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetOptionMaxScansInUI(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             int maxScansInUI)
         {
             // ARRANGE
@@ -334,7 +335,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetOptionPromptInAttackMode(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             bool promptInAttackMode)
         {
             // ARRANGE
@@ -355,7 +356,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetOptionPromptToClearFinishedScans(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             bool promptToClearFinishScans)
         {
             // ARRANGE
@@ -376,7 +377,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetOptionRescanInAttackMode(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             bool rescanInAttackMode)
         {
             // ARRANGE
@@ -397,7 +398,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetOptionShowAdvancedDialog(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             bool showAdvancedDialog)
         {
             // ARRANGE
@@ -418,7 +419,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetOptionTargetParamsEnabledRPC(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             TargetEnabledRPC targetParamsEnabledRPC)
         {
             // ARRANGE
@@ -439,7 +440,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetOptionTargetParamsInjectable(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             TargetInjectable targetParamsInjectable)
         {
             // ARRANGE
@@ -460,7 +461,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetOptionThreadPerHost(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             int threadPerHost)
         {
             // ARRANGE
@@ -481,7 +482,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetPolicies(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             string scanPolicyName,
             int policyId,
             IEnumerable<Policy> policies)
@@ -509,7 +510,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetScanPolicyNames(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             IEnumerable<string> scanPolicyNames)
         {
             // ARRANGE
@@ -530,7 +531,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetScanProgress(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             int scanId,
             ActiveScanProgress scanProgress)
         {
@@ -556,7 +557,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetScanners(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             string scanPolicyName,
             int policyId,
             IEnumerable<Schema.ActiveScanner> scanners)
@@ -584,7 +585,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetScans(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             IEnumerable<ActiveScan> scans)
         {
             // ARRANGE
@@ -605,7 +606,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetStatus(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             int scanId,
             int status)
         {
@@ -635,7 +636,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void AddScanPolicy(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             string scanPolicyName)
         {
             // ARRANGE
@@ -657,7 +658,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void ClearExcludedFromScan(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut)
+            [Greedy]ActiveScannerComponent sut)
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "clearExcludedFromScan")
@@ -674,7 +675,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void DisableAllScanners(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             string scanPolicyName)
         {
             // ARRANGE
@@ -696,7 +697,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void DisableScanners(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             IEnumerable<int> scannerIds)
         {
             // ARRANGE
@@ -718,7 +719,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void EnableAllScanners(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             string scanPolicyName)
         {
             // ARRANGE
@@ -740,7 +741,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void EnableScanners(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             IEnumerable<int> scannerIds)
         {
             // ARRANGE
@@ -762,7 +763,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void ExcludeFromScan(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             string regexPattern)
         {
             // ARRANGE
@@ -784,7 +785,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void Pause(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             int scanId)
         {
             // ARRANGE
@@ -806,7 +807,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void PauseAllScans(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut)
+            [Greedy]ActiveScannerComponent sut)
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "pauseAllScans")
@@ -823,7 +824,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void RemoveAllScans(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut)
+            [Greedy]ActiveScannerComponent sut)
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "removeAllScans")
@@ -840,7 +841,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void RemoveScan(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             int scanId)
         {
             // ARRANGE
@@ -862,7 +863,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void RemoveScanPolicy(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             string scanPolicyName)
         {
             // ARRANGE
@@ -884,7 +885,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void Resume(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             int scanId)
         {
             // ARRANGE
@@ -906,7 +907,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void ResumeAllScans(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut)
+            [Greedy]ActiveScannerComponent sut)
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "resumeAllScans")
@@ -923,7 +924,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void Scan(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             string url,
             bool recurse,
             bool inScopeOnly,
@@ -959,7 +960,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetEnabledPolicies(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             IEnumerable<int> policyIds)
         {
             // ARRANGE
@@ -981,7 +982,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetOptionAllowAttackOnStart(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             bool value)
         {
             // ARRANGE
@@ -1003,7 +1004,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetOptionAttackPolicy(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             string value)
         {
             // ARRANGE
@@ -1025,7 +1026,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetOptionDefaultPolicy(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             string value)
         {
             // ARRANGE
@@ -1047,7 +1048,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetOptionDelayInMs(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             int value)
         {
             // ARRANGE
@@ -1069,7 +1070,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetOptionHandleAntiCSRFTokens(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             bool value)
         {
             // ARRANGE
@@ -1091,7 +1092,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetOptionHostPerScan(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             int value)
         {
             // ARRANGE
@@ -1113,7 +1114,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetOptionMaxResultsToList(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             int value)
         {
             // ARRANGE
@@ -1135,7 +1136,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetOptionMaxScansInUI(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             int value)
         {
             // ARRANGE
@@ -1157,7 +1158,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetOptionPromptInAttackMode(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             bool value)
         {
             // ARRANGE
@@ -1179,7 +1180,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetOptionPromptToClearFinishedScans(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             bool value)
         {
             // ARRANGE
@@ -1201,7 +1202,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetOptionRescanInAttackMode(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             bool value)
         {
             // ARRANGE
@@ -1223,7 +1224,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetOptionShowAdvancedDialog(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             bool value)
         {
             // ARRANGE
@@ -1245,7 +1246,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetOptionTargetParamsEnabledRPC(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             TargetEnabledRPC value)
         {
             // ARRANGE
@@ -1267,7 +1268,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetOptionTargetParamsInjectable(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             TargetInjectable value)
         {
             // ARRANGE
@@ -1289,7 +1290,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetOptionThreadPerHost(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             int value)
         {
             // ARRANGE
@@ -1311,7 +1312,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetPolicyAlertThreshold(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             int policyId,
             AlertThreshold alertThreshold,
             string scanPolicyName)
@@ -1337,7 +1338,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetPolicyAttackStrength(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             int policyId,
             AttackStrength attackStrength,
             string scanPolicyName)
@@ -1363,7 +1364,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetScannerAlertThreshold(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             int scannerId,
             AlertThreshold alertThreshold,
             string scanPolicyName)
@@ -1389,7 +1390,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetScannerAttackStrength(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             int policyId,
             AttackStrength attackStrength,
             string scanPolicyName)
@@ -1415,7 +1416,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void Stop(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut,
+            [Greedy]ActiveScannerComponent sut,
             int scanId)
         {
             // ARRANGE
@@ -1437,7 +1438,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void StopAllScans(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.ActiveScanner sut)
+            [Greedy]ActiveScannerComponent sut)
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "stopAllScans")

@@ -11,22 +11,22 @@ namespace ZAProxy.Components
     /// <summary>
     /// Component that contains the core calls of ZAP.
     /// </summary>
-    public class Core : ComponentBase
+    public class CoreComponent : ComponentBase
     {
         /// <summary>
-        /// Initiates a new instance of the <see cref="Core"/> class.
+        /// Initiates a new instance of the <see cref="CoreComponent"/> class.
         /// </summary>
         /// <param name="zapProcess">The ZAP process to connect to.</param>
-        public Core(IZapProcess zapProcess)
+        public CoreComponent(IZapProcess zapProcess)
             : this(null, zapProcess)
         { }
 
         /// <summary>
-        /// Initiates a new instance of the <see cref="Core"/> class.
+        /// Initiates a new instance of the <see cref="CoreComponent"/> class.
         /// </summary>
         /// <param name="httpClient">The HTTP client implementation.</param>
         /// <param name="zapProcess">The ZAP process to connect to.</param>
-        public Core(IHttpClient httpClient, IZapProcess zapProcess)
+        public CoreComponent(IHttpClient httpClient, IZapProcess zapProcess)
             : base(httpClient, zapProcess, "core")
         { }
 

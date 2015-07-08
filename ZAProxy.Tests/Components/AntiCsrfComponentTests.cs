@@ -4,68 +4,46 @@ using Moq;
 using Newtonsoft.Json.Linq;
 using Ploeh.AutoFixture.Xunit2;
 using Xunit;
+using ZAProxy.Components;
 using ZAProxy.Infrastructure;
 using ZAProxy.Tests.TestUtils;
 
 namespace ZAProxy.Tests.Components
 {
-    [Trait("Component", "GlobalExcludeUrl")]
-    public class GlobalExcludeUrlTests
+    [Trait("Component", "AntiCsrf")]
+    public class AntiCsrfComponentTests
     {
         [Theory, AutoTestData]
         public void ComponentName(
-            [Greedy]ZAProxy.Components.GlobalExcludeUrl sut)
+            [Greedy]AntiCsrfComponent sut)
         {
             // ACT
             var result = sut.ComponentName;
 
             // ASSERT
-            result.Should().Be("globalexcludeurl");
+            result.Should().Be("acsrf");
         }
 
         #region Views
 
         [Theory, AutoTestData]
-        public void GetOptionTokens(
+        public void GetOptionTokenNames(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.GlobalExcludeUrl sut,
-            IEnumerable<string> tokens)
+            [Greedy]AntiCsrfComponent sut,
+            IEnumerable<string> tokenNames)
         {
             // ARRANGE
             var json = new JObject(
-                new JProperty("Tokens", tokens.ToJsonStringList()));
-            httpClientMock.SetupApiCall(sut, CallType.View, "optionTokens")
-                .Returns(json.ToString())
-                .Verifiable();
-
-            // ACT
-#pragma warning disable CS0618 // Type or member is obsolete
-            var result = sut.GetOptionTokens();
-#pragma warning restore CS0618 // Type or member is obsolete
-
-            // ASSERT
-            result.ShouldBeEquivalentTo(tokens);
-            httpClientMock.Verify();
-        }
-
-        [Theory, AutoTestData]
-        public void GetOptionTokensNames(
-            [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.GlobalExcludeUrl sut,
-            IEnumerable<string> tokensNames)
-        {
-            // ARRANGE
-            var json = new JObject(
-                new JProperty("TokensNames", tokensNames.ToJsonStringList()));
+                new JProperty("TokensNames", tokenNames.ToJsonStringList()));
             httpClientMock.SetupApiCall(sut, CallType.View, "optionTokensNames")
                 .Returns(json.ToString())
                 .Verifiable();
 
             // ACT
-            var result = sut.GetOptionTokensNames();
+            var result = sut.GetOptionTokenNames();
 
             // ASSERT
-            result.ShouldBeEquivalentTo(tokensNames);
+            result.ShouldBeEquivalentTo(tokenNames);
             httpClientMock.Verify();
         }
 
@@ -74,44 +52,44 @@ namespace ZAProxy.Tests.Components
         #region Actions
 
         [Theory, AutoTestData]
-        public void AddOptionToken(
+        public void AddOptionTokenName(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.GlobalExcludeUrl sut,
-            string value)
+            [Greedy]AntiCsrfComponent sut,
+            string tokenName)
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "addOptionToken",
                 new Parameters
                 {
-                    { "String", value }
+                    { "String", tokenName }
                 })
                 .ReturnsOkResult()
                 .Verifiable();
 
             // ACT
-            sut.AddOptionToken(value);
+            sut.AddOptionTokenName(tokenName);
 
             // ASSERT
             httpClientMock.Verify();
         }
 
         [Theory, AutoTestData]
-        public void RemoveOptionToken(
+        public void RemoveOptionTokenName(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.GlobalExcludeUrl sut,
-            string value)
+            [Greedy]AntiCsrfComponent sut,
+            string tokenName)
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "removeOptionToken",
                 new Parameters
                 {
-                    { "String", value }
+                    { "String", tokenName }
                 })
                 .ReturnsOkResult()
                 .Verifiable();
 
             // ACT
-            sut.RemoveOptionToken(value);
+            sut.RemoveOptionTokenName(tokenName);
 
             // ASSERT
             httpClientMock.Verify();
@@ -124,7 +102,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GenerateForm(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.GlobalExcludeUrl sut,
+            [Greedy]AntiCsrfComponent sut,
             int messageId,
             string form)
         {
@@ -137,9 +115,7 @@ namespace ZAProxy.Tests.Components
                 .Returns(form);
 
             // ACT
-#pragma warning disable CS0618 // Type or member is obsolete
             var result = sut.GenerateForm(messageId);
-#pragma warning restore CS0618 // Type or member is obsolete
 
             // ASSERT
             result.Should().Be(form);

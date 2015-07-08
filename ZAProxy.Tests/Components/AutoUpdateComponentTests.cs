@@ -3,17 +3,18 @@ using Moq;
 using Newtonsoft.Json.Linq;
 using Ploeh.AutoFixture.Xunit2;
 using Xunit;
+using ZAProxy.Components;
 using ZAProxy.Infrastructure;
 using ZAProxy.Tests.TestUtils;
 
 namespace ZAProxy.Tests.Components
 {
     [Trait("Component", "AutoUpdate")]
-    public class AutoUpdateTests
+    public class AutoUpdateComponentTests
     {
         [Theory, AutoTestData]
         public void ComponentName(
-            [Greedy]ZAProxy.Components.AutoUpdate sut)
+            [Greedy]AutoUpdateComponent sut)
         {
             // ACT
             var result = sut.ComponentName;
@@ -27,7 +28,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void IsLatestVersion(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.AutoUpdate sut,
+            [Greedy]AutoUpdateComponent sut,
             bool isLatestVersion)
         {
             // ARRANGE
@@ -48,7 +49,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetLatestVersionNumber(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.AutoUpdate sut,
+            [Greedy]AutoUpdateComponent sut,
             string latestVersionNumber)
         {
             // ARRANGE
@@ -69,7 +70,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetOptionCheckAddonUpdates(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.AutoUpdate sut,
+            [Greedy]AutoUpdateComponent sut,
             bool value)
         {
             // ARRANGE
@@ -90,7 +91,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetOptionCheckOnStart(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.AutoUpdate sut,
+            [Greedy]AutoUpdateComponent sut,
             bool value)
         {
             // ARRANGE
@@ -111,7 +112,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetOptionDownloadNewRelease(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.AutoUpdate sut,
+            [Greedy]AutoUpdateComponent sut,
             bool value)
         {
             // ARRANGE
@@ -132,7 +133,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetOptionInstallAddonUpdates(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.AutoUpdate sut,
+            [Greedy]AutoUpdateComponent sut,
             bool value)
         {
             // ARRANGE
@@ -153,7 +154,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetOptionInstallScannerRules(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.AutoUpdate sut,
+            [Greedy]AutoUpdateComponent sut,
             bool value)
         {
             // ARRANGE
@@ -174,7 +175,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetOptionReportAlphaAddons(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.AutoUpdate sut,
+            [Greedy]AutoUpdateComponent sut,
             bool value)
         {
             // ARRANGE
@@ -195,7 +196,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetOptionReportBetaAddons(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.AutoUpdate sut,
+            [Greedy]AutoUpdateComponent sut,
             bool value)
         {
             // ARRANGE
@@ -216,7 +217,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetOptionReportReleaseAddons(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.AutoUpdate sut,
+            [Greedy]AutoUpdateComponent sut,
             bool value)
         {
             // ARRANGE
@@ -241,7 +242,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void DownloadLatestRelease(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.AutoUpdate sut)
+            [Greedy]AutoUpdateComponent sut)
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "downloadLatestRelease")
@@ -258,7 +259,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetOptionCheckAddonUpdates(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.AutoUpdate sut,
+            [Greedy]AutoUpdateComponent sut,
             bool value)
         {
             // ARRANGE
@@ -280,7 +281,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetOptionCheckOnStart(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.AutoUpdate sut,
+            [Greedy]AutoUpdateComponent sut,
             bool value)
         {
             // ARRANGE
@@ -302,7 +303,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetOptionDownloadNewRelease(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.AutoUpdate sut,
+            [Greedy]AutoUpdateComponent sut,
             bool value)
         {
             // ARRANGE
@@ -324,7 +325,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetOptionInstallAddonUpdates(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.AutoUpdate sut,
+            [Greedy]AutoUpdateComponent sut,
             bool value)
         {
             // ARRANGE
@@ -346,7 +347,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetOptionInstallScannerRules(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.AutoUpdate sut,
+            [Greedy]AutoUpdateComponent sut,
             bool value)
         {
             // ARRANGE
@@ -368,7 +369,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetOptionReportAlphaAddons(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.AutoUpdate sut,
+            [Greedy]AutoUpdateComponent sut,
             bool value)
         {
             // ARRANGE
@@ -390,7 +391,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetOptionReportBetaAddons(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.AutoUpdate sut,
+            [Greedy]AutoUpdateComponent sut,
             bool value)
         {
             // ARRANGE
@@ -412,7 +413,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetOptionReportReleaseAddons(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.AutoUpdate sut,
+            [Greedy]AutoUpdateComponent sut,
             bool value)
         {
             // ARRANGE

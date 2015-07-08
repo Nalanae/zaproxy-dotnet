@@ -7,22 +7,22 @@ namespace ZAProxy.Components
     /// <summary>
     /// Component to manage the authorization for contexts.
     /// </summary>
-    public class Authorization : ComponentBase
+    public class AuthorizationComponent : ComponentBase
     {
         /// <summary>
-        /// Initiates a new instance of the <see cref="Authorization"/> class.
+        /// Initiates a new instance of the <see cref="AuthorizationComponent"/> class.
         /// </summary>
         /// <param name="zapProcess">The ZAP process to connect to.</param>
-        public Authorization(IZapProcess zapProcess)
+        public AuthorizationComponent(IZapProcess zapProcess)
             : this(null, zapProcess)
         { }
 
         /// <summary>
-        /// Initiates a new instance of the <see cref="Authorization"/> class with a specific HTTP client implementation.
+        /// Initiates a new instance of the <see cref="AuthorizationComponent"/> class with a specific HTTP client implementation.
         /// </summary>
         /// <param name="httpClient">The HTTP client implementation.</param>
         /// <param name="zapProcess">The ZAP process to connect to.</param>
-        public Authorization(IHttpClient httpClient, IZapProcess zapProcess)
+        public AuthorizationComponent(IHttpClient httpClient, IZapProcess zapProcess)
             : base(httpClient, zapProcess, "authorization")
         { }
 

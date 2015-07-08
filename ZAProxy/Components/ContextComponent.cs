@@ -6,22 +6,22 @@ namespace ZAProxy.Components
     /// <summary>
     /// Component to manage the contexts in ZAP.
     /// </summary>
-    public class Context : ComponentBase
+    public class ContextComponent : ComponentBase
     {
         /// <summary>
-        /// Initiates a new instance of the <see cref="Context"/> class.
+        /// Initiates a new instance of the <see cref="ContextComponent"/> class.
         /// </summary>
         /// <param name="zapProcess">The ZAP process to connect to.</param>
-        public Context(IZapProcess zapProcess)
+        public ContextComponent(IZapProcess zapProcess)
             : this(null, zapProcess)
         { }
 
         /// <summary>
-        /// Initiates a new instance of the <see cref="Context"/> class with a specific HTTP client implementation.
+        /// Initiates a new instance of the <see cref="ContextComponent"/> class with a specific HTTP client implementation.
         /// </summary>
         /// <param name="httpClient">The HTTP client implementation.</param>
         /// <param name="zapProcess">The ZAP process to connect to.</param>
-        public Context(IHttpClient httpClient, IZapProcess zapProcess)
+        public ContextComponent(IHttpClient httpClient, IZapProcess zapProcess)
             : base(httpClient, zapProcess, "context")
         { }
 

@@ -32,85 +32,91 @@ namespace ZAProxy
             _zapProcess = zapProcess;
             _registeredComponents = new Dictionary<Type, ComponentBase>();
 
-            RegisterComponent(new ActiveScanner(zapProcess));
-            RegisterComponent(new AntiCsrf(zapProcess));
-            RegisterComponent(new Authentication(zapProcess));
-            RegisterComponent(new Authorization(zapProcess));
-            RegisterComponent(new AutoUpdate(zapProcess));
-            RegisterComponent(new Core(zapProcess));
-            RegisterComponent(new ForcedUser(zapProcess));
-            RegisterComponent(new GlobalExcludeUrl(zapProcess));
-            RegisterComponent(new HttpSessions(zapProcess));
-            RegisterComponent(new Params(zapProcess));
-            RegisterComponent(new PassiveScanner(zapProcess));
-            RegisterComponent(new Reveal(zapProcess));
-            RegisterComponent(new Users(zapProcess));
+            RegisterComponent(new ActiveScannerComponent(zapProcess));
+            RegisterComponent(new AntiCsrfComponent(zapProcess));
+            RegisterComponent(new AuthenticationComponent(zapProcess));
+            RegisterComponent(new AuthorizationComponent(zapProcess));
+            RegisterComponent(new AutoUpdateComponent(zapProcess));
+            RegisterComponent(new CoreComponent(zapProcess));
+            RegisterComponent(new ForcedUserComponent(zapProcess));
+            RegisterComponent(new GlobalExcludeUrlComponent(zapProcess));
+            RegisterComponent(new HttpSessionsComponent(zapProcess));
+            RegisterComponent(new ParamsComponent(zapProcess));
+            RegisterComponent(new PassiveScannerComponent(zapProcess));
+            RegisterComponent(new RevealComponent(zapProcess));
+            RegisterComponent(new ScriptComponent(zapProcess));
+            RegisterComponent(new UsersComponent(zapProcess));
         }
 
         /// <summary>
         /// Gets the active scanner component.
         /// </summary>
-        public ActiveScanner ActiveScanner { get { return GetComponent<ActiveScanner>(); } }
+        public ActiveScannerComponent ActiveScanner { get { return GetComponent<ActiveScannerComponent>(); } }
 
         /// <summary>
         /// Gets the anti CSRF component.
         /// </summary>
-        public AntiCsrf AntiCsrf { get { return GetComponent<AntiCsrf>(); } }
+        public AntiCsrfComponent AntiCsrf { get { return GetComponent<AntiCsrfComponent>(); } }
 
         /// <summary>
         /// Gets the authentication component.
         /// </summary>
-        public Authentication Authentication { get { return GetComponent<Authentication>(); } }
+        public AuthenticationComponent Authentication { get { return GetComponent<AuthenticationComponent>(); } }
 
         /// <summary>
         /// Gets the authorization component.
         /// </summary>
-        public Authorization Authorization { get { return GetComponent<Authorization>(); } }
+        public AuthorizationComponent Authorization { get { return GetComponent<AuthorizationComponent>(); } }
 
         /// <summary>
         /// Gets the auto update component.
         /// </summary>
-        public AutoUpdate AutoUpdate { get { return GetComponent<AutoUpdate>(); } }
+        public AutoUpdateComponent AutoUpdate { get { return GetComponent<AutoUpdateComponent>(); } }
 
         /// <summary>
         /// Gets the core component.
         /// </summary>
-        public Core Core { get { return GetComponent<Core>(); } }
+        public CoreComponent Core { get { return GetComponent<CoreComponent>(); } }
 
         /// <summary>
         /// Gets the forced user component.
         /// </summary>
-        public ForcedUser ForcedUser { get { return GetComponent<ForcedUser>(); } }
+        public ForcedUserComponent ForcedUser { get { return GetComponent<ForcedUserComponent>(); } }
 
         /// <summary>
         /// Gets the global exclude url component.
         /// </summary>
-        public GlobalExcludeUrl GlobalExcludeUrl { get { return GetComponent<GlobalExcludeUrl>(); } }
+        public GlobalExcludeUrlComponent GlobalExcludeUrl { get { return GetComponent<GlobalExcludeUrlComponent>(); } }
 
         /// <summary>
         /// Gets the http sessions component.
         /// </summary>
-        public HttpSessions HttpSessions { get { return GetComponent<HttpSessions>(); } }
+        public HttpSessionsComponent HttpSessions { get { return GetComponent<HttpSessionsComponent>(); } }
 
         /// <summary>
         /// Gets the params component.
         /// </summary>
-        public Params Params { get { return GetComponent<Params>(); } }
+        public ParamsComponent Params { get { return GetComponent<ParamsComponent>(); } }
 
         /// <summary>
         /// Gets the passive scanner component.
         /// </summary>
-        public PassiveScanner PassiveScanner { get { return GetComponent<PassiveScanner>(); } }
+        public PassiveScannerComponent PassiveScanner { get { return GetComponent<PassiveScannerComponent>(); } }
 
         /// <summary>
         /// Gets the reveal component.
         /// </summary>
-        public Reveal Reveal { get { return GetComponent<Reveal>(); } }
+        public RevealComponent Reveal { get { return GetComponent<RevealComponent>(); } }
+
+        /// <summary>
+        /// Gets the script component.
+        /// </summary>
+        public ScriptComponent Script { get { return GetComponent<ScriptComponent>(); } }
 
         /// <summary>
         /// Gets the users component.
         /// </summary>
-        public Users Users { get { return GetComponent<Users>(); } }
+        public UsersComponent Users { get { return GetComponent<UsersComponent>(); } }
 
         /// <summary>
         /// Gets a specified type of component from the registered components.
@@ -166,7 +172,7 @@ namespace ZAProxy
         /// <returns></returns>
         public static bool CheckIfMinimumZapVersion(IZapProcess zapProcess)
         {
-            var core = new Core(zapProcess);
+            var core = new CoreComponent(zapProcess);
             var version = core.GetVersion();
             if (version.StartsWith("D-"))
                 return version.CompareTo(MinimumZapDailyVersion) >= 0;

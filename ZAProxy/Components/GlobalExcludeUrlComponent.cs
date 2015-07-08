@@ -7,22 +7,22 @@ namespace ZAProxy.Components
     /// <summary>
     /// Component to manage the globally excluded url patterns.
     /// </summary>
-    public class GlobalExcludeUrl : ComponentBase
+    public class GlobalExcludeUrlComponent : ComponentBase
     {
         /// <summary>
-        /// Initiates a new instance of the <see cref="GlobalExcludeUrl"/> class.
+        /// Initiates a new instance of the <see cref="GlobalExcludeUrlComponent"/> class.
         /// </summary>
         /// <param name="zapProcess">The ZAP process to connect to.</param>
-        public GlobalExcludeUrl(IZapProcess zapProcess)
+        public GlobalExcludeUrlComponent(IZapProcess zapProcess)
             : this(null, zapProcess)
         { }
 
         /// <summary>
-        /// Initiates a new instance of the <see cref="GlobalExcludeUrl"/> class with a specific HTTP client implementation.
+        /// Initiates a new instance of the <see cref="GlobalExcludeUrlComponent"/> class with a specific HTTP client implementation.
         /// </summary>
         /// <param name="httpClient">The HTTP client implementation.</param>
         /// <param name="zapProcess">The ZAP process to connect to.</param>
-        public GlobalExcludeUrl(IHttpClient httpClient, IZapProcess zapProcess)
+        public GlobalExcludeUrlComponent(IHttpClient httpClient, IZapProcess zapProcess)
             : base(httpClient, zapProcess, "globalexcludeurl")
         { }
 

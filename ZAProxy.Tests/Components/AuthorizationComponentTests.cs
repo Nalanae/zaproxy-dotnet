@@ -4,6 +4,7 @@ using Moq;
 using Newtonsoft.Json.Linq;
 using Ploeh.AutoFixture.Xunit2;
 using Xunit;
+using ZAProxy.Components;
 using ZAProxy.Infrastructure;
 using ZAProxy.Schema;
 using ZAProxy.Tests.TestUtils;
@@ -11,11 +12,11 @@ using ZAProxy.Tests.TestUtils;
 namespace ZAProxy.Tests.Components
 {
     [Trait("Component", "Authorization")]
-    public class AuthorizationTests
+    public class AuthorizationComponentTests
     {
         [Theory, AutoTestData]
         public void ComponentName(
-            [Greedy]ZAProxy.Components.Authorization sut)
+            [Greedy]AuthorizationComponent sut)
         {
             // ACT
             var result = sut.ComponentName;
@@ -29,7 +30,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetAuthorizationDetectionMethod(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Authorization sut,
+            [Greedy]AuthorizationComponent sut,
             int contextId,
             BasicAuthorizationDetectionMethod basicAuthorizationDetectionMethod)
         {
@@ -55,7 +56,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetAuthorizationDetectionMethod_UnsupportedMethodType(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Authorization sut,
+            [Greedy]AuthorizationComponent sut,
             int contextId)
         {
             // ARRANGE
@@ -83,7 +84,7 @@ namespace ZAProxy.Tests.Components
 
         public void SetBasicAuthorizationDetectionMethod(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Authorization sut,
+            [Greedy]AuthorizationComponent sut,
             int contextId,
             BasicAuthorizationDetectionMethod basicAuthorizationDetectionMethod)
         {

@@ -5,22 +5,22 @@ namespace ZAProxy.Components
     /// <summary>
     /// Component that manages the revealing of hidden/disabled fields in HTML forms.
     /// </summary>
-    public class Reveal : ComponentBase
+    public class RevealComponent : ComponentBase
     {
         /// <summary>
-        /// Initiates a new instance of the <see cref="Reveal"/> class.
+        /// Initiates a new instance of the <see cref="RevealComponent"/> class.
         /// </summary>
         /// <param name="zapProcess">The ZAP process to connect to.</param>
-        public Reveal(IZapProcess zapProcess)
+        public RevealComponent(IZapProcess zapProcess)
             : this(null, zapProcess)
         { }
 
         /// <summary>
-        /// Initiates a new instance of the <see cref="Reveal"/> class with a specific HTTP client implementation.
+        /// Initiates a new instance of the <see cref="RevealComponent"/> class with a specific HTTP client implementation.
         /// </summary>
         /// <param name="httpClient">The HTTP client implementation.</param>
         /// <param name="zapProcess">The ZAP process to connect to.</param>
-        public Reveal(IHttpClient httpClient, IZapProcess zapProcess)
+        public RevealComponent(IHttpClient httpClient, IZapProcess zapProcess)
             : base(httpClient, zapProcess, "reveal")
         { }
 

@@ -4,6 +4,7 @@ using Moq;
 using Newtonsoft.Json.Linq;
 using Ploeh.AutoFixture.Xunit2;
 using Xunit;
+using ZAProxy.Components;
 using ZAProxy.Infrastructure;
 using ZAProxy.Schema;
 using ZAProxy.Tests.TestUtils;
@@ -11,11 +12,11 @@ using ZAProxy.Tests.TestUtils;
 namespace ZAProxy.Tests.Components
 {
     [Trait("Component", "PassiveScanner")]
-    public class PassiveScannerTests
+    public class PassiveScannerComponentTests
     {
         [Theory, AutoTestData]
         public void ComponentName(
-            [Greedy]ZAProxy.Components.PassiveScanner sut)
+            [Greedy]PassiveScannerComponent sut)
         {
             // ACT
             var result = sut.ComponentName;
@@ -29,7 +30,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetRecordsToScan(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.PassiveScanner sut,
+            [Greedy]PassiveScannerComponent sut,
             int recordsToScan)
         {
             // ARRANGE
@@ -50,7 +51,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void GetScanners(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.PassiveScanner sut,
+            [Greedy]PassiveScannerComponent sut,
             IEnumerable<PassiveScanner> scanners)
         {
             // ARRANGE
@@ -75,7 +76,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void DisableAllScanners(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.PassiveScanner sut)
+            [Greedy]PassiveScannerComponent sut)
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "disableAllScanners")
@@ -92,7 +93,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void DisableScanners(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.PassiveScanner sut,
+            [Greedy]PassiveScannerComponent sut,
             int[] ids)
         {
             // ARRANGE
@@ -114,7 +115,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void EnableAllScanners(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.PassiveScanner sut)
+            [Greedy]PassiveScannerComponent sut)
         {
             // ARRANGE
             httpClientMock.SetupApiCall(sut, CallType.Action, "enableAllScanners")
@@ -131,7 +132,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void EnableScanners(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.PassiveScanner sut,
+            [Greedy]PassiveScannerComponent sut,
             int[] ids)
         {
             // ARRANGE
@@ -153,7 +154,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetEnabled(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.PassiveScanner sut,
+            [Greedy]PassiveScannerComponent sut,
             bool enabled)
         {
             // ARRANGE
@@ -175,7 +176,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetScannerAlertThreshold(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.PassiveScanner sut,
+            [Greedy]PassiveScannerComponent sut,
             int id,
             AlertThreshold alertThreshold)
         {

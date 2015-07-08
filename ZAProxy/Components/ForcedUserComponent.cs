@@ -5,22 +5,22 @@ namespace ZAProxy.Components
     /// <summary>
     /// Component for managing forced user sessions.
     /// </summary>
-    public class ForcedUser : ComponentBase
+    public class ForcedUserComponent : ComponentBase
     {
         /// <summary>
-        /// Initiates a new instance of the <see cref="ForcedUser"/> class.
+        /// Initiates a new instance of the <see cref="ForcedUserComponent"/> class.
         /// </summary>
         /// <param name="zapProcess">The ZAP process to connect to.</param>
-        public ForcedUser(IZapProcess zapProcess)
+        public ForcedUserComponent(IZapProcess zapProcess)
             : this(null, zapProcess)
         { }
 
         /// <summary>
-        /// Initiates a new instance of the <see cref="ForcedUser"/> class with a specific HTTP client implementation.
+        /// Initiates a new instance of the <see cref="ForcedUserComponent"/> class with a specific HTTP client implementation.
         /// </summary>
         /// <param name="httpClient">The HTTP client implementation.</param>
         /// <param name="zapProcess">The ZAP process to connect to.</param>
-        public ForcedUser(IHttpClient httpClient, IZapProcess zapProcess)
+        public ForcedUserComponent(IHttpClient httpClient, IZapProcess zapProcess)
             : base(httpClient, zapProcess, "forcedUser")
         { }
 

@@ -4,17 +4,18 @@ using Moq;
 using Newtonsoft.Json.Linq;
 using Ploeh.AutoFixture.Xunit2;
 using Xunit;
+using ZAProxy.Components;
 using ZAProxy.Infrastructure;
 using ZAProxy.Tests.TestUtils;
 
 namespace ZAProxy.Tests.Components
 {
     [Trait("Component", "Reveal")]
-    public class RevealTests
+    public class RevealComponentTests
     {
         [Theory, AutoTestData]
         public void ComponentName(
-            [Greedy]ZAProxy.Components.Reveal sut)
+            [Greedy]RevealComponent sut)
         {
             // ACT
             var result = sut.ComponentName;
@@ -28,7 +29,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void IsRevealEnabled(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Reveal sut,
+            [Greedy]RevealComponent sut,
             bool isEnabled)
         {
             // ARRANGE
@@ -53,7 +54,7 @@ namespace ZAProxy.Tests.Components
         [Theory, AutoTestData]
         public void SetRevealEnabled(
             [Frozen]Mock<IHttpClient> httpClientMock,
-            [Greedy]ZAProxy.Components.Reveal sut,
+            [Greedy]RevealComponent sut,
             bool enabled)
         {
             // ARRANGE
