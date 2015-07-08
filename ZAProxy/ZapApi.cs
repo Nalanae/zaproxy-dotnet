@@ -45,6 +45,7 @@ namespace ZAProxy
             RegisterComponent(new PassiveScannerComponent(zapProcess));
             RegisterComponent(new RevealComponent(zapProcess));
             RegisterComponent(new ScriptComponent(zapProcess));
+            RegisterComponent(new SearchComponent(zapProcess));
             RegisterComponent(new UsersComponent(zapProcess));
         }
 
@@ -112,6 +113,11 @@ namespace ZAProxy
         /// Gets the script component.
         /// </summary>
         public ScriptComponent Script { get { return GetComponent<ScriptComponent>(); } }
+
+        /// <summary>
+        /// Gets the search component.
+        /// </summary>
+        public SearchComponent Search { get { return GetComponent<SearchComponent>(); } }
 
         /// <summary>
         /// Gets the users component.

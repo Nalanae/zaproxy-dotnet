@@ -12,7 +12,7 @@ using ZAProxy.Tests.TestUtils;
 
 namespace ZAProxy.Tests.Components
 {
-    [Trait("Component", "AntiCsrf")]
+    [Trait("Component", "Script")]
     public class ScriptComponentTests
     {
         [Theory, AutoTestData]

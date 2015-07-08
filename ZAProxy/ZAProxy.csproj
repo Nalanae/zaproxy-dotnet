@@ -102,8 +102,10 @@
     <Compile Include="Components\PassiveScannerComponent.cs" />
     <Compile Include="Components\RevealComponent.cs" />
     <Compile Include="Components\ScriptComponent.cs" />
+    <Compile Include="Components\SearchComponent.cs" />
     <Compile Include="Components\UsersComponent.cs" />
     <Compile Include="Infrastructure\Parameters.cs" />
+    <Compile Include="Schema\HistoricEntryTypeConstants.cs" />
     <Compile Include="Schema\PassiveScanner.cs" />
     <Compile Include="Schema\Alert.cs" />
     <Compile Include="Schema\Cookie.cs" />
@@ -112,6 +114,7 @@
     <Compile Include="Schema\HttpParameterType.cs" />
     <Compile Include="Schema\HttpSession.cs" />
     <Compile Include="Schema\Script.cs" />
+    <Compile Include="Schema\MessageUrl.cs" />
     <Compile Include="Schema\User.cs" />
     <Compile Include="Schema\AuthenticationCredentials.cs" />
     <Compile Include="Schema\AuthenticationCredentialsParameterConstants.cs" />

@@ -36,10 +36,10 @@ namespace ZAProxy.Schema
         /// <summary>
         /// Gets or sets the login url.
         /// </summary>
-        public string LoginUrl
+        public Uri LoginUrl
         {
-            get { return BaseAuthenticationMethod.Parameters[AuthenticationMethodParameterConstants.LoginUrl]; }
-            set { BaseAuthenticationMethod.Parameters[AuthenticationMethodParameterConstants.LoginUrl] = value; }
+            get { return new Uri(BaseAuthenticationMethod.Parameters[AuthenticationMethodParameterConstants.LoginUrl]); }
+            set { BaseAuthenticationMethod.Parameters[AuthenticationMethodParameterConstants.LoginUrl] = value.ToString(); }
         }
 
         /// <summary>
