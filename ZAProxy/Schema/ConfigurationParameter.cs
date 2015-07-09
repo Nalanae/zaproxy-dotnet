@@ -3,7 +3,7 @@
     /// <summary>
     /// Describes a configuration parameter used in authentication.
     /// </summary>
-    public class AuthenticationConfigParameter
+    public class ConfigurationParameter
     {
         /// <summary>
         /// Gets or sets the name.

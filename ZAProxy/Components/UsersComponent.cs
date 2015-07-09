@@ -48,9 +48,9 @@ namespace ZAProxy.Components
         /// </summary>
         /// <param name="contextId">The ID of the context.</param>
         /// <returns>Authentication credentials configuration parameters.</returns>
-        public IEnumerable<AuthenticationConfigParameter> GetAuthenticationCredentialsConfigParameters(int contextId)
+        public IEnumerable<ConfigurationParameter> GetAuthenticationCredentialsConfigParameters(int contextId)
         {
-            return CallView<IEnumerable<AuthenticationConfigParameter>>("getAuthenticationCredentialsConfigParams", "methodConfigParams", new Parameters
+            return CallView<IEnumerable<ConfigurationParameter>>("getAuthenticationCredentialsConfigParams", "methodConfigParams", new Parameters
             {
                 { "contextId", contextId }
             });

@@ -35,7 +35,6 @@ namespace ZAProxy.Components
         /// <returns>Authentication method used by specified content.</returns>
         public AuthenticationMethod GetAuthenticationMethod(int contextId)
         {
-            // TODO: Fix dynamic type.
             return CallView<AuthenticationMethod>("getAuthenticationMethod", null, new Parameters
             {
                 { "contextId", contextId }
@@ -47,9 +46,9 @@ namespace ZAProxy.Components
         /// </summary>
         /// <param name="authenticationMethodName">The name of the authentication mode.</param>
         /// <returns>The configuration parameters of the authentication mode.</returns>
-        public IEnumerable<AuthenticationConfigParameter> GetAuthenticationMethodConfigParameters(string authenticationMethodName)
+        public IEnumerable<ConfigurationParameter> GetAuthenticationMethodConfigParameters(string authenticationMethodName)
         {
-            return CallView<IEnumerable<AuthenticationConfigParameter>>("getAuthenticationMethodConfigParams", "methodConfigParams", new Parameters
+            return CallView<IEnumerable<ConfigurationParameter>>("getAuthenticationMethodConfigParams", "methodConfigParams", new Parameters
             {
                 { "authMethodName", authenticationMethodName }
             });

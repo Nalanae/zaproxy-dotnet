@@ -135,6 +135,9 @@
   <data name="InvalidQueryString" xml:space="preserve">
     <value>The supplied string is not a well-formed query string.</value>
   </data>
+  <data name="InvalidSessionManagementMethodSupplied" xml:space="preserve">
+    <value>This class does not support the supplied SessionManagementMethod.</value>
+  </data>
   <data name="UnknownCallActionResult" xml:space="preserve">
     <value>CallAction received an unknown result.</value>
   </data>

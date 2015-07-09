@@ -103,6 +103,7 @@
     <Compile Include="Components\PassiveScannerComponentTests.cs" />
     <Compile Include="Components\ScriptComponentTests.cs" />
     <Compile Include="Components\SearchComponentTests.cs" />
+    <Compile Include="Components\SessionManagementComponentTests.cs" />
     <Compile Include="Components\UsersComponentTests.cs" />
     <Compile Include="TestUtils\AutoTestDataAttribute.cs" />
     <Compile Include="Components\ActiveScannerComponentTests.cs" />

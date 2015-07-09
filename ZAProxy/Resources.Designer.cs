@@ -115,6 +115,15 @@ namespace ZAProxy {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This class does not support the supplied SessionManagementMethod..
+        /// </summary>
+        internal static string InvalidSessionManagementMethodSupplied {
+            get {
+                return ResourceManager.GetString("InvalidSessionManagementMethodSupplied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CallAction received an unknown result..
         /// </summary>
         internal static string UnknownCallActionResult {
