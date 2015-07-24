@@ -1,14 +1,12 @@
-﻿using Newtonsoft.Json;
-
-namespace ZAProxy.Schema
+﻿namespace ZAProxy.Schema
 {
     /// <summary>
-    /// Describes an active scan.
+    /// Describes the status of a spider scan.
     /// </summary>
-    public class ActiveScan
+    public class SpiderScan
     {
         /// <summary>
-        /// Gets or sets the progress (in percentage).
+        /// Gets or sets the completed percentage.
         /// </summary>
         public int Progress { get; set; }
 
@@ -18,7 +16,7 @@ namespace ZAProxy.Schema
         public int Id { get; set; }
 
         /// <summary>
-        /// Gets or sets the current state.
+        /// Gets or sets the state.
         /// </summary>
         public ScanState State { get; set; }
     }

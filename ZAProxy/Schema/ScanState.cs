@@ -4,10 +4,10 @@ using System;
 namespace ZAProxy.Schema
 {
     /// <summary>
-    /// Describes the state of an active scan.
+    /// Describes the state of a scan.
     /// </summary>
-    [JsonConverter(typeof(Converters.ActiveScanStateEnumConverter))]
-    public enum ActiveScanState
+    [JsonConverter(typeof(Converters.ScanStateEnumConverter))]
+    public enum ScanState
     {
         /// <summary>
         /// The scan hasn't started yet.

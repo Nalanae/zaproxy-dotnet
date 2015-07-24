@@ -82,6 +82,7 @@ namespace ZAProxy.Tests.Components
 
         #region Actions
 
+        [Theory, AutoTestData]
         public void SetBasicAuthorizationDetectionMethod(
             [Frozen]Mock<IHttpClient> httpClientMock,
             [Greedy]AuthorizationComponent sut,

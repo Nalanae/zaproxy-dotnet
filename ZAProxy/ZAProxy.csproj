@@ -104,10 +104,14 @@
     <Compile Include="Components\ScriptComponent.cs" />
     <Compile Include="Components\SearchComponent.cs" />
     <Compile Include="Components\SessionManagementComponent.cs" />
+    <Compile Include="Components\SpiderComponent.cs" />
     <Compile Include="Components\UsersComponent.cs" />
     <Compile Include="Infrastructure\Parameters.cs" />
+    <Compile Include="Schema\Converters\HandleParametersOptionEnumConverter.cs" />
+    <Compile Include="Schema\HandleParametersOption.cs" />
     <Compile Include="Schema\HttpAuthSessionManagementMethod.cs" />
     <Compile Include="Schema\CookieBasedSessionManagementMethod.cs" />
+    <Compile Include="Schema\SpiderScan.cs" />
     <Compile Include="Schema\SessionManagementMethod.cs" />
     <Compile Include="Schema\HistoricEntryTypeConstants.cs" />
     <Compile Include="Schema\PassiveScanner.cs" />
@@ -121,6 +125,7 @@
     <Compile Include="Schema\MessageUrl.cs" />
     <Compile Include="Schema\SessionManagementMethodNameConstants.cs" />
     <Compile Include="Schema\SpecializedSessionManagementMethodBase.cs" />
+    <Compile Include="Schema\SpiderScanResult.cs" />
     <Compile Include="Schema\User.cs" />
     <Compile Include="Schema\AuthenticationCredentials.cs" />
     <Compile Include="Schema\AuthenticationCredentialsParameterConstants.cs" />
@@ -133,7 +138,7 @@
     <Compile Include="Schema\Confidence.cs" />
     <Compile Include="Schema\Converters\NullableInt32Converter.cs" />
     <Compile Include="Schema\Converters\CapitalizedEnumConverter.cs" />
-    <Compile Include="Schema\Converters\ActiveScanStateEnumConverter.cs" />
+    <Compile Include="Schema\Converters\ScanStateEnumConverter.cs" />
     <Compile Include="Schema\GenericAuthenticationCredentials.cs" />
     <Compile Include="Schema\UserNamePasswordAuthenticationCredentials.cs" />
     <Compile Include="Schema\ManualAuthenticationCredentials.cs" />
@@ -169,7 +174,7 @@
     <Compile Include="Schema\ActiveScan.cs" />
     <Compile Include="Schema\ActiveScanner.cs" />
     <Compile Include="Schema\ActiveScanProgress.cs" />
-    <Compile Include="Schema\ActiveScanState.cs" />
+    <Compile Include="Schema\ScanState.cs" />
     <Compile Include="IZapProcess.cs" />
     <Compile Include="ZapServerProcess.cs" />
     <Compile Include="ZapUtils.cs" />
